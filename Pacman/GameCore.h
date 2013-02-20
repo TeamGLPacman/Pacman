@@ -8,9 +8,6 @@ class GameCore
 {
 private:
 
-	Testing;
-
-
 public:
 
 };
