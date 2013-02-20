@@ -11,7 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="Object3D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Object3D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CB875A28-A8C4-406B-AD6B-A23147E8A334}</ProjectGuid>
