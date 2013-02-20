@@ -8,7 +8,7 @@ class GameCore
 {
 private:
 
-	Test
+	Testing;
 
 
 public:
