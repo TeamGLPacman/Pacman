@@ -11,13 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="GraphicsCore.h" />
     <ClInclude Include="Object3D.h" />
+    <ClInclude Include="ShaderHandler.h" />
+    <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GraphicsCore.cpp" />
     <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="ShaderHandler.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CB875A28-A8C4-406B-AD6B-A23147E8A334}</ProjectGuid>
