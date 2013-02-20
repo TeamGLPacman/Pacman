@@ -10,7 +10,7 @@ ShaderHandler::~ShaderHandler(void)
 {
 }
 
-bool ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type, GLuint& shaderHandle)
+GLuint ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type)
 {
 	// load file into string
 	ifstream file;
@@ -29,6 +29,7 @@ bool ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type, G
   }
   file.close();
 
+  GLuint shaderHandle;
 	// create shader object
 	if (type == 0) {
 		shaderHandle = glCreateShader(GL_VERTEX_SHADER);
@@ -67,18 +68,21 @@ bool ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type, G
 		}
 		return false;
 	}
-	return true;
+	return shaderHandle;
 }
 
-bool ShaderHandler::CreateShaderProgram(const GLuint& shaderAHandle, const GLuint& shaderBHandle, GLuint& shaderProgHandle)
+GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* shaderBFile)
 {
 	// create shader programme
-	shaderProgHandle = glCreateProgram();
+	GLuint shaderProgHandle = glCreateProgram();
 	if (0 == shaderProgHandle) {
 		printf("ERROR creating shader programme\n");
-		return false;
+		return;
 	}
 	
+	GLuint shaderAHandle = CompileShaderFile(shaderAFile, 0);
+	GLuint shaderBHandle = CompileShaderFile(shaderBFile, 1);
+
 	// attach shaders
 	glAttachShader(shaderProgHandle, shaderAHandle);
 	glAttachShader(shaderProgHandle, shaderBHandle);
@@ -91,20 +95,23 @@ bool ShaderHandler::CreateShaderProgram(const GLuint& shaderAHandle, const GLuin
 	glGetProgramiv(shaderProgHandle, GL_LINK_STATUS, &status);
 	if (GL_FALSE == status) {
 		printf("ERROR: failed to link shader programme\n");
-		return false;
+		return;
 	}
 	
-	return true;
+	return shaderProgHandle;
 }
 
-bool ShaderHandler::CreateShaderProgram(const GLuint& shaderAHandle, const GLuint& shaderBHandle, const GLuint& shaderCHandle, GLuint& shaderProgHandle)
+GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile)
 {
 	// create shader programme
-	shaderProgHandle = glCreateProgram();
+	GLuint shaderProgHandle = glCreateProgram();
 	if (0 == shaderProgHandle) {
 		printf("ERROR creating shader programme\n");
-		return false;
+		return;
 	}
+	GLuint shaderAHandle = CompileShaderFile(shaderAFile, 0);
+	GLuint shaderBHandle = CompileShaderFile(shaderBFile, 1);
+	GLuint shaderCHandle = CompileShaderFile(shaderCFile, 2);
 	
 	// attach shaders
 	glAttachShader(shaderProgHandle, shaderAHandle);
@@ -119,12 +126,25 @@ bool ShaderHandler::CreateShaderProgram(const GLuint& shaderAHandle, const GLuin
 	glGetProgramiv(shaderProgHandle, GL_LINK_STATUS, &status);
 	if (GL_FALSE == status) {
 		printf("ERROR: failed to link shader programme\n");
-		return false;
+		return;
 	}
 	
-	return true;
+	return shaderProgHandle;
 }
 
 int ShaderHandler::UpdateUniform(const char* variable, GLuint shaderProgHandle, const void* value)
 {
+	GLuint location;
+
+	//case value is float
+	location = glGetUniformLocation(shaderProgHandle, "variable name in shader");
+	if( location >= 0 ){ glUniform1fv(location, 1, &value); }
+	else return 1;
+
+	//case value is vec3
+	location = glGetUniformLocation(shaderProgHandle, "variable name in shader");
+	if( location >= 0 ){ glUniform3fv(location, 1, &value[0]); }
+	else return 1;
+
+	return 0;
 }

@@ -2,26 +2,30 @@
 #define GRAPHICSCORE_H_
 #include "CommonIncludes.h"
 #include "TextureLoader.h"
+#include "ShaderHandler.h"
 
 class GraphicsCore
 {
+private:
+	int windowWidth, windowHeight;
+	char* windowTitle;
 	//Camera mCamera;
 	//VAOModelLoader mVAOModel;
-	//ShaderHandler mShader;
+	ShaderHandler mShader;
 	TextureLoader mTexture;
 
-	//void renderCallback();							    needed?
-	//void resizeCallback(int width, int height);			window size
+	void renderCallback();							   // needed?
+	void resizeCallback(int width, int height);			//window size
 	//timer callback?										count fps
-	//void Initialize();								    inialize glut stuff and general stuff.
 
 public:
 	GraphicsCore(void);
 	~GraphicsCore(void);
 
+	unsigned int Initialize(int argc, char** argv);
 	int RenderObject(unsigned int textureID, unsigned int modelID, unsigned int shaderID, vec3 color, float scale);
-	int RenderObject(3DObject object);
-	UINT LoadTexture(const char* file, UINT shaderProgHandle); 
+	int RenderObject(Object3D object);
+	unsigned int LoadTexture(const char* file, UINT shaderProgHandle); 
 	unsigned int LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle); 
 	unsigned int LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle); 
 	unsigned int SendModel(vector<VertexPoint> vertexList); 

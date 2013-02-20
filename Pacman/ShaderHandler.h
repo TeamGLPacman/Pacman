@@ -9,9 +9,9 @@ public:
 	ShaderHandler(void);
 	~ShaderHandler(void);
 
-	bool CompileShaderFile(const char* shaderFile, const int& type, GLuint& shaderHandle); 
-	bool CreateShaderProgram(const GLuint& shaderAHandle, const GLuint& shaderBHandle, GLuint& shaderProgHandle); 
-	bool CreateShaderProgram(const GLuint& shaderAHandle, const GLuint& shaderBHandle, const GLuint& shaderCHandle, GLuint& shaderProgHandle);
+	GLuint CompileShaderFile(const char* shaderFile, const int& type); 
+	GLuint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile); 
+	GLuint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile);
 	int UpdateUniform(const char* variable, GLuint shaderProgHandle, const void* value); 
 };
 
