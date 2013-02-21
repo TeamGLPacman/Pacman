@@ -25,8 +25,8 @@ public:
 	uint Initialize(int argc, char** argv);
 
 	void ClearScreen();
-	int RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
-	int RenderObject(Object3D object);
+	void RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
+	void RenderObject(Object3D object);
 	void SwapBuffers();
 	uint LoadTexture(const char* file, uint shaderProgHandle); 
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath); 

@@ -84,12 +84,12 @@ void GraphicsCore::ClearScreen()
 	glutMainLoopEvent();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
 }
-int GraphicsCore::RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale)
+void GraphicsCore::RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale)
 {
 	glutMainLoopEvent();
 }
 
-int GraphicsCore::RenderObject(Object3D object)
+void GraphicsCore::RenderObject(Object3D object)
 {
 	glUseProgram(object.GetShaderID());
 	//set uniform variables?
@@ -137,6 +137,7 @@ uint GraphicsCore::SendModel(vec3 position)
  
 int GraphicsCore::UpdateCamera(vec3 eye, vec3 target, vec3 up)
 {
+	return 0;
 }
 
 int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, float value)
