@@ -1,16 +1,6 @@
 #include "GraphicsCore.h"
 
 
-void renderCallback()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
-
-	//draw shit?
-
-	glutSwapBuffers(); // swap drawing back-buffer to displayed front buffer
-	glutPostRedisplay(); // flag for redraw
-}
-
 void resizeCallback(int width, int height)
 {
 	windowWidth = width; // remember new size
@@ -69,7 +59,7 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	}
 
 	// set-up callbacks. we can also do a keyboard and mouse input callback, and various others (see freeGLUT website)
-	glutDisplayFunc(renderCallback); // register rendering callback
+	//glutDisplayFunc(renderCallback); // register rendering callback
 	glutReshapeFunc(resizeCallback); // register callback for reshape
 
 	// set colour to clear screen buffer to
@@ -89,12 +79,35 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	}
 }
 
+void GraphicsCore::ClearScreen()
+{
+	glutMainLoopEvent();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
+}
 int GraphicsCore::RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale)
 {
+	glutMainLoopEvent();
 }
 
 int GraphicsCore::RenderObject(Object3D object)
 {
+	glUseProgram(object.GetShaderID());
+	//set uniform variables?
+	glBindVertexArray(object.GetModelID());
+	//om box eller quad
+	glDrawArrays(GL_TRIANGLES, 0, 4);
+
+	//om billboard
+	glDrawArrays(GL_POINTS, 0, 1);
+	
+	glUseProgram(0); // disable shader
+	glBindVertexArray(0);
+}
+
+void GraphicsCore::SwapBuffers()
+{
+	glutSwapBuffers(); // swap drawing back-buffer to displayed front buffer
+	glutPostRedisplay(); // flag for redraw
 }
 
 uint GraphicsCore::LoadTexture(const char* file, uint shaderProgHandle)
@@ -126,7 +139,13 @@ int GraphicsCore::UpdateCamera(vec3 eye, vec3 target, vec3 up)
 {
 }
 
-int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, const void* value)
+int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, float value)
 {
 	return mShader.UpdateUniform(variable, shaderProgHandle, value);
 }
+
+int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value)
+{
+	return mShader.UpdateUniform(variable, shaderProgHandle, value);
+}
+

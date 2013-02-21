@@ -132,19 +132,20 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 	return shaderProgHandle;
 }
 
-int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, const void* value)
+int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, float value)
 {
-	GLuint location;
-
-	//case value is float
-	location = glGetUniformLocation(shaderProgHandle, "variable name in shader");
+	//use same name for value in shader 
+	uint location = glGetUniformLocation(shaderProgHandle, variable);
 	if( location >= 0 ){ glUniform1fv(location, 1, &value); }
 	else return 1;
 
-	//case value is vec3
-	location = glGetUniformLocation(shaderProgHandle, "variable name in shader");
+	return 0;
+}
+
+int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value)
+{
+	//use same name for value in shader 
+	uint location = glGetUniformLocation(shaderProgHandle, variable);
 	if( location >= 0 ){ glUniform3fv(location, 1, &value[0]); }
 	else return 1;
-
-	return 0;
 }

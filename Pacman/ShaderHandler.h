@@ -13,7 +13,8 @@ public:
 
 	uint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile); 
 	uint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile);
-	int UpdateUniform(const char* variable, uint shaderProgHandle, const void* value); 
+	int UpdateUniform(const char* variable, uint shaderProgHandle, float value); 
+	int UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value); 
 };
 
 #endif

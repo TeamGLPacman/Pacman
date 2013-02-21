@@ -6,7 +6,6 @@
 #include "VAOModelLoader.h"
 
 int windowWidth, windowHeight;
-void renderCallback();
 void resizeCallback(int width, int height);	
 //timer callback?							count fps
 
@@ -24,8 +23,11 @@ public:
 	~GraphicsCore(void);
 
 	uint Initialize(int argc, char** argv);
+
+	void ClearScreen();
 	int RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
 	int RenderObject(Object3D object);
+	void SwapBuffers();
 	uint LoadTexture(const char* file, uint shaderProgHandle); 
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath); 
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath); 
@@ -33,7 +35,8 @@ public:
 	uint SendModel(vec3 position); 
  
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 
-	int UpdateUniform(const char* variable, uint shaderProgHandle, const void* value); 
+	int UpdateUniform(const char* variable, uint shaderProgHandle, float value);
+	int UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value);
 };
 
 #endif
