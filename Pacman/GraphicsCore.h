@@ -15,7 +15,7 @@ class GraphicsCore
 private:
 	char* windowTitle;
 	//Camera mCamera;
-	//VAOModelLoader mVAOModel;
+	VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;
 
@@ -23,14 +23,14 @@ public:
 	GraphicsCore(void);
 	~GraphicsCore(void);
 
-	unsigned int Initialize(int argc, char** argv);
+	uint Initialize(int argc, char** argv);
 	int RenderObject(unsigned int textureID, unsigned int modelID, unsigned int shaderID, vec3 color, float scale);
 	int RenderObject(Object3D object);
-	unsigned int LoadTexture(const char* file, UINT shaderProgHandle); 
-	unsigned int LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle); 
-	unsigned int LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle); 
-	unsigned int SendModel(vector<VertexPoint> vertexList); 
-	unsigned int SendModel(vec3 position); 
+	uint LoadTexture(const char* file, UINT shaderProgHandle); 
+	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle); 
+	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle); 
+	uint SendModel(vector<VertexPoint> vertexList); 
+	uint SendModel(vec3 position); 
  
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 
 	int UpdateUniform(const char* variable, unsigned int shaderProgHandle, const void* value); 

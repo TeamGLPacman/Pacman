@@ -10,7 +10,7 @@ ShaderHandler::~ShaderHandler(void)
 {
 }
 
-GLuint ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type)
+uint ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type)
 {
 	// load file into string
 	ifstream file;
@@ -71,7 +71,7 @@ GLuint ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type)
 	return shaderHandle;
 }
 
-GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* shaderBFile)
+uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* shaderBFile)
 {
 	// create shader programme
 	GLuint shaderProgHandle = glCreateProgram();
@@ -101,7 +101,7 @@ GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* s
 	return shaderProgHandle;
 }
 
-GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile)
+uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile)
 {
 	// create shader programme
 	GLuint shaderProgHandle = glCreateProgram();

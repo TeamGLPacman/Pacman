@@ -10,7 +10,7 @@ VAOModelLoader::~VAOModelLoader(void)
 {
 }
 
-unsigned int VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
+uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 {
 	GLuint VAOHandle;
 	float* positionData = new float[vertexList.size()*3];
@@ -72,14 +72,16 @@ unsigned int VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[3]);
 	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
-	
-	//glBindVertexArray(0); // disable VAO
-	//glUseProgram(0); // disable shader programme
+	glBindVertexArray(0); // disable VAO
+	glUseProgram(0); // disable shader programme
+
+	return VAOHandle;
 }
 
-unsigned int VAOModelLoader::CreateModel(vec3 position)
+uint VAOModelLoader::CreateModel(vec3 position)
 {
-	float positionData* = new float[3];
+	GLuint VAOHandle;
+	float* positionData = new float[3];
 	positionData[0] = position.x;
 	positionData[1] = position.y;
 	positionData[2] = position.z;
@@ -90,11 +92,11 @@ unsigned int VAOModelLoader::CreateModel(vec3 position)
 
 	// "Bind" (switch focus to) first buffer, then Put data in currently bound buffer
 	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[0]); 
-	glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float), positionDataP, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float), positionData, GL_STATIC_DRAW);
 
 	// create 1 VAO
-	glGenVertexArrays(1, &VAOHandleParticles);
-	glBindVertexArray(VAOHandleParticles);
+	glGenVertexArrays(1, &VAOHandle);
+	glBindVertexArray(VAOHandle);
 
 	// enable "vertex attribute arrays"
 	glEnableVertexAttribArray(0); // position
@@ -106,4 +108,6 @@ unsigned int VAOModelLoader::CreateModel(vec3 position)
 
 	glBindVertexArray(0); // disable VAO
 	glUseProgram(0); // disable shader programme
+
+	return VAOHandle;
 }

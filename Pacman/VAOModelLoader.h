@@ -9,8 +9,8 @@ public:
 	VAOModelLoader(void);
 	~VAOModelLoader(void);
 
-	unsigned int CreateModel(vector<VertexPoint> vertexList); 
-	unsigned int CreateModel(vec3 position); 
+	uint CreateModel(vector<VertexPoint> vertexList); 
+	uint CreateModel(vec3 position); 
 
 };
 #endif

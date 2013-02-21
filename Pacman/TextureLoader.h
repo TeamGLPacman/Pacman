@@ -10,6 +10,6 @@ public:
 	TextureLoader(void);
 	~TextureLoader(void);
 
-	UINT LoadTexture_TGA(const char* file, UINT shaderProgHandle);
+	uint LoadTexture_TGA(const char* file, UINT shaderProgHandle);
 };
 #endif

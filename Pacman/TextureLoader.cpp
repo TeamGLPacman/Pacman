@@ -9,7 +9,7 @@ TextureLoader::~TextureLoader(void)
 {
 }
 
-UINT TextureLoader::LoadTexture_TGA(const char* file, UINT shaderProgHandle) {
+uint TextureLoader::LoadTexture_TGA(const char* file, UINT shaderProgHandle) {
 	
 	const size_t size_uchar = sizeof(uchar);
 	const size_t size_sint = sizeof(sint);

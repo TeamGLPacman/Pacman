@@ -30,7 +30,7 @@ GraphicsCore::~GraphicsCore(void)
 }
 
 
-unsigned int GraphicsCore::Initialize(int argc, char** argv)
+uint GraphicsCore::Initialize(int argc, char** argv)
 {
 	// initialise freeGLUT
 	glutInit(&argc, argv);
@@ -97,24 +97,24 @@ int GraphicsCore::RenderObject(Object3D object)
 {
 }
 
-UINT GraphicsCore::LoadTexture(const char* file, UINT shaderProgHandle)
+uint GraphicsCore::LoadTexture(const char* file, UINT shaderProgHandle)
 {
 	return mTexture.LoadTexture_TGA(file, shaderProgHandle);
 }
 
-unsigned int GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle)
+uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle)
 {
 }
 
-unsigned int GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle)
+uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle)
 {
 }
 
-unsigned int GraphicsCore::SendModel(vector<VertexPoint> vertexList)
+uint GraphicsCore::SendModel(vector<VertexPoint> vertexList)
 {
 }
 
-unsigned int GraphicsCore::SendModel(vec3 position)
+uint GraphicsCore::SendModel(vec3 position)
 {
 }
  

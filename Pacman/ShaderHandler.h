@@ -9,9 +9,9 @@ public:
 	ShaderHandler(void);
 	~ShaderHandler(void);
 
-	GLuint CompileShaderFile(const char* shaderFile, const int& type); 
-	GLuint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile); 
-	GLuint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile);
+	uint CompileShaderFile(const char* shaderFile, const int& type); 
+	uint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile); 
+	uint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile);
 	int UpdateUniform(const char* variable, GLuint shaderProgHandle, const void* value); 
 };
 
