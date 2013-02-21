@@ -8,7 +8,7 @@ public:
 
 	//vec3 mSpawnPosition;
 	float mSpeed;
-	//vec3 mDirection; // vec3 ??"#)"
+	vec3 mDirection; // vec3 ??"#)"
 	//vec3 mTargetPoint;
 
 	virtual int Update();
