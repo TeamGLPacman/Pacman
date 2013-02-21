@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -19,69 +11,86 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{053aa5a8-ef72-4068-8e31-f34ce4b9edaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Source Files">
+      <UniqueIdentifier>{3cdbfc87-aedf-420f-9193-a11775f2e0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Header Files">
+      <UniqueIdentifier>{7b1c6430-f5d7-44fb-b490-3539eaaf994c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{ee67d06d-38a9-4f25-bbce-98a5c3848f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Logic\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCore.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Object3D.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CommonIncludes.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BaseStructures.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsCore.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderHandler.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureLoader.h">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VAOModelLoader.h">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsCore.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderHandler.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Graphics\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object3D.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameCore.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsCore.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderHandler.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureLoader.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VAOModelLoader.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsCore.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderHandler.cpp">
+      <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Graphics\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
