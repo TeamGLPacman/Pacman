@@ -132,7 +132,7 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 	return shaderProgHandle;
 }
 
-int ShaderHandler::UpdateUniform(const char* variable, GLuint shaderProgHandle, const void* value)
+int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, const void* value)
 {
 	GLuint location;
 
