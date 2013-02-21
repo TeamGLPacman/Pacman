@@ -53,10 +53,7 @@ Level::~Level()
 	}
 }
 
-int** Level::GetMapValues()
-{
-	return mMapValues;
-}
+
 
 int* Level::GetSurroundingGrid( vec2 pos )
 {
@@ -87,6 +84,16 @@ int* Level::GetSurroundingGrid( vec2 pos )
 		sGrid[0] = 1;
 
 		return sGrid;
+}
+
+int** Level::GetMapValues()
+{
+	return mMapValues;
+}
+
+vector<Object3D> Level::GetBoxList()
+{
+
 }
 
 void Level::SetBoxHandles( uint modelID, uint textureID, uint shaderID )
