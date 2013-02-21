@@ -5,14 +5,15 @@
 
 class ShaderHandler
 {
+private:
+	uint CompileShaderFile(const char* shaderFile, const int& type); 
 public:
 	ShaderHandler(void);
 	~ShaderHandler(void);
 
-	uint CompileShaderFile(const char* shaderFile, const int& type); 
 	uint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile); 
 	uint CreateShaderProgram(const char* shaderAFile, const char* shaderBFile, const char* shaderCFile);
-	int UpdateUniform(const char* variable, GLuint shaderProgHandle, const void* value); 
+	int UpdateUniform(const char* variable, uint shaderProgHandle, const void* value); 
 };
 
 #endif

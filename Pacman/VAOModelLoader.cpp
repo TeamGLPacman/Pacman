@@ -47,10 +47,10 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 	// Put data in currently bound buffer
 	glBufferData(GL_ARRAY_BUFFER, numberOfPoints * sizeof(float), positionData, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[2]);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[1]);
 	glBufferData(GL_ARRAY_BUFFER, numberOfPoints * sizeof(float), normalData, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[3]);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[2]);
 	glBufferData(GL_ARRAY_BUFFER, count*2 * sizeof(float), texCoordData, GL_STATIC_DRAW);
 
 	// create 1 VAO

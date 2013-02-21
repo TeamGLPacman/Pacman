@@ -24,16 +24,16 @@ public:
 	~GraphicsCore(void);
 
 	uint Initialize(int argc, char** argv);
-	int RenderObject(unsigned int textureID, unsigned int modelID, unsigned int shaderID, vec3 color, float scale);
+	int RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
 	int RenderObject(Object3D object);
-	uint LoadTexture(const char* file, UINT shaderProgHandle); 
-	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle); 
-	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle); 
+	uint LoadTexture(const char* file, uint shaderProgHandle); 
+	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath); 
+	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath); 
 	uint SendModel(vector<VertexPoint> vertexList); 
 	uint SendModel(vec3 position); 
  
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 
-	int UpdateUniform(const char* variable, unsigned int shaderProgHandle, const void* value); 
+	int UpdateUniform(const char* variable, uint shaderProgHandle, const void* value); 
 };
 
 #endif

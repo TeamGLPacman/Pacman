@@ -89,7 +89,7 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	}
 }
 
-int GraphicsCore::RenderObject(unsigned int textureID, unsigned int modelID, unsigned int shaderID, vec3 color, float scale)
+int GraphicsCore::RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale)
 {
 }
 
@@ -97,31 +97,36 @@ int GraphicsCore::RenderObject(Object3D object)
 {
 }
 
-uint GraphicsCore::LoadTexture(const char* file, UINT shaderProgHandle)
+uint GraphicsCore::LoadTexture(const char* file, uint shaderProgHandle)
 {
 	return mTexture.LoadTexture_TGA(file, shaderProgHandle);
 }
 
-uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, unsigned int shaderProgHandle)
+uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath)
 {
+	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath);
 }
 
-uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath, unsigned int shaderProgHandle)
+uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath)
 {
+	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath, geometryShaderPath);
 }
 
 uint GraphicsCore::SendModel(vector<VertexPoint> vertexList)
 {
+	return mVAOModel.CreateModel(vertexList);
 }
 
 uint GraphicsCore::SendModel(vec3 position)
 {
+	return mVAOModel.CreateModel(position);
 }
  
 int GraphicsCore::UpdateCamera(vec3 eye, vec3 target, vec3 up)
 {
 }
 
-int GraphicsCore::UpdateUniform(const char* variable, unsigned int shaderProgHandle, const void* value)
+int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, const void* value)
 {
+	return mShader.UpdateUniform(variable, shaderProgHandle, value);
 }
