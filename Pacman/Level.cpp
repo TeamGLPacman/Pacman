@@ -1,6 +1,4 @@
 #include "Level.h"
-#include "SOIL.h"
-
 
 Level::Level()
 { }
@@ -44,12 +42,9 @@ bool Level::LoadMap( const char* path, int width, int height )
 
 Level::~Level()
 {
-	for( int y = 0; y < mHeight; y++ )
+	for( int i = 0; i < mWidth; i++ ) 
 	{
-		for( int x = 0; x < mWidth; x++ )
-		{
-			delete &mMapValues[x][y];
-		}
+		delete mMapValues[i];
 	}
 }
 
@@ -93,7 +88,7 @@ int** Level::GetMapValues()
 
 vector<Object3D> Level::GetBoxList()
 {
-
+	return mBoxList;
 }
 
 void Level::SetBoxHandles( uint modelID, uint textureID, uint shaderID )

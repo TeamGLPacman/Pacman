@@ -28,6 +28,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{49878c1d-f27e-41b3-9508-3ae604521198}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCore.h">
@@ -37,12 +40,6 @@
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Logic\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonIncludes.h">
-      <Filter>Logic\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseStructures.h">
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
@@ -62,6 +59,12 @@
     </ClInclude>
     <ClInclude Include="TextureLoader.h">
       <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseStructures.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonIncludes.h">
+      <Filter>Includes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
