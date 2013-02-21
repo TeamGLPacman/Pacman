@@ -1,25 +1,45 @@
 #include "Object3D.h"
 
 
-Object3D::Object3D(void)
+Object3D::Object3D()
 {
 }
 
+Object3D::~Object3D()
+{
+}
 
-Object3D::~Object3D(void)
+unsigned int Object3D::GetModelID()
 {
+	return mModelID;
 }
-unsigned int GetModelID()
+
+unsigned int Object3D::GetTextureID()
 {
-	return 0;
+	return mTextureID;
 }
-unsigned int GetTextureID()
+
+unsigned int Object3D::GetShaderID()
 {
-	return 0;
+	return mShaderID;
 }
-unsigned int GetShaderID()
+
+vec3 Object3D::GetWorldPos()
 {
-	return 0;
+	return mWorldPos;
 }
-//vec3 GetWorldPos();
-//vec3 GetColor();
+
+vec3 Object3D::GetColor()
+{
+	return mColour;
+}
+
+void Object3D::SetWorldPos( vec3 pos )
+{
+	mWorldPos = pos;
+}
+
+void Object3D::SetColour( vec3 colour )
+{
+	mColour = colour;
+}
