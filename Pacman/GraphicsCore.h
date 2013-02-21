@@ -5,19 +5,19 @@
 #include "ShaderHandler.h"
 #include "VAOModelLoader.h"
 
+int windowWidth, windowHeight;
+void renderCallback();
+void resizeCallback(int width, int height);	
+//timer callback?							count fps
+
 class GraphicsCore
 {
 private:
-	int windowWidth, windowHeight;
 	char* windowTitle;
 	//Camera mCamera;
 	//VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;
-
-	void renderCallback();							   // needed?
-	void resizeCallback(int width, int height);			//window size
-	//timer callback?										count fps
 
 public:
 	GraphicsCore(void);

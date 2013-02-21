@@ -1,6 +1,23 @@
 #include "GraphicsCore.h"
 
 
+void renderCallback()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
+
+	//draw shit?
+
+	glutSwapBuffers(); // swap drawing back-buffer to displayed front buffer
+	glutPostRedisplay(); // flag for redraw
+}
+
+void resizeCallback(int width, int height)
+{
+	windowWidth = width; // remember new size
+	windowHeight = height;
+	glViewport(0, 0, width, height); // change viewport size in gl
+}
+
 GraphicsCore::GraphicsCore(void)
 {
 	windowWidth = 800;
@@ -12,22 +29,6 @@ GraphicsCore::~GraphicsCore(void)
 {
 }
 
-void GraphicsCore::renderCallback()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
-
-	//draw shit?
-
-	glutSwapBuffers(); // swap drawing back-buffer to displayed front buffer
-	glutPostRedisplay(); // flag for redraw
-}
-
-void GraphicsCore::resizeCallback(int width, int height)
-{
-	windowWidth = width; // remember new size
-	windowHeight = height;
-	glViewport(0, 0, width, height); // change viewport size in gl
-}
 
 unsigned int GraphicsCore::Initialize(int argc, char** argv)
 {
