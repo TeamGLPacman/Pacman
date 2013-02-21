@@ -5,8 +5,9 @@
 class Level
 {
 public:
-	Level(void);
-	~Level(void);
+	Level( );
+	~Level();
+	bool LoadMap( const char* path, int width, int height );
 	int** GetMapValues();
 	int* GetSurroundingGrid( glm::vec2 );
 	vector<vec3> GetBoxList();
@@ -15,6 +16,8 @@ public:
 	void SetBoxHandles( uint modID, uint texID, uint shadID );
 
 private:
+	int mWidth, mHeight;
+
 	vector<vec3> mBoxList;
 	Object3D mGround;
 	int** mMapValues;
