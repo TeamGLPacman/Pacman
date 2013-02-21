@@ -11,6 +11,7 @@
 #include <glm/glm.hpp> // include the glm maths library (you can use your own too)
 using glm::mat3;
 using glm::mat4;
+using glm::vec2;
 using glm::vec3;
 using glm::vec4;
 #include <glm/gtc/matrix_transform.hpp> // rotate functions

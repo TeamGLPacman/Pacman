@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseStructures.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Entity.h" />
@@ -19,14 +20,17 @@
     <ClInclude Include="Object3D.h" />
     <ClInclude Include="ShaderHandler.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="VAOModelLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GraphicsCore.cpp" />
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="ShaderHandler.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="VAOModelLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CB875A28-A8C4-406B-AD6B-A23147E8A334}</ProjectGuid>

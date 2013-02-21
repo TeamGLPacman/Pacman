@@ -77,7 +77,7 @@ GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* s
 	GLuint shaderProgHandle = glCreateProgram();
 	if (0 == shaderProgHandle) {
 		printf("ERROR creating shader programme\n");
-		return;
+		return shaderProgHandle;
 	}
 	
 	GLuint shaderAHandle = CompileShaderFile(shaderAFile, 0);
@@ -95,7 +95,7 @@ GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* s
 	glGetProgramiv(shaderProgHandle, GL_LINK_STATUS, &status);
 	if (GL_FALSE == status) {
 		printf("ERROR: failed to link shader programme\n");
-		return;
+		return shaderProgHandle;
 	}
 	
 	return shaderProgHandle;
@@ -107,7 +107,7 @@ GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* s
 	GLuint shaderProgHandle = glCreateProgram();
 	if (0 == shaderProgHandle) {
 		printf("ERROR creating shader programme\n");
-		return;
+		return shaderProgHandle;
 	}
 	GLuint shaderAHandle = CompileShaderFile(shaderAFile, 0);
 	GLuint shaderBHandle = CompileShaderFile(shaderBFile, 1);
@@ -126,7 +126,7 @@ GLuint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* s
 	glGetProgramiv(shaderProgHandle, GL_LINK_STATUS, &status);
 	if (GL_FALSE == status) {
 		printf("ERROR: failed to link shader programme\n");
-		return;
+		return shaderProgHandle;
 	}
 	
 	return shaderProgHandle;

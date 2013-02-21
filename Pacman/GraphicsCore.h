@@ -3,6 +3,7 @@
 #include "CommonIncludes.h"
 #include "TextureLoader.h"
 #include "ShaderHandler.h"
+#include "VAOModelLoader.h"
 
 class GraphicsCore
 {
