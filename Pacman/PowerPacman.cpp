@@ -1,7 +1,7 @@
 #include "PowerPacman.h"
 
 
-PowerPacman::PowerPacman(void)
+PowerPacman::PowerPacman(void) : Effect (500)
 {
 }
 PowerPacman::~PowerPacman(void)
@@ -9,6 +9,7 @@ PowerPacman::~PowerPacman(void)
 }
 int PowerPacman::Run()
 {
+	// För optimering krävs en extra variabel !
 	int TimeLeft = Tick();
 	if (TimeLeft != 0)
 	{
