@@ -12,7 +12,7 @@ public:
 	int GetTimeLeft() 
 		{ return mTimeLeft; }
 
-
+	Effect(int);
 	Effect();
 	~Effect();
 };
