@@ -1,12 +1,8 @@
 #include "GameCore.h"
 
 //Needed for c++
-GameCore mGameCore;
-int main( int argc, char** argv )
-{
-	mGameCore.Initialize( argc, argv );
-	return mGameCore.GameLoop();
-}
+// THIS IS BAAAAAAAD!
+
 
 int GameCore::GameLoop(){
 	while(true){

@@ -48,6 +48,7 @@
     <ClCompile Include="KillGhost.cpp" />
     <ClCompile Include="KillPacman.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="Pacman.cpp" />
     <ClCompile Include="Points.cpp" />

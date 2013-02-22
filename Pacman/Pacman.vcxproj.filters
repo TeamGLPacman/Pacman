@@ -162,6 +162,10 @@
     <ClCompile Include="Ghost.cpp">
       <Filter>Logic\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pacman.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shaders\shader.vertex">
