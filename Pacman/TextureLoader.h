@@ -1,6 +1,6 @@
 #ifndef TEXTURELOADER_H_
 #define TEXTURELOADER_H_
-#include "TGALoader.h"
+#include "SOIL.h"
 #include <fstream>
 #include "CommonIncludes.h"
 
@@ -10,6 +10,6 @@ public:
 	TextureLoader(void);
 	~TextureLoader(void);
 
-	uint LoadTexture_TGA(const char* file, UINT shaderProgHandle);
+	uint LoadTexture(const char* file, uint shaderProgHandle);
 };
 #endif
