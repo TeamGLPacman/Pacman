@@ -127,12 +127,13 @@ void GraphicsCore::RenderObject(Object3D object)
 	glBindTexture(GL_TEXTURE_2D, object.GetTextureID);
 	glBindVertexArray(object.GetModelID());
 
-	//om billboard
+	//if billboard
 	if(mVAOModel.GetVertexCount(object.GetModelID) == 1)
 	{
 		glDrawArrays(GL_POINTS, 0, 1);
 	}
 	
+	//if 
 	else
 	{
 		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object.GetModelID));
