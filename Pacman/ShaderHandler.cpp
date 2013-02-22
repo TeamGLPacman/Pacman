@@ -15,31 +15,39 @@ uint ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type)
 	// load file into string
 	ifstream file;
 	file.open(shaderFile);
-	if (!file.is_open()) {
+	if (!file.is_open()) 
+	{
 		printf("ERROR creating opening shader file %s\n", shaderFile);
 		return false;
 	}
 	string shaderString; // string to load shader into
 	char line[256];
-  while (!file.eof()) {
-    strcpy(line, "");
-    file.getline(line, 256);
-    shaderString += line;
-    shaderString += '\n';
-  }
-  file.close();
+	while (!file.eof()) 
+	{
+		strcpy(line, "");
+		file.getline(line, 256);
+		shaderString += line;
+		shaderString += '\n';
+	}
+	file.close();
 
-  GLuint shaderHandle;
+	GLuint shaderHandle;
 	// create shader object
-	if (type == 0) {
+	if (type == 0) 
+	{
 		shaderHandle = glCreateShader(GL_VERTEX_SHADER);
-	} else if (type == 1) {
+	} 
+	else if (type == 1) 
+	{
 		shaderHandle = glCreateShader(GL_FRAGMENT_SHADER);
-	} else if (type == 2) {
+	} 
+	else if (type == 2) 
+	{
 		shaderHandle = glCreateShader(GL_GEOMETRY_SHADER);
 	}
 	// validate creation
-	if (0 == shaderHandle) {
+	if (0 == shaderHandle) 
+	{
 		printf("ERROR creating shader type %i\n", type);
 		return false;
 	}
@@ -54,11 +62,13 @@ uint ShaderHandler::CompileShaderFile(const char* shaderFile, const int& type)
 	// Check for errors
 	int result = 0;
 	glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &result);
-	if(GL_FALSE == result) {
+	if(GL_FALSE == result) 
+	{
 		printf("ERROR compiling shader type %i\n", type);
 		int length = 0;
 		glGetShaderiv(shaderHandle, GL_INFO_LOG_LENGTH, &length);
-		if(length > 0) {
+		if(length > 0) 
+		{
 			// create a log of error messages
 			char* errorLog = new char[length];
 			int written = 0;
@@ -75,7 +85,8 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 {
 	// create shader programme
 	GLuint shaderProgHandle = glCreateProgram();
-	if (0 == shaderProgHandle) {
+	if (0 == shaderProgHandle) 
+	{
 		printf("ERROR creating shader programme\n");
 		return shaderProgHandle;
 	}
@@ -93,7 +104,8 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 	// verify link status
 	GLint status;
 	glGetProgramiv(shaderProgHandle, GL_LINK_STATUS, &status);
-	if (GL_FALSE == status) {
+	if (GL_FALSE == status) 
+	{
 		printf("ERROR: failed to link shader programme\n");
 		return shaderProgHandle;
 	}
@@ -105,7 +117,8 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 {
 	// create shader programme
 	GLuint shaderProgHandle = glCreateProgram();
-	if (0 == shaderProgHandle) {
+	if (0 == shaderProgHandle) 
+	{
 		printf("ERROR creating shader programme\n");
 		return shaderProgHandle;
 	}
@@ -124,7 +137,8 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 	// verify link status
 	GLint status;
 	glGetProgramiv(shaderProgHandle, GL_LINK_STATUS, &status);
-	if (GL_FALSE == status) {
+	if (GL_FALSE == status) 
+	{
 		printf("ERROR: failed to link shader programme\n");
 		return shaderProgHandle;
 	}
@@ -136,7 +150,8 @@ int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, fl
 {
 	//use same name for value in shader 
 	uint location = glGetUniformLocation(shaderProgHandle, variable);
-	if( location >= 0 ){ glUniform1fv(location, 1, &value); }
+	if( location >= 0 )
+		{ glUniform1fv(location, 1, &value); }
 	else return 1;
 
 	return 0;
@@ -146,6 +161,7 @@ int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, ve
 {
 	//use same name for value in shader 
 	uint location = glGetUniformLocation(shaderProgHandle, variable);
-	if( location >= 0 ){ glUniform3fv(location, 1, &value[0]); }
+	if( location >= 0 )
+		{ glUniform3fv(location, 1, &value[0]); }
 	else return 1;
 }
