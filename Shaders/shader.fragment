@@ -53,8 +53,8 @@ void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec 
 void main() {
 	vec3 ambAndDiff, spec;
 	vec4 texColor = texture( Tex1, TexCoord );
-	phongModel(EyePosition, TNormal, ambAndDiff, spec);
-	FragColor = vec4(ambAndDiff, 1.0) * texColor + vec4(spec, 1.0); 
+	//phongModel(EyePosition, TNormal, ambAndDiff, spec);
+	//FragColor = vec4(ambAndDiff, 1.0) * texColor + vec4(spec, 1.0); 
 	//FragColor = vec4(vec3(0,1.0f,0), 1.0);
-	//FragColor = texColor;
+	FragColor = texColor;
 }
