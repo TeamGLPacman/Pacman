@@ -77,7 +77,7 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 
 	delete positionData, normalData, texCoordData;
 
-	mModelVertexCount.insert(VAOHandle, vertexList.size());
+	mModelVertexCount[VAOHandle] = vertexList.size();
 
 	return VAOHandle;
 }
@@ -115,7 +115,12 @@ uint VAOModelLoader::CreateModel(vec3 position)
 
 	delete positionData;
 
-	mModelVertexCount.insert(VAOHandle, 1);
+	mModelVertexCount[VAOHandle] = 1;
 
 	return VAOHandle;
+}
+
+int VAOModelLoader::GetVertexCount(uint modelID)
+{
+	return mModelVertexCount[modelID];
 }

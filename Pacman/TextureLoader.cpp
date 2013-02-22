@@ -9,11 +9,10 @@ TextureLoader::~TextureLoader(void)
 {
 }
 
-uint TextureLoader::LoadTexture(const char* file, UINT shaderProgHandle) {
-	
+uint TextureLoader::LoadTexture(const char* file, uint shaderProgHandle) 
 {
 	int width, height, channels;
-		// Load texture file and convert to openGL format
+		// Load texture file data
 	unsigned char* imgData = SOIL_load_image(file, &width, &height, &channels, 4 );
 
 	uint textureHandle;

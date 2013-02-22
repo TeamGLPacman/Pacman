@@ -93,12 +93,24 @@ void GraphicsCore::RenderObject(Object3D object)
 {
 	glUseProgram(object.GetShaderID());
 	//set uniform variables?
+
+	glEnable(GL_BLEND); //for transparency
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glBindTexture(GL_TEXTURE_2D, object.GetTextureID);
 	glBindVertexArray(object.GetModelID());
-	//om box eller quad
-	glDrawArrays(GL_TRIANGLES, 0, 4);
 
 	//om billboard
-	glDrawArrays(GL_POINTS, 0, 1);
+	if(mVAOModel.GetVertexCount(object.GetModelID) == 1)
+	{
+		glDrawArrays(GL_POINTS, 0, 1);
+	}
+	
+	else
+	{
+		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object.GetModelID));
+	}
+
 	
 	glUseProgram(0); // disable shader
 	glBindVertexArray(0);
@@ -112,7 +124,7 @@ void GraphicsCore::SwapBuffers()
 
 uint GraphicsCore::LoadTexture(const char* file, uint shaderProgHandle)
 {
-	return mTexture.LoadTexture_TGA(file, shaderProgHandle);
+	return mTexture.LoadTexture(file, shaderProgHandle);
 }
 
 uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath)
