@@ -15,7 +15,7 @@ public:
 	uint Initialize(int argc, char** argv);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath);
-	uint LoadTexture(const char* texturePath, uint shaderProgHandle);
+	uint LoadTexture(const char* texturePath);
 	uint SendModel(vector<VertexPoint> vertexList);
 	uint SendModel(vec3 position); 
 	

@@ -2,7 +2,7 @@
 #define ENTITY_H_
 
 #include "Object3D.h"
-class Entity : Object3D
+class Entity : public Object3D
 {
 private:
 	float mSpeed;
@@ -21,9 +21,9 @@ public:
 		{ return mSpeed; }
 	vec3 GetDirection()
 		{ return mDirection; }
-	//vec3 mSpawnPosition;
+	vec3 mSpawnPosition;
 	// vec3 ??"#)"
-	//vec3 mTargetPoint;
+	vec3 mTargetPoint;
 
 	virtual int Update();
 	void ReSpawn();

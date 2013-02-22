@@ -27,8 +27,9 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
 	
-	uint textureBoxID = mBridge.LoadTexture("../Textures/Box.png");
+	
 	uint shaderBoxID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
+	uint textureBoxID = mBridge.LoadTexture("../Textures/Box.png");
 
 	mLevel.LoadMap("../Maps/map001.raw");
 	mLevel.BuildBoxes(boxID, textureBoxID, shaderBoxID);
@@ -38,9 +39,9 @@ void GameCore::Update(){
 	/*mPacman.Update();
 	mPacman.Update();
 	for (int i = 0; i < mGhostList.size(); i++)
-		mGhostList[i].Update();*/
+		mGhostList[i].Update();
 	for (int i = 0; i < mEffects.size(); i++)
-		mEffects[i].Run();
+		mEffects[i].Run();*/
 }
 
 void GameCore::CheckCollision(){

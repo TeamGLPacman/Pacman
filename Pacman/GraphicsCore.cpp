@@ -119,9 +119,9 @@ uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fra
 	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath, geometryShaderPath);
 }
 
-uint GraphicsCore::LoadTexture(const char* file, uint shaderProgHandle)
+uint GraphicsCore::LoadTexture(const char* file)
 {
-	return mTexture.LoadTexture(file, shaderProgHandle);
+	return mTexture.LoadTexture(file);
 }
 
 uint GraphicsCore::SendModel(vector<VertexPoint> vertexList)

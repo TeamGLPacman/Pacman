@@ -1,30 +1,23 @@
-#ifndef PACMAN_H_
-#define PACMAN_H_
-#include "CommonIncludes.h"
-#include "Entity.h"
+#include "Pacman.h"
 
-enum RelativeDirection
+Pacman::Pacman()
 {
-	FORWARD,
-	RIGHT,
-	BACKWARD,
-	LEFT
-};
-
-class Pacman : public Entity
+}
+Pacman::Pacman(vec3 position, float speed)
 {
-private:
-	RelativeDirection mNextDirection;
-	int mLives;
+	SetSpeed(speed);
+	SetWorldPos(position);
+}
 
-	void InputHandler(); 
-public:
-	Pacman();
-	Pacman(vec3, float);
+int Pacman::Update()
+{
+	InputHandler(); // added
+	// vi behöver SurroundingGrids!
+	return 0;
+}
 
-	int Update();
-
-	~Pacman();
-};
-
-#endif
+void Pacman::InputHandler()
+{
+	// ta hand om input här
+	// och uppdatera mNextDirection
+}

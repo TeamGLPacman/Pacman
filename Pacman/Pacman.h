@@ -1,16 +1,30 @@
 #ifndef PACMAN_H_
 #define PACMAN_H_
-
 #include "CommonIncludes.h"
+#include "Entity.h"
 
-class Pacman
+enum RelativeDirection
 {
+	FORWARD,
+	RIGHT,
+	BACKWARD,
+	LEFT
+};
+
+class Pacman : public Entity
+{
+private:
+	RelativeDirection mNextDirection;
+	int mLives;
+
+	void InputHandler(); 
 public:
 	Pacman();
+	Pacman(vec3, float);
 
-private:
+	int Update();
 
-
+	~Pacman();
 };
 
 #endif

@@ -18,8 +18,8 @@ uint LogicGraphicsBridge::LoadShaderFiles(const char* vertexShaderPath, const ch
 uint LogicGraphicsBridge::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath){
 	return mGraphics.LoadShaderFiles(vertexShaderPath, fragmentShaderPath, geometryShaderPath);
 }
-uint LogicGraphicsBridge::LoadTexture(const char* texturePath, uint shaderProgHandle){
-	return mGraphics.LoadTexture(texturePath, shaderProgHandle);
+uint LogicGraphicsBridge::LoadTexture(const char* texturePath){
+	return mGraphics.LoadTexture(texturePath);
 }
 uint LogicGraphicsBridge::SendModel(vector<VertexPoint> vertexList){
 	return mGraphics.SendModel(vertexList);

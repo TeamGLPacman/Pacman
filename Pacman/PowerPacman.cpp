@@ -27,6 +27,7 @@ int PowerPacman::Run()
 		return 5; //5 points
 	}
 	*/
+	return 0;
 }
 
 void PowerPacman::AddEntity(Entity ghost)

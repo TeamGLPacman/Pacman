@@ -33,6 +33,7 @@ int KillPacman::Run()
 			}
 		}
 	}
+	return 0;
 }
 
 void KillPacman::AddEntity(Entity entity)

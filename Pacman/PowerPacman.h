@@ -4,8 +4,8 @@
 #include "Effect.h"
 #include "Scared.h"
 #include "Entity.h"
-//#include "Pacman.h"
-//#include "Ghost.h"
+#include "Pacman.h"
+#include "Ghost.h"
 
 class PowerPacman : public Effect
 {
