@@ -1,8 +1,10 @@
-#pragma once
-#include <vector>
+#ifndef POWERPACMAN_H_
+#define POWERPACMAN_H_
+
 #include "Effect.h"
-//#include "Pacman.h"
-//#include "Ghost.h"
+#include "Pacman.h"
+#include "Ghost.h"
+#include "Entity.h"
 
 class PowerPacman : public Effect
 {
@@ -18,3 +20,4 @@ public:
 	~PowerPacman(void);
 };
 
+#endif

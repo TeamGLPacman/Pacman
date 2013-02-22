@@ -1,10 +1,12 @@
-#pragma once
+#ifndef ENTITY_H_
+#define ENTITY_H_
+
 #include "Object3D.h"
-class Entity
+class Entity : Object3D
 {
 public:
-	Entity(void);
-	~Entity(void);
+	Entity();
+	~Entity();
 
 	//vec3 mSpawnPosition;
 	float mSpeed;
@@ -17,3 +19,4 @@ public:
 	bool Collision(Object3D obj, float dist);
 };
 
+#endif

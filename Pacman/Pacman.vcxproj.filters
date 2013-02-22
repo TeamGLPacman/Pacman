@@ -60,9 +60,6 @@
     <ClInclude Include="TextureLoader.h">
       <Filter>Graphics\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BaseStructures.h">
-      <Filter>Includes</Filter>
-    </ClInclude>
     <ClInclude Include="CommonIncludes.h">
       <Filter>Includes</Filter>
     </ClInclude>
@@ -92,6 +89,18 @@
     </ClInclude>
     <ClInclude Include="LogicGraphicsBridge.h">
       <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseStructures.h">
+      <Filter>Graphics\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Candy.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pacman.h">
+      <Filter>Logic\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="LogicGraphicsBridge.cpp">
       <Filter>Includes</Filter>
+    </ClCompile>
+    <ClCompile Include="Candy.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

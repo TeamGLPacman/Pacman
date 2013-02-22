@@ -1,6 +1,6 @@
 #include "Hunt.h"
 
-Hunt::Hunt(&vec3 pacmanPos)
+Hunt::Hunt(vec3* pacmanPos)
 {
 	mPacmanPos = pacmanPos;
 }
