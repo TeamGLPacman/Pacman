@@ -66,6 +66,18 @@
     <ClInclude Include="CommonIncludes.h">
       <Filter>Includes</Filter>
     </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KillGhost.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Points.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object3D.cpp">
@@ -94,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="TextureLoader.cpp">
       <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KillGhost.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Points.cpp">
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -12,24 +12,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseStructures.h" />
+    <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommonIncludes.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="GraphicsCore.h" />
+    <ClInclude Include="KillGhost.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Object3D.h" />
+    <ClInclude Include="Points.h" />
     <ClInclude Include="ShaderHandler.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="VAOModelLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GraphicsCore.cpp" />
+    <ClCompile Include="KillGhost.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="Points.cpp" />
     <ClCompile Include="ShaderHandler.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VAOModelLoader.cpp" />
