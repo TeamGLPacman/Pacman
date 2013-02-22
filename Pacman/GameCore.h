@@ -1,6 +1,9 @@
 #ifndef GAMECORE_H_
 #define GAMECORE_H_
 #include "CommonIncludes.h"
+#include "Pacman.h"
+#include "Candy.h"
+#include "Effect.h"
 #include <vector>
 
 

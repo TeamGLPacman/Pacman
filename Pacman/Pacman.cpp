@@ -16,6 +16,8 @@ class Pacman : public Entity
 private:
 	RelativeDirection mNextDirection;
 	int mLives;
+
+	void InputHandler(); 
 public:
 	Pacman();
 	Pacman(vec3, float);
