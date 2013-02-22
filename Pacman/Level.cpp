@@ -105,7 +105,7 @@ bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 				int value = mMapValues[x][y];
 
 				if( value == 1 )
-					mBoxList.push_back(Object3D(modelID, textureID, shaderID));
+					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3());
 			}
 		}
 	}
