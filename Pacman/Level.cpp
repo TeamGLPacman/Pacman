@@ -3,17 +3,20 @@
 Level::Level()
 { }
 
-bool Level::LoadMap( const char* path, int width, int height )
+bool Level::LoadMap( const char* path )
 {
+	
+	int width, height, channels;
+
+	int channels = 1;
+	unsigned char* map = SOIL_load_image( path, &width, &height, &channels, 1 );
+
 	int mWidth = width;
 	int mHeight = height;
 
 	int **mMapValues = new int*[width];
 	for( int i = 0; i < width; i++ )
 		mMapValues[i] = new int[height];
-
-	int channels = 1;
-	unsigned char* map = SOIL_load_image( path, &width, &height, &channels, 1 );
 
 	//Loop through image and assign id to each map position
 	for( int y = 0; y < height; y++ )
@@ -91,7 +94,19 @@ vector<Object3D> Level::GetBoxList()
 	return mBoxList;
 }
 
-void Level::SetBoxHandles( uint modelID, uint textureID, uint shaderID )
+bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 {
+	if(mWidth != 0)
+	{
+		for( int y = 0; y < mHeight; y++ )
+		{
+			for( int x = 0; x < mWidth; x++ )
+			{
+				int value = mMapValues[x][y];
 
+				if( value == 1 )
+					mBoxList.push_back(Object3D(modelID, textureID, shaderID));
+			}
+		}
+	}
 }

@@ -1,8 +1,12 @@
 #include "Object3D.h"
 
 
-Object3D::Object3D()
+Object3D::Object3D( uint modelID, uint textureID, uint shaderID, vec3 worldPos )
 {
+	mModelID = modelID;
+	mTextureID = textureID;
+	mShaderID = shaderID;
+	mWorldPos = worldPos;
 }
 
 Object3D::~Object3D()

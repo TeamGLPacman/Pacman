@@ -6,12 +6,12 @@
 class Object3D
 {
 public:
-	Object3D();
+	Object3D( uint modelID, uint textureID, uint shaderID, vec3 worldPos );
 	~Object3D();
 
-	unsigned int GetModelID();
-	unsigned int GetTextureID();
-	unsigned int GetShaderID(); 
+	uint GetModelID();
+	uint GetTextureID();
+	uint GetShaderID();
 
 	vec3 GetWorldPos();
 	vec3 GetColor();
@@ -20,9 +20,9 @@ public:
 	void SetColour( vec3 colour );
 
 private:
-	unsigned int mModelID;
-	unsigned int mTextureID;
-	unsigned int mShaderID;
+	uint mModelID;
+	uint mTextureID;
+	uint mShaderID;
 	vec3 mWorldPos;
 	vec3 mColour;
 	float mScale;
