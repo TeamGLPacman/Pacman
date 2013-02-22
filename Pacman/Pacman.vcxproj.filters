@@ -78,6 +78,18 @@
     <ClInclude Include="Points.h">
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PowerPacman.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KillPacman.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hunt.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scared.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object3D.cpp">
@@ -114,6 +126,18 @@
       <Filter>Logic\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Points.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerPacman.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KillPacman.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hunt.cpp">
+      <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scared.cpp">
       <Filter>Logic\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
