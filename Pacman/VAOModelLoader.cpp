@@ -37,9 +37,9 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 	// remember how many
 	int numberOfPoints = count*3;
 
-	// Make 2 new VBO handles
-	GLuint VBOHandles[1];
-	glGenBuffers(1, VBOHandles);
+	// Make 3 new VBO handles
+	GLuint VBOHandles[3];
+	glGenBuffers(3, VBOHandles);
 
 	// "Bind" (switch focus to) first buffer
 	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[0]); 
@@ -59,23 +59,25 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 
 	// enable "vertex attribute arrays"
 	glEnableVertexAttribArray(0); // position
-	glEnableVertexAttribArray(2); // normal
-	glEnableVertexAttribArray(3); // texCoord
+	glEnableVertexAttribArray(1); // normal
+	glEnableVertexAttribArray(2); // texCoord
 
 	// map index 0 to position buffer
 	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[0]);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[2]);
-	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[1]);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[3]);
-	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[2]);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (GLubyte *)NULL);
 
 	glBindVertexArray(0); // disable VAO
 	glUseProgram(0); // disable shader programme
 
 	delete positionData, normalData, texCoordData;
+
+	mModelVertexCount.insert(VAOHandle, vertexList.size());
 
 	return VAOHandle;
 }
@@ -110,6 +112,10 @@ uint VAOModelLoader::CreateModel(vec3 position)
 
 	glBindVertexArray(0); // disable VAO
 	glUseProgram(0); // disable shader programme
+
+	delete positionData;
+
+	mModelVertexCount.insert(VAOHandle, 1);
 
 	return VAOHandle;
 }
