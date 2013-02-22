@@ -79,11 +79,38 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	}
 }
 
-void GraphicsCore::ClearScreen()
+uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath)
+{
+	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath);
+}
+
+uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath)
+{
+	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath, geometryShaderPath);
+}
+
+uint GraphicsCore::LoadTexture(const char* file, uint shaderProgHandle)
+{
+	return mTexture.LoadTexture(file, shaderProgHandle);
+}
+
+uint GraphicsCore::SendModel(vector<VertexPoint> vertexList)
+{
+	return mVAOModel.CreateModel(vertexList);
+}
+
+uint GraphicsCore::SendModel(vec3 position)
+{
+	return mVAOModel.CreateModel(position);
+}
+
+
+void GraphicsCore::BeginRendering()
 {
 	glutMainLoopEvent();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
 }
+
 void GraphicsCore::RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale)
 {
 	glutMainLoopEvent();
@@ -116,36 +143,12 @@ void GraphicsCore::RenderObject(Object3D object)
 	glBindVertexArray(0);
 }
 
-void GraphicsCore::SwapBuffers()
+void GraphicsCore::EndRendering()
 {
 	glutSwapBuffers(); // swap drawing back-buffer to displayed front buffer
 	glutPostRedisplay(); // flag for redraw
 }
 
-uint GraphicsCore::LoadTexture(const char* file, uint shaderProgHandle)
-{
-	return mTexture.LoadTexture(file, shaderProgHandle);
-}
-
-uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath)
-{
-	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath);
-}
-
-uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath)
-{
-	return mShader.CreateShaderProgram(vertexShaderPath, fragmentShaderPath, geometryShaderPath);
-}
-
-uint GraphicsCore::SendModel(vector<VertexPoint> vertexList)
-{
-	return mVAOModel.CreateModel(vertexList);
-}
-
-uint GraphicsCore::SendModel(vec3 position)
-{
-	return mVAOModel.CreateModel(position);
-}
  
 int GraphicsCore::UpdateCamera(vec3 eye, vec3 target, vec3 up)
 {

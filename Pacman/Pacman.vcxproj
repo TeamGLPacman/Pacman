@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="BaseStructures.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="LogicGraphicsBridge.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Effect.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="VAOModelLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LogicGraphicsBridge.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Entity.cpp" />

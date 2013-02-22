@@ -90,6 +90,9 @@
     <ClInclude Include="Scared.h">
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LogicGraphicsBridge.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object3D.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Scared.cpp">
       <Filter>Logic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicGraphicsBridge.cpp">
+      <Filter>Includes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
