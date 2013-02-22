@@ -93,7 +93,7 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	glutReshapeFunc(resizeCallback); // register callback for reshape
 
 	// set colour to clear screen buffer to
-	glClearColor(0.1, 0.1, 0.1, 1.0f);
+	glClearColor(0.3, 0.3, 0.3, 1.0f);
 
 	// enable some useful GL behaviours
 	glEnable(GL_DEPTH_TEST); // enable depth-testing
