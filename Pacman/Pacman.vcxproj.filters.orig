@@ -90,6 +90,7 @@
     <ClInclude Include="LogicGraphicsBridge.h">
       <Filter>Includes</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="BaseStructures.h">
       <Filter>Graphics\Source Files</Filter>
     </ClInclude>
@@ -99,6 +100,8 @@
     <ClInclude Include="Ghost.h">
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> 87a9e792537520f4c2d2c2a521fcc2c2ef3b9ec1
     <ClInclude Include="Pacman.h">
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
@@ -155,11 +158,14 @@
     <ClCompile Include="LogicGraphicsBridge.cpp">
       <Filter>Includes</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Candy.cpp">
-      <Filter>Logic\Source Files</Filter>
       <Filter>Logic\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Ghost.cpp">
+=======
+    <ClCompile Include="Pacman.cpp">
+>>>>>>> 87a9e792537520f4c2d2c2a521fcc2c2ef3b9ec1
       <Filter>Logic\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

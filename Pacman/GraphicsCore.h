@@ -4,6 +4,7 @@
 #include "TextureLoader.h"
 #include "ShaderHandler.h"
 #include "VAOModelLoader.h"
+#include "Camera.h"
 
 int windowWidth, windowHeight;
 void resizeCallback(int width, int height);	
@@ -13,10 +14,13 @@ class GraphicsCore
 {
 private:
 	char* windowTitle;
-	//Camera mCamera;
+	Camera mCamera;
 	VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;
+
+	//temporary
+	void tempValues(uint shaderProgHandle);
 
 public:
 	GraphicsCore(void);

@@ -36,11 +36,14 @@ void GameCore::Initialize( int argc, char** argv ){
 
 void GameCore::Update(){
 	/*mPacman.Update();
-	mPacman.Update();
 	for (int i = 0; i < mGhostList.size(); i++)
+<<<<<<< HEAD
 		mGhostList[i].Update();*/
+=======
+		mGhostList[i].Update();
 	for (int i = 0; i < mEffects.size(); i++)
 		mEffects[i].Run();
+>>>>>>> 87a9e792537520f4c2d2c2a521fcc2c2ef3b9ec1
 }
 
 void GameCore::CheckCollision(){

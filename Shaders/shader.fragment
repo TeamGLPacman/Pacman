@@ -4,7 +4,8 @@ in vec3 TNormal;
 in vec2 TexCoord;
 uniform sampler2D Tex1;
 
-struct LightInfo{
+struct LightInfo
+{
 	vec4 LightPosition; // Light position in eye coords.
 	vec3 La;			// Ambient light intensity
 	vec3 Ld;			// Diffuse light intensity
@@ -12,7 +13,8 @@ struct LightInfo{
 };
 uniform LightInfo Light;
 
-struct MaterialInfo{
+struct MaterialInfo
+{
 	vec3 Ka;			// Ambient reflectivity
 	vec3 Kd;		    // Diffuse reflectivity
 	vec3 Ks;			// Specular reflectivity
@@ -22,7 +24,8 @@ uniform MaterialInfo Material;
 
 layout( location = 0 ) out vec4 FragColor;
 
-void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec ) {
+void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec ) 
+{
 	// Compute the ADS shading model here, return ambient
 	// and diffuse color in ambAndDiff, and return specular
 	// color in spec…
@@ -50,11 +53,14 @@ void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec 
 	//LightIntensity = ambient + diffuse + spec;
 }
 
-void main() {
+void main() 
+{
 	vec3 ambAndDiff, spec;
 	vec4 texColor = texture( Tex1, TexCoord );
-	phongModel(EyePosition, TNormal, ambAndDiff, spec);
-	FragColor = vec4(ambAndDiff, 1.0) * texColor + vec4(spec, 1.0); 
+
+	//phongModel(EyePosition, TNormal, ambAndDiff, spec);
+	//FragColor = vec4(ambAndDiff, 1.0) * texColor + vec4(spec, 1.0); 
 	//FragColor = vec4(vec3(0,1.0f,0), 1.0);
-	//FragColor = texColor;
+
+	FragColor = texColor;
 }

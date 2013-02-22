@@ -13,9 +13,14 @@ protected:
 	void SetDirection(vec3 direction)
 		{ mDirection = direction;}
 public:
+<<<<<<< HEAD
+	Entity();
+	~Entity();
+=======
 	Entity(float, vec3);
 	Entity(void);
 	~Entity(void);
+>>>>>>> 87a9e792537520f4c2d2c2a521fcc2c2ef3b9ec1
 
 	float GetSpeed()
 		{ return mSpeed; }

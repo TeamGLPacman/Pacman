@@ -49,9 +49,9 @@ int LogicGraphicsBridge::UpdateCamera(vec3 eye, vec3 target, vec3 up){
 }
 int LogicGraphicsBridge::UpdateUniform(const char* variable, uint shaderProgHandle, float value)
 {
-	mGraphics.UpdateUniform(variable, shaderProgHandle, value);
+	return mGraphics.UpdateUniform(variable, shaderProgHandle, value);
 }
 int LogicGraphicsBridge::UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value)
 {
-	mGraphics.UpdateUniform(variable, shaderProgHandle, value);
+	return mGraphics.UpdateUniform(variable, shaderProgHandle, value);
 }
