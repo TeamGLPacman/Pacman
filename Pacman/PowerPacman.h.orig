@@ -2,10 +2,16 @@
 #define POWERPACMAN_H_
 
 #include "Effect.h"
-#include "Scared.h"
-#include "Entity.h"
+<<<<<<< HEAD
 #include "Pacman.h"
 #include "Ghost.h"
+#include "Entity.h"
+=======
+#include "Scared.h"
+#include "Entity.h"
+//#include "Pacman.h"
+//#include "Ghost.h"
+>>>>>>> 87a9e792537520f4c2d2c2a521fcc2c2ef3b9ec1
 
 class PowerPacman : public Effect
 {

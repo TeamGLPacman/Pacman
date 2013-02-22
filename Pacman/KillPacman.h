@@ -1,10 +1,13 @@
-#pragma once
-#include <vector>
+#ifndef KILLPACMAN_H_
+#define KILLPACMAN_H_
+
+//#include "CommonIncludes.h"
 #include "Effect.h"
 #include "Entity.h"
 #include <typeinfo>
-//#include "Pacman.h"
-//#include "Ghost.h"
+#include "Pacman.h"
+#include "Ghost.h"
+
 class KillPacman : Effect
 {
 private:
@@ -17,3 +20,4 @@ public:
 	~KillPacman();
 };
 
+#endif

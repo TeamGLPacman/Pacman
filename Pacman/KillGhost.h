@@ -1,6 +1,10 @@
-#pragma once
+#ifndef KILLGHOST_H_
+#define KILLGHOST_H_
+
 #include "Effect.h"
-//#include "Ghost.h"
+#include "Ghost.h"
+#include "Entity.h"
+
 class KillGhost : public Effect
 {
 private:
@@ -13,3 +17,4 @@ public:
 	~KillGhost();
 };
 
+#endif

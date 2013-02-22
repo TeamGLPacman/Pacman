@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EFFECT_H_
+#define EFFECT_H_
 
 class Effect
 {
@@ -19,3 +20,4 @@ public:
 	~Effect();
 };
 
+#endif

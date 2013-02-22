@@ -10,6 +10,6 @@ public:
 	TextureLoader(void);
 	~TextureLoader(void);
 
-	uint LoadTexture(const char* file, uint shaderProgHandle);
+	uint LoadTexture(const char* file);
 };
 #endif

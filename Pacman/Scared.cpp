@@ -5,7 +5,7 @@ Scared::Scared(void)
 {
 }
 
-Scared::Scared(&vec3 pacmanPos)
+Scared::Scared(vec3* pacmanPos)
 {
 	mPacmanPos = pacmanPos;
 }
@@ -15,7 +15,7 @@ Scared::~Scared(void)
 {
 }
 
-void Scared::Updatge()
+void Scared::Update()
 {
 	// logik!!! Behöver surroundinggrid!
 }

@@ -1,14 +1,22 @@
 #include "Level.h"
+#include <map>
 
 Level::Level()
 { }
 
 bool Level::LoadMap( const char* path )
 {
+
+	int handle, amount;
+
+	map<int, int> mModelVertCount;
+	mModelVertCount.insert(handle, amount);
+
 	
+	
+
 	int width, height, channels;
 
-	int channels = 1;
 	unsigned char* map = SOIL_load_image( path, &width, &height, &channels, 1 );
 
 	int mWidth = width;
@@ -105,7 +113,7 @@ bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 				int value = mMapValues[x][y];
 
 				if( value == 1 )
-					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3());
+					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
 			}
 		}
 	}

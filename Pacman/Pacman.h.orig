@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+#ifndef PACMAN_H_
+#define PACMAN_H_
+
+#include "CommonIncludes.h"
+
+class Pacman
+{
+public:
+	Pacman();
+
+private:
+
+
+};
+
+#endif
+=======
 #include "Pacman.h"
 
 Pacman::Pacman()
@@ -11,9 +29,8 @@ Pacman::Pacman(vec3 position, float speed)
 
 int Pacman::Update()
 {
-	InputHandler(); // added
+	InputHandler() // added
 	// vi behöver SurroundingGrids!
-	return 0;
 }
 
 void Pacman::InputHandler()
@@ -21,3 +38,4 @@ void Pacman::InputHandler()
 	// ta hand om input här
 	// och uppdatera mNextDirection
 }
+>>>>>>> 87a9e792537520f4c2d2c2a521fcc2c2ef3b9ec1

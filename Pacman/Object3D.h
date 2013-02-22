@@ -10,12 +10,17 @@ protected:
 	void SetColour( vec3 colour );
 
 public:
-	Object3D( uint modelID, uint textureID, uint shaderID, vec3 worldPos );
+	Object3D();
+	Object3D( uint modelID, uint textureID, uint shaderID, vec3 worldPos, float scale );
 	~Object3D();
 
+	uint GetModelID();
+	uint GetTextureID();
+	uint GetShaderID();
 	
 	vec3 GetWorldPos();
 	vec3 GetColor();
+
 private:
 	uint mModelID;
 	uint mTextureID;
