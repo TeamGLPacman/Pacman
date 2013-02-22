@@ -25,6 +25,8 @@ void GameCore::Update(){
 	mPacman.Update();
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i].Update();
+	for (int i = 0; i < mEffects.size(); i++)
+		mEffects[i].Run();
 }
 
 void GameCore::CheckCollision(){
@@ -38,6 +40,7 @@ void GameCore::PacmanCollisionCandy(){
 		if (mPacman.Collision(mCandyList[i]))
 		{
 			mEffects.push_back(mCandyList[i].GetEffect());
+			mCandyList.erase(mCandyList.begin()+i); // remove candy
 			break;
 		}
 	}

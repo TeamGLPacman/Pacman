@@ -93,6 +93,9 @@
     <ClInclude Include="LogicGraphicsBridge.h">
       <Filter>Includes</Filter>
     </ClInclude>
+    <ClInclude Include="Pacman.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object3D.cpp">
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="LogicGraphicsBridge.cpp">
       <Filter>Includes</Filter>
+    </ClCompile>
+    <ClCompile Include="Pacman.cpp">
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

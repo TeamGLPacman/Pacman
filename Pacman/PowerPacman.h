@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "Effect.h"
+#include "Scared.h"
+#include "Entity.h"
 //#include "Pacman.h"
 //#include "Ghost.h"
 

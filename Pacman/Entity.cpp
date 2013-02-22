@@ -4,7 +4,11 @@
 Entity::Entity(void)
 {
 }
-
+Entity::Entity(float speed, vec3 direction)
+{
+	mSpeed = speed;
+	mDirection = direction;
+}
 
 Entity::~Entity(void)
 {

@@ -25,6 +25,7 @@
     <ClInclude Include="KillPacman.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Object3D.h" />
+    <ClInclude Include="Pacman.h" />
     <ClInclude Include="Points.h" />
     <ClInclude Include="PowerPacman.h" />
     <ClInclude Include="Scared.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="KillPacman.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="Pacman.cpp" />
     <ClCompile Include="Points.cpp" />
     <ClCompile Include="PowerPacman.cpp" />
     <ClCompile Include="Scared.cpp" />
