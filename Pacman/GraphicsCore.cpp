@@ -19,6 +19,36 @@ GraphicsCore::~GraphicsCore(void)
 {
 }
 
+//temporary function
+void GraphicsCore::tempValues(uint shaderProgHandle)
+{
+	vec3 eye(0.0f, 1.0f, 5.0f); // camera position in world coordinates
+	vec3 centre(0, -0.1, -1.0f); // orient camera to point towards a target position
+	vec3 up(0.0f, 1.0f, 0.0f); // vector pointing up from camera's head  (describes roll of camera)
+	mat4 viewMatrix = glm::mat4(1.0f); // initialise to identity
+	viewMatrix = glm::lookAt(eye, centre, up); // this function is similar to one from the older opengl
+
+	//matrices
+	mat4 Projection = glm::perspective(45.0f, float(windowWidth) / (float)windowHeight, 0.1f, 100.f);	
+	//mat4 rotationMatrix = glm::rotate(mat4(1.0f), rotAngle, vec3(0.0f,1.0f,0.0f));
+	mat4 ModelView = viewMatrix; 
+	mat4 MVP = Projection * ModelView;
+	
+	mat3 normalMatrix = glm::transpose(glm::inverse(mat3(ModelView)));
+
+	uint location = glGetUniformLocation(shaderProgHandle, "ProjectionMatrix");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &Projection[0][0]); }
+
+	location = glGetUniformLocation(shaderProgHandle, "ModelViewMatrix");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &ModelView[0][0]); }
+
+	location = glGetUniformLocation(shaderProgHandle, "MVP");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &MVP[0][0]); }
+
+	location = glGetUniformLocation(shaderProgHandle, "NormalMatrix");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix3fv(location, 1, GL_FALSE, &normalMatrix[0][0]); }
+}
+
 
 uint GraphicsCore::Initialize(int argc, char** argv)
 {
@@ -118,17 +148,22 @@ void GraphicsCore::RenderObject(uint textureID, uint modelID, uint shaderID, vec
 
 void GraphicsCore::RenderObject(Object3D object)
 {
+	
 	glUseProgram(object.GetShaderID());
 	//set uniform variables?
+
+	//---------temporary--------
+	tempValues(object.GetShaderID());
+	//--------------------------
 
 	glEnable(GL_BLEND); //for transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glBindTexture(GL_TEXTURE_2D, object.GetTextureID);
+	glBindTexture(GL_TEXTURE_2D, object.GetTextureID());
 	glBindVertexArray(object.GetModelID());
 
 	//if billboard
-	if(mVAOModel.GetVertexCount(object.GetModelID) == 1)
+	if(mVAOModel.GetVertexCount(object.GetModelID()) == 1)
 	{
 		glDrawArrays(GL_POINTS, 0, 1);
 	}
@@ -136,10 +171,9 @@ void GraphicsCore::RenderObject(Object3D object)
 	//if 
 	else
 	{
-		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object.GetModelID));
+		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object.GetModelID()));
 	}
 
-	
 	glUseProgram(0); // disable shader
 	glBindVertexArray(0);
 }
