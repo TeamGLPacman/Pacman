@@ -96,4 +96,21 @@
       <Filter>Graphics\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shaders\shader.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Shaders\billboardShader.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Shaders\billboardShader.geometry">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Shaders\billboardShader.vertex">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Shaders\shader.fragment">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
 </Project>

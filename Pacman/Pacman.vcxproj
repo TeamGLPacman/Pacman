@@ -34,6 +34,13 @@
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VAOModelLoader.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shaders\billboardShader.fragment" />
+    <None Include="..\Shaders\billboardShader.geometry" />
+    <None Include="..\Shaders\billboardShader.vertex" />
+    <None Include="..\Shaders\shader.fragment" />
+    <None Include="..\Shaders\shader.vertex" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CB875A28-A8C4-406B-AD6B-A23147E8A334}</ProjectGuid>
     <RootNamespace>My3DProject</RootNamespace>

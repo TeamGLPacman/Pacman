@@ -1,0 +1,60 @@
+#version 410
+in vec4 EyePosition;
+in vec3 TNormal;
+in vec2 TexCoord;
+uniform sampler2D Tex1;
+
+struct LightInfo{
+	vec4 LightPosition; // Light position in eye coords.
+	vec3 La;			// Ambient light intensity
+	vec3 Ld;			// Diffuse light intensity
+	vec3 Ls;			// Specular light intensity
+};
+uniform LightInfo Light;
+
+struct MaterialInfo{
+	vec3 Ka;			// Ambient reflectivity
+	vec3 Kd;		    // Diffuse reflectivity
+	vec3 Ks;			// Specular reflectivity
+	float Shininess;	// Specular shininess factor
+};
+uniform MaterialInfo Material;
+
+layout( location = 0 ) out vec4 FragColor;
+
+void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec ) {
+	// Compute the ADS shading model here, return ambient
+	// and diffuse color in ambAndDiff, and return specular
+	// color in spec…
+
+	vec3 s = normalize(vec3(Light.LightPosition - eyeCoords));
+	vec3 v = normalize(-eyeCoords.xyz);	
+	vec3 r = reflect( -s, tnorm );
+
+	//Ambient light
+	vec3 ambient = Light.La * Material.Ka;
+
+	float sDotN = max( dot(s,tnorm), 0.0 );
+	
+	//Diffuse light
+	vec3 diffuse = Light.Ld * Material.Kd * sDotN;
+
+	ambAndDiff = ambient + diffuse;
+
+	spec = vec3(0.0); //lägg till if-sats på denna?
+	
+	//Specular light
+	if( sDotN > 0.0 )
+	spec = Light.Ls * Material.Ks * pow( max( dot(r,v), 0.0 ), Material.Shininess );
+	
+	//LightIntensity = ambient + diffuse + spec;
+}
+
+void main() {
+	vec3 ambAndDiff, spec;
+	vec4 texColor = texture( Tex1, TexCoord );
+	phongModel(EyePosition, TNormal, ambAndDiff, spec);
+	FragColor = vec4(ambAndDiff, 1.0) * texColor + vec4(spec, 1.0); 
+	//FragColor = vec4(vec3(0,1.0f,0), 1.0);
+	//FragColor = texColor;
+}
