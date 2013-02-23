@@ -9,12 +9,6 @@ bool Level::LoadMap( const char* path )
 
 	int handle, amount;
 
-	map<int, int> mModelVertCount;
-	mModelVertCount.insert(handle, amount);
-
-	
-	
-
 	int width, height, channels;
 
 	unsigned char* map = SOIL_load_image( path, &width, &height, &channels, 1 );
@@ -48,7 +42,7 @@ bool Level::LoadMap( const char* path )
 			mMapValues[x][y] = id;
 		}
 	}
-
+	return true;
 }
 
 Level::~Level()
@@ -116,5 +110,7 @@ bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
 			}
 		}
+		return true;
 	}
+	return false;
 }

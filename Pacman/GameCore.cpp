@@ -55,7 +55,6 @@ void GameCore::PacmanCollisionCandy(){
 }
 
 void GameCore::GhostCollisionPacman(){
-	// kommentera inte bort kod som funkar, och om det är något fel rätta tilld et istället för att skjuta på det!
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
 		if (mGhostList[i].Collision(mPacman, 1))
