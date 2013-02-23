@@ -91,9 +91,24 @@ int** Level::GetMapValues()
 	return mMapValues;
 }
 
+int Level::GetHeight()
+{
+	return mHeight;
+}
+
+int Level::GetWidth()
+{
+	return mWidth;
+}
+
 vector<Object3D> Level::GetBoxList()
 {
 	return mBoxList;
+}
+
+Object3D Level::GetGround()
+{
+	return mGround;
 }
 
 bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
@@ -110,6 +125,16 @@ bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
 			}
 		}
+		return true;
+	}
+	return false;
+}
+
+bool Level::BuildGround( uint modelID, uint textureID, uint shaderID )
+{
+	if(mWidth != 0)
+	{
+		mGround = Object3D(modelID, textureID, shaderID, vec3(0, 0, 0), 1.0);
 		return true;
 	}
 	return false;

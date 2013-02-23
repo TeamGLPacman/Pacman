@@ -17,18 +17,25 @@ int GameCore::GameLoop(){
 void GameCore::Initialize( int argc, char** argv ){
 	uint test = mBridge.Initialize( argc, argv );
 
-	uint boxID = SendBoxVertices();
-	uint groundID = SendGroundVertices();
-	uint pointID = SendPoint();
 
 	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
 	
 	
-	uint shaderBoxID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
+	uint shaderID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
+
 	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall.png");
+	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
+
+
 
 	mLevel.LoadMap("../Maps/map001.png");
-	mLevel.BuildBoxes(boxID, textureBoxID, shaderBoxID);
+
+	uint boxID = SendBoxVertices();
+	uint groundID = SendGroundVertices();
+	uint pointID = SendPoint();
+
+	mLevel.BuildBoxes(boxID, textureBoxID, shaderID);
+	mLevel.BuildGround(groundID, textureGroundID, shaderID);
 }
 
 void GameCore::Update(){
@@ -70,6 +77,10 @@ void GameCore::GhostCollisionPacman(){
 
 void GameCore::RenderObjects(){
 	mBridge.BeginRendering(); // ADDED!
+
+	//Render Ground
+
+	mBridge.RenderObject(mLevel.GetGround());
 
 	//Render Boxes
 	for (int i = 0; i < mLevel.GetBoxList().size(); i++)
@@ -152,7 +163,17 @@ uint GameCore::SendPoint()
 uint GameCore::SendGroundVertices()
 {
 	vector<VertexPoint> verts;
-	verts.push_back(VertexPoint(vec3(0,0,0), vec3(0,1,0), vec2(0,0)));
+
+	int width = mLevel.GetWidth();
+	int height = mLevel.GetHeight();
+
+	verts.push_back(VertexPoint(vec3(0,0,0), vec3(0,-1,0), vec2(1,0)));
+	verts.push_back(VertexPoint(vec3(0,0,height), vec3(0,-1,0), vec2(0,0)));
+	verts.push_back(VertexPoint(vec3(width,0,height), vec3(0,-1,0), vec2(0,1)));
+
+	verts.push_back(VertexPoint(vec3(0,0,0), vec3(0,-1,0), vec2(1,0)));
+	verts.push_back(VertexPoint(vec3(width,0,height), vec3(0,-1,0), vec2(0,1)));
+	verts.push_back(VertexPoint(vec3(width,0,0), vec3(0,-1,0), vec2(1,1)));
 
 	return mBridge.SendModel(verts);
 }

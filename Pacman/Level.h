@@ -11,13 +11,15 @@ public:
 	~Level();
 	bool LoadMap( const char* path );
 	bool BuildBoxes( uint modID, uint texID, uint shadID );
+	bool BuildGround ( uint modID, uint texID, uint shadID );
 
 	int** GetMapValues();
 	int* GetSurroundingGrid( glm::vec2 );
 	vector<Object3D> GetBoxList();
 	Object3D GetGround();
 
-
+	int GetHeight();
+	int GetWidth();
 
 private:
 	int mWidth, mHeight;
