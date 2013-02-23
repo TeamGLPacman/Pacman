@@ -10,6 +10,7 @@ int GameCore::GameLoop(){
 		CheckCollision(); // Checking Collisions
 		RenderObjects(); // Draw Objects
 		// if press esc exit(1);
+		mBridge.TempCamUpdate();
 	}
 	return 0;
 }
