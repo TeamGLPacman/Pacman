@@ -2,7 +2,9 @@
 #define SCARED_H_
 
 #include "CommonIncludes.h"
-class Scared
+#include "Behaviour.h"
+
+class Scared : public Behaviour
 {
 private:
 	vec3 *mPacmanPos;

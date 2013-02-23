@@ -16,7 +16,7 @@ private:
 	LogicGraphicsBridge mBridge;
 	vector<Candy> mCandyList;
 	vector<Ghost> mGhostList;
-	vector<Effect> mEffects;
+	vector<Effect*> mEffects;
 	//vector<SoundSource> mSoundList;
 	Level mLevel;
 	Pacman mPacman;

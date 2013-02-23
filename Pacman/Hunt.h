@@ -2,7 +2,9 @@
 #define HUNT_H_
 
 #include "CommonIncludes.h"
-class Hunt
+#include "Behaviour.h"
+
+class Hunt : public Behaviour
 {
 private:
 	vec3 *mPacmanPos;
