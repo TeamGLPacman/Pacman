@@ -34,7 +34,7 @@ void GameCore::Update(){
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i].Update();
 	for (int i = 0; i < mEffects.size(); i++)
-		mEffects[i].Run();
+		mEffects[i]->Run();
 }
 
 void GameCore::CheckCollision(){

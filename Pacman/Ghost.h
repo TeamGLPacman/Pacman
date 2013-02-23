@@ -11,10 +11,10 @@ public:
 	Ghost();
 
 	int Update();
-	Effect GetEffect()
+	Effect* GetEffect()
 		{ return mEffect; }
 private:
-	Effect mEffect;
+	Effect* mEffect;
 
 };
 

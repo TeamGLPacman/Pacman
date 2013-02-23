@@ -8,9 +8,9 @@ class Candy : public Object3D
 {
 public:
 	Candy();
-	Effect GetEffect();
+	Effect* GetEffect();
 private:
-	Effect mEffect;
+	Effect* mEffect;
 
 };
 
