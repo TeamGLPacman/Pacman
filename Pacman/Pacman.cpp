@@ -3,6 +3,11 @@
 Pacman::Pacman()
 {
 }
+
+Pacman::~Pacman()
+{
+}
+
 Pacman::Pacman(vec3 position, float speed)
 {
 	SetSpeed(speed);

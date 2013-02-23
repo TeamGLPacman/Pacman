@@ -14,7 +14,7 @@ public:
 	Effect();
 	~Effect();
 
-	virtual int Run(); // abstract!
+	virtual int Run() = 0; // abstract!
 
 	int GetTimeLeft() 
 		{ return mTimeLeft; }

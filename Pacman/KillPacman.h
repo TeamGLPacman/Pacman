@@ -11,13 +11,13 @@
 class KillPacman : Effect
 {
 private:
-	vector<Entity> mEnties;
+	vector<Entity*> mEnties;
 public:
-	int Run();
-	void AddEntity(Entity);
+	virtual int Run() override;
+	void AddEntity(Entity*);
 
-	KillPacman();
-	~KillPacman();
+	//KillPacman();
+	//~KillPacman();
 };
 
 #endif

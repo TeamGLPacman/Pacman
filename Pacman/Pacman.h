@@ -20,11 +20,12 @@ private:
 	void InputHandler(); 
 public:
 	Pacman();
+	~Pacman();
 	Pacman(vec3, float);
 
 	int Update();
 
-	~Pacman();
+
 };
 
 #endif

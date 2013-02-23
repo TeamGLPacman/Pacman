@@ -1,14 +1,6 @@
 #include "KillPacman.h"
 
 
-KillPacman::KillPacman(void)
-{
-}
-
-
-KillPacman::~KillPacman(void)
-{
-}
 int KillPacman::Run()
 {
 	
@@ -21,7 +13,7 @@ int KillPacman::Run()
 	{
 		for (int i = 0; i < mEnties.size(); i++)
 		{
-			mEnties[i].ReSpawn();
+			mEnties[i]->ReSpawn();
 
 			if (s == typeid(mEnties[i]).name())
 			{
@@ -36,7 +28,7 @@ int KillPacman::Run()
 	return 0;
 }
 
-void KillPacman::AddEntity(Entity entity)
+void KillPacman::AddEntity(Entity* entity)
 {
 	mEnties.push_back(entity);
 }

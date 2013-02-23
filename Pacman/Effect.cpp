@@ -22,3 +22,8 @@ int Effect::Tick()
 	mTimeLeft--;
 	return mTimeLeft;
 }
+
+int Effect::GetMaxTime()
+{
+	return mMaxTime;
+}

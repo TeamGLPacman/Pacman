@@ -143,3 +143,16 @@ uint GameCore::SendBoxVertices()
 
 	return mBridge.SendModel(verts);
 }
+
+uint GameCore::SendPoint()
+{
+	return 1;
+}
+
+uint GameCore::SendGroundVertices()
+{
+	vector<VertexPoint> verts;
+	verts.push_back(VertexPoint(vec3(0,0,0), vec3(0,1,0), vec2(0,0)));
+
+	return mBridge.SendModel(verts);
+}

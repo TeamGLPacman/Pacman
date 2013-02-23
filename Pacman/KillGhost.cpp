@@ -1,14 +1,6 @@
 #include "KillGhost.h"
 
 
-KillGhost::KillGhost(void)
-{
-}
-
-KillGhost::~KillGhost(void)
-{
-}
-
 int KillGhost::Run()
 {
 	int timeLeft = Tick();
