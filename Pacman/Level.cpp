@@ -13,10 +13,10 @@ bool Level::LoadMap( const char* path )
 
 	unsigned char* map = SOIL_load_image( path, &width, &height, &channels, 1 );
 
-	int mWidth = width;
-	int mHeight = height;
+	mWidth = width;
+	mHeight = height;
 
-	int **mMapValues = new int*[width];
+	mMapValues = new int*[width];
 	for( int i = 0; i < width; i++ )
 		mMapValues[i] = new int[height];
 
