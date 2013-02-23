@@ -12,7 +12,7 @@ int GameCore::GameLoop(){
 }
 
 void GameCore::Initialize( int argc, char** argv ){
-	mBridge.Initialize( argc, argv );
+	uint test = mBridge.Initialize( argc, argv );
 
 	uint boxID = SendBoxVertices();
 	uint groundID = SendGroundVertices();
