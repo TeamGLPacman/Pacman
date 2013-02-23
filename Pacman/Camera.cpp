@@ -17,6 +17,7 @@ Camera::Camera( glm::vec3 _eye, glm::vec3 _centre, glm::vec3 _up){
 	viewMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::mat4(1.0f);
 }
+
 glm::mat4 Camera::GetViewMatrix(glm::vec3 _eye, glm::vec3 _center, glm::vec3 up ){
 
 	centre = eye + direction;
@@ -39,6 +40,7 @@ glm::mat4 Camera::GetViewMatrix(glm::vec3 _eye, glm::vec3 _center, glm::vec3 up 
 
 		return glm::translate(Result, -eye);
 }
+
 glm::mat4 Camera::GetMVP (int windowHeight, int windowWidth){
 	
 	viewMatrix = GetViewMatrix(eye, centre, up); // this function is similar to one from the older opengl
@@ -67,6 +69,7 @@ glm::mat4 Camera::GetMVP (int windowHeight, int windowWidth){
 void Camera::Rotate( float angle, glm::vec3 rotateVector){
 	modelMatrix = glm::rotate(modelMatrix, angle, rotateVector);
 }
+
 void Camera::Move( glm::vec3 delta ){
 	eye += direction;
 	//centre = eye + delta;
@@ -90,13 +93,6 @@ void Camera::Move( glm::vec3 delta, float  yPos ){
 	eye.y = yPos-1;
 	centre.y = eye.y;
 }
-
-
-/*
-glm::vec3 eye(0.0f, 0.0f, -1.0f);
-glm::vec3 centre(25.0f, 0.0f, 0.0f); // orient camera to point towards a target position
-glm::vec3 up(0.0f, 1.0f, 0.0f); // vector pointing up from camera's head (describes roll of camera)
-*/
 
 void Camera::CameraAngle( float x, float y ){
 	
