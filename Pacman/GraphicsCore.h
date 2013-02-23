@@ -6,7 +6,6 @@
 #include "VAOModelLoader.h"
 #include "Camera.h"
 
-int windowWidth, windowHeight;
 void resizeCallback(int width, int height);	
 //timer callback?							count fps
 

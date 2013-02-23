@@ -7,7 +7,7 @@
 class VAOModelLoader
 {
 private:
-	map<uint, int> mModelVertexCount;  //holds modelID and how many vertices
+	map<uint, uint> mModelVertexCount;  //holds modelID and how many vertices
 
 public:
 	VAOModelLoader(void);
