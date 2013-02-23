@@ -1,5 +1,8 @@
 #include "GameCore.h"
 
+GameCore::GameCore()
+{
+}
 
 int GameCore::GameLoop(){
 	while(true){

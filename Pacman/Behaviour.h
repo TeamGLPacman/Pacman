@@ -15,8 +15,8 @@ public:
 	Effect* GetEffect() 
 		{ return mEffect; }
 
-	Behaviour();
-	~Behaviour();
+	Behaviour(){}
+	~Behaviour(){}
 };
 
 #endif

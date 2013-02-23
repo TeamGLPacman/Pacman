@@ -9,6 +9,10 @@ Object3D::Object3D( uint modelID, uint textureID, uint shaderID, vec3 worldPos, 
 	mWorldPos = worldPos;
 }
 
+Object3D::Object3D()
+{
+}
+
 Object3D::~Object3D()
 {
 }

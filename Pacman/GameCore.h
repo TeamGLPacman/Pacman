@@ -37,7 +37,7 @@ private:
 	uint SendGroundVertices();
 
 public:
-
+	GameCore();
 	void Initialize( int argc, char** argv );
 	int GameLoop();
 };

@@ -14,19 +14,19 @@ Entity::~Entity(void)
 {
 }
 
-int Update()
+int Entity::Update()
 {
 	return 0;
 }
-void ReSpawn()
+void Entity::ReSpawn()
 {
 	
 }
-void UpdateTargetPoint(bool canMove[4])
+void Entity::UpdateTargetPoint(bool canMove[4])
 {
 
 }
-bool Collision(Object3D obj, float dist)
+bool Entity::Collision(Object3D obj, float dist)
 {
 	return false;
 }
