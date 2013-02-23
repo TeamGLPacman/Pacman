@@ -9,8 +9,6 @@ int GameCore::GameLoop(){
 		Update(); // Update Entities
 		CheckCollision(); // Checking Collisions
 		RenderObjects(); // Draw Objects
-		mBridge.TempCamUpdate();
-		// if press esc exit(1);
 
 		if(GetAsyncKeyState(VK_ESCAPE) != 0)
 			return 0;
@@ -160,13 +158,13 @@ uint GameCore::SendGroundVertices()
 	int width = mLevel.GetWidth();
 	int height = mLevel.GetHeight();
 
-	verts.push_back(VertexPoint(vec3(0,0,0), vec3(0,-1,0), vec2(1,0)));
-	verts.push_back(VertexPoint(vec3(0,0,height), vec3(0,-1,0), vec2(0,0)));
-	verts.push_back(VertexPoint(vec3(width,0,height), vec3(0,-1,0), vec2(0,1)));
+	verts.push_back(VertexPoint(vec3(-0.5,0,-0.5), vec3(0,-1,0), vec2(1,0)));
+	verts.push_back(VertexPoint(vec3(-0.5,0,height - 0.5), vec3(0,1,0), vec2(0,0)));
+	verts.push_back(VertexPoint(vec3(width - 0.5,0,height - 0.5), vec3(0,1,0), vec2(0,1)));
 
-	verts.push_back(VertexPoint(vec3(0,0,0), vec3(0,-1,0), vec2(1,0)));
-	verts.push_back(VertexPoint(vec3(width,0,height), vec3(0,-1,0), vec2(0,1)));
-	verts.push_back(VertexPoint(vec3(width,0,0), vec3(0,-1,0), vec2(1,1)));
+	verts.push_back(VertexPoint(vec3(-0.5,0,-0.5), vec3(0,1,0), vec2(1,0)));
+	verts.push_back(VertexPoint(vec3(width - 0.5,0,height - 0.5), vec3(0,1,0), vec2(0,1)));
+	verts.push_back(VertexPoint(vec3(width - 0.5,0,-0.5), vec3(0,1,0), vec2(1,1)));
 
 	return mBridge.SendModel(verts);
 }
