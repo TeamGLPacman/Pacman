@@ -158,7 +158,7 @@ uint GameCore::SendGroundVertices()
 	int width = mLevel.GetWidth();
 	int height = mLevel.GetHeight();
 
-	verts.push_back(VertexPoint(vec3(-0.5,0,-0.5), vec3(0,-1,0), vec2(1,0)));
+	verts.push_back(VertexPoint(vec3(-0.5,0,-0.5), vec3(0,1,0), vec2(1,0)));
 	verts.push_back(VertexPoint(vec3(-0.5,0,height - 0.5), vec3(0,1,0), vec2(0,0)));
 	verts.push_back(VertexPoint(vec3(width - 0.5,0,height - 0.5), vec3(0,1,0), vec2(0,1)));
 
