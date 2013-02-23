@@ -16,8 +16,6 @@ int GameCore::GameLoop(){
 
 void GameCore::Initialize( int argc, char** argv ){
 	uint test = mBridge.Initialize( argc, argv );
-
-
 	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
 	
 	

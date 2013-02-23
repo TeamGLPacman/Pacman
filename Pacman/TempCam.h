@@ -14,7 +14,6 @@ private:
 	float camYaw;
 	float camPitch;
 
-
 public:
 	
 	TempCam(void);

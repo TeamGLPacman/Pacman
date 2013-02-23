@@ -28,9 +28,9 @@ GraphicsCore::~GraphicsCore(void)
 //temporary function
 void GraphicsCore::tempValues(uint shaderProgHandle, Object3D object)
 {
-	vec3 eye(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z); // camera position in world coordinates
-	vec3 centre(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1); // orient camera to point towards a target position
-	vec3 up(0.0f, 1.0f, 0.0f); // vector pointing up from camera's head  (describes roll of camera)
+	vec3 eye = mCam.GetCamPos(); 
+	vec3 centre = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
+	vec3 up(0.0f, 1.0f, 0.0f); 
 	mat4 viewMatrix = glm::mat4(1.0f); // initialise to identity
 	viewMatrix = glm::lookAt(eye, centre, up); // this function is similar to one from the older opengl
 
