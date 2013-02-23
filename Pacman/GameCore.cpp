@@ -9,8 +9,11 @@ int GameCore::GameLoop(){
 		Update(); // Update Entities
 		CheckCollision(); // Checking Collisions
 		RenderObjects(); // Draw Objects
-		// if press esc exit(1);
 		mBridge.TempCamUpdate();
+		// if press esc exit(1);
+
+		if(GetAsyncKeyState(VK_ESCAPE) != 0)
+			return 0;
 	}
 	return 0;
 }
