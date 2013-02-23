@@ -32,6 +32,7 @@
     <ClInclude Include="PowerPacman.h" />
     <ClInclude Include="Scared.h" />
     <ClInclude Include="ShaderHandler.h" />
+    <ClInclude Include="TempCam.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="VAOModelLoader.h" />
   </ItemGroup>
@@ -55,6 +56,7 @@
     <ClCompile Include="PowerPacman.cpp" />
     <ClCompile Include="Scared.cpp" />
     <ClCompile Include="ShaderHandler.cpp" />
+    <ClCompile Include="TempCam.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VAOModelLoader.cpp" />
   </ItemGroup>

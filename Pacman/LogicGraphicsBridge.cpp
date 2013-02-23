@@ -55,3 +55,8 @@ int LogicGraphicsBridge::UpdateUniform(const char* variable, uint shaderProgHand
 {
 	return mGraphics.UpdateUniform(variable, shaderProgHandle, value);
 }
+
+void LogicGraphicsBridge::TempCamUpdate()
+{
+	mGraphics.TempCamUpdate();
+}

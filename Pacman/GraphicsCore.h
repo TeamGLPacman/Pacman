@@ -4,16 +4,17 @@
 #include "TextureLoader.h"
 #include "ShaderHandler.h"
 #include "VAOModelLoader.h"
-#include "Camera.h"
+#include "TempCam.h"
 
-void resizeCallback(int width, int height);	
+//void resizeCallback(int width, int height);	
 //timer callback?							count fps
 
 class GraphicsCore
 {
 private:
 	char* windowTitle;
-	Camera mCamera;
+	//Camera mCamera;
+	
 	VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;
@@ -40,6 +41,8 @@ public:
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 
 	int UpdateUniform(const char* variable, uint shaderProgHandle, float value);
 	int UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value);
+
+	void TempCamUpdate();
 };
 
 #endif
