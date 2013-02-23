@@ -10,12 +10,15 @@ int GameCore::GameLoop(){
 		CheckCollision(); // Checking Collisions
 		RenderObjects(); // Draw Objects
 		// if press esc exit(1);
+		mBridge.TempCamUpdate();
 	}
 	return 0;
 }
 
 void GameCore::Initialize( int argc, char** argv ){
 	uint test = mBridge.Initialize( argc, argv );
+
+
 	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
 	
 	
