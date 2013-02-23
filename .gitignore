@@ -17,10 +17,13 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-*.sdf
+*.manifest
+*.tlog
+*.idb
 [Bb]in
-[Dd]ebug*/
+*.lib
 *.sbr
+*.lastbuildstate
 obj/
 [Rr]elease*/
 _ReSharper*/
