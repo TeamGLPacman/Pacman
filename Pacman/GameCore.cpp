@@ -25,7 +25,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	
 	
 	uint shaderBoxID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
-	uint textureBoxID = mBridge.LoadTexture("../Textures/Box.png");
+	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall.png");
 
 	mLevel.LoadMap("../Maps/map001.png");
 	mLevel.BuildBoxes(boxID, textureBoxID, shaderBoxID);

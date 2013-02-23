@@ -19,7 +19,7 @@ private:
 	TextureLoader mTexture;
 
 	//temporary
-	void tempValues(uint shaderProgHandle);
+	void tempValues(uint shaderProgHandle, Object3D object);
 
 public:
 	GraphicsCore(void);

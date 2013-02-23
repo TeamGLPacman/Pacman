@@ -20,18 +20,19 @@ GraphicsCore::~GraphicsCore(void)
 }
 
 //temporary function
-void GraphicsCore::tempValues(uint shaderProgHandle)
+void GraphicsCore::tempValues(uint shaderProgHandle, Object3D object)
 {
-	vec3 eye(0.0f, 1.0f, 5.0f); // camera position in world coordinates
-	vec3 centre(0, -0.1, -1.0f); // orient camera to point towards a target position
+	vec3 eye(0.0f, 5.0f, -10.0f); // camera position in world coordinates
+	vec3 centre(5.0f, 0.0f, 1.0f); // orient camera to point towards a target position
 	vec3 up(0.0f, 1.0f, 0.0f); // vector pointing up from camera's head  (describes roll of camera)
 	mat4 viewMatrix = glm::mat4(1.0f); // initialise to identity
 	viewMatrix = glm::lookAt(eye, centre, up); // this function is similar to one from the older opengl
 
 	//matrices
-	mat4 Projection = glm::perspective(45.0f, float(windowWidth) / (float)windowHeight, 0.1f, 100.f);	
+	mat4 Projection = glm::perspective(45.0f, float(windowWidth) / (float)windowHeight, 0.1f, 300.f);	
 	//mat4 rotationMatrix = glm::rotate(mat4(1.0f), rotAngle, vec3(0.0f,1.0f,0.0f));
-	mat4 ModelView = viewMatrix; 
+	mat4 Model = glm::translate(object.GetWorldPos());
+	mat4 ModelView = viewMatrix * Model; 
 	mat4 MVP = Projection * ModelView;
 	
 	mat3 normalMatrix = glm::transpose(glm::inverse(mat3(ModelView)));
@@ -93,12 +94,12 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	glutReshapeFunc(resizeCallback); // register callback for reshape
 
 	// set colour to clear screen buffer to
-	glClearColor(0.3, 0.3, 0.3, 1.0f);
+	glClearColor(0.1, 0.1, 0.1, 1.0f);
 
 	// enable some useful GL behaviours
 	glEnable(GL_DEPTH_TEST); // enable depth-testing
 	glDepthFunc(GL_LESS); // set depth-testing function type
-	//glEnable(GL_CULL_FACE); // enable culling of back-faces
+	glEnable(GL_CULL_FACE); // enable culling of back-faces
 	glCullFace(GL_BACK); // enable culling of back-faces
 	glFrontFace(GL_CCW); // use clock-wise 'winding' to define order used to make fronts of polygons
 	
@@ -153,7 +154,7 @@ void GraphicsCore::RenderObject(Object3D object)
 	//set uniform variables?
 
 	//---------temporary--------
-	tempValues(object.GetShaderID());
+	tempValues(object.GetShaderID(), object);
 	//--------------------------
 
 	glEnable(GL_BLEND); //for transparency
