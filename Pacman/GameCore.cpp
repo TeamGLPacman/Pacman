@@ -1,13 +1,10 @@
 #include "GameCore.h"
 
-//Needed for c++
-// THIS IS BAAAAAAAD!
-
 
 int GameCore::GameLoop(){
 	while(true){
 		Update(); // Update Entities
-		//CheckCollision(); // Checking Collisions
+		CheckCollision(); // Checking Collisions
 		RenderObjects(); // Draw Objects
 		// if press esc exit(1);
 	}
@@ -32,12 +29,12 @@ void GameCore::Initialize( int argc, char** argv ){
 }
 
 void GameCore::Update(){
-	/*mPacman.Update();
+	mPacman.Update();
 	mPacman.Update();
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i].Update();
 	for (int i = 0; i < mEffects.size(); i++)
-		mEffects[i].Run();*/
+		mEffects[i].Run();
 }
 
 void GameCore::CheckCollision(){
@@ -46,26 +43,27 @@ void GameCore::CheckCollision(){
 }
 
 void GameCore::PacmanCollisionCandy(){
-	/*for (int i = 0; i < mCandyList.size(); i++)
+	for (int i = 0; i < mCandyList.size(); i++)
 	{
-		if (mPacman.Collision(mCandyList[i]))
+		if (mPacman.Collision(mCandyList[i], 1))
 		{
 			mEffects.push_back(mCandyList[i].GetEffect());
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
 			break;
 		}
-	}*/
+	}
 }
 
 void GameCore::GhostCollisionPacman(){
-	/*for(int i = 0; i < mGhostList.size(); i++)
+	// kommentera inte bort kod som funkar, och om det är något fel rätta tilld et istället för att skjuta på det!
+	for(int i = 0; i < mGhostList.size(); i++)
 	{
-		if (mGhostList[i].Collision(mPacman))
+		if (mGhostList[i].Collision(mPacman, 1))
 		{
 			mEffects.push_back(mGhostList[i].GetEffect());
 			break;
 		}
-	}*/
+	}
 }
 
 void GameCore::RenderObjects(){

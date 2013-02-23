@@ -3,16 +3,18 @@
 
 #include "CommonIncludes.h"
 #include "Entity.h"
+#include "Effect.h"
 
-class Ghost : Entity
+class Ghost : public Entity
 {
 public:
 	Ghost();
 
 	int Update();
-
+	Effect GetEffect()
+		{ return mEffect; }
 private:
-
+	Effect mEffect;
 
 };
 

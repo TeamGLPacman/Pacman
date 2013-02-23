@@ -14,7 +14,7 @@ Entity::~Entity(void)
 {
 }
 
-/*virtual*/ int Update()
+int Update()
 {
 	return 0;
 }

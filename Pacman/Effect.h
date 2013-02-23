@@ -10,7 +10,7 @@ protected:
 	int Tick();
 	int GetMaxTime();
 public:
-	virtual int Run() = 0; // abstract!
+	virtual int Run(); // abstract!
 
 	int GetTimeLeft() 
 		{ return mTimeLeft; }
