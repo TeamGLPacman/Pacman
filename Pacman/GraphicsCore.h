@@ -14,7 +14,7 @@ class GraphicsCore
 private:
 	char* windowTitle;
 	//Camera mCamera;
-	
+	TempCam mCam;
 	VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;

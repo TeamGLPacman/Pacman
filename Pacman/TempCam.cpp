@@ -10,7 +10,7 @@ bool mousein = false;
 
 TempCam::TempCam(void)
 {
-	camX = 0.0, camY = 2.0, camZ = 0.0;
+	camX = 18.0, camY = 2.0, camZ = 18.0;
 	camYaw = 0.0;
 	camPitch = 0.0;
 }
@@ -44,20 +44,18 @@ void TempCam::moveCameraUp(float dist, float dir)
 	camY += sin(rad)*dist;
 }
 
-void TempCam::SetMousePos(int x, int y)
-{
-	mouseX = x;
-	mouseY = y;
-}
-
-void TempCam::Control(float moveVel, float mouseSens, bool mi, float midX, float midY)
+void TempCam::Control(float moveVel, float Sens, bool mi)
 {
 	if(mi)
 	{
-		camYaw += mouseSens*(midX-mouseX);
-		camPitch += mouseSens*(midY-mouseY);
+		if(GetAsyncKeyState(VK_LEFT) != 0){ camYaw += Sens; }
+		if(GetAsyncKeyState(VK_RIGHT) != 0){ camYaw -= Sens; }
+
+		if(GetAsyncKeyState(VK_UP) != 0){ camPitch += Sens; }
+		if(GetAsyncKeyState(VK_DOWN) != 0){ camPitch -= Sens; }
+
 		lockCamera();
-		glutWarpPointer(midX, midY);
+
 		if(GetAsyncKeyState('W') != 0)
 		{
 			if(camPitch!=90 && camPitch != -90)

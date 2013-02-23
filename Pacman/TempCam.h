@@ -14,7 +14,6 @@ private:
 	float camYaw;
 	float camPitch;
 
-
 public:
 	
 	TempCam(void);
@@ -23,8 +22,7 @@ public:
 	void lockCamera();
 	void moveCamera(float, float);
 	void moveCameraUp(float, float);
-	void Control(float moveVel, float mouseSense, bool mi, float midX, float midY);
-	void SetMousePos(int, int);
+	void Control(float moveVel, float mouseSense, bool mi);
 	float GetYaw();
 	float GetPitch();
 	glm::vec3 GetCamPos();

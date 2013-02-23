@@ -8,12 +8,6 @@ void resizeCallback(int width, int height)
 	glViewport(0, 0, width, height); // change viewport size in gl
 }
 
-TempCam mCam;
-void My_mouse_routine(int x, int y)
-	{
-		mCam.SetMousePos(x, y); //place current mouse pos in mouseX, mouseY (in Camera class)
-	}
-
 GraphicsCore::GraphicsCore(void)
 {
 	windowWidth = 800;
@@ -35,7 +29,7 @@ void GraphicsCore::tempValues(uint shaderProgHandle, Object3D object)
 	viewMatrix = glm::lookAt(eye, centre, up); // this function is similar to one from the older opengl
 
 	//matrices
-	mat4 Projection = glm::perspective(45.0f, float(windowWidth) / (float)windowHeight, 0.1f, 300.f);	
+	mat4 Projection = glm::perspective(45.0f, float(windowWidth) / (float)windowHeight, 0.1f, 200.f);	
 	//mat4 rotationMatrix = glm::rotate(mat4(1.0f), rotAngle, vec3(0.0f,1.0f,0.0f));
 	mat4 Model = mCam.GetRotationMatrix() * glm::translate(object.GetWorldPos());
 	mat4 ModelView =  Model * viewMatrix; 
@@ -209,11 +203,5 @@ int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, vec
 
 void GraphicsCore::TempCamUpdate()
 {
-	
-	if(GetKeyState(VK_LSHIFT) == 0)
-	{
-		glutPassiveMotionFunc(My_mouse_routine);
-		glutSetCursor(GLUT_CURSOR_NONE);
-		mCam.Control(0.5, 0.3, true, windowWidth*0.5, windowHeight*0.5);
-	}
+	mCam.Control(0.5, 3.0, true);
 }
