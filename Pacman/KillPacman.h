@@ -13,7 +13,7 @@ class KillPacman : Effect
 private:
 	vector<Entity*> mEnties;
 public:
-	virtual int Run() override;
+	int Run();
 	void AddEntity(Entity*);
 
 	//KillPacman();

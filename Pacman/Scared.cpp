@@ -15,7 +15,8 @@ Scared::~Scared(void)
 {
 }
 
-void Scared::Update()
+int Scared::Run()
 {
 	// logik!!! Behöver surroundinggrid!
+	return 0;
 }

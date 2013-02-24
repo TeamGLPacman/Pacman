@@ -5,6 +5,7 @@
 class Entity : public Object3D
 {
 private:
+	float mModSpeed;
 	float mSpeed;
 	vec3 mDirection;
 protected:
@@ -16,7 +17,8 @@ public:
 	Entity(float, vec3);
 	Entity(void);
 	~Entity(void);
-
+	void ModifySpeed(float mod)
+		{mModSpeed = mod; }
 	float GetSpeed()
 		{ return mSpeed; }
 	vec3 GetDirection()

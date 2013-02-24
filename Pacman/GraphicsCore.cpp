@@ -1,6 +1,7 @@
 #include "GraphicsCore.h"
 
 int windowWidth, windowHeight;
+float fov = 30.0f;
 void resizeCallback(int width, int height)
 {
 	windowWidth = width; // remember new size
@@ -28,7 +29,7 @@ void GraphicsCore::tempValues(uint shaderProgHandle, Object3D object)
 	mat4 viewMatrix = glm::mat4(1.0f);
 	viewMatrix = glm::lookAt(eye, centre, up);
 
-	mat4 Projection = glm::perspective(45.0f, float(windowWidth) / (float)windowHeight, 0.1f, 300.f);	
+	mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 300.f);	
 	//mat4 rotationMatrix = glm::rotate(mat4(1.0f), rotAngle, vec3(0.0f,1.0f,0.0f));
 	mat4 Model = mCam.GetRotationMatrix() * glm::translate(object.GetWorldPos());
 	mat4 ModelView =  Model * viewMatrix; 
@@ -149,6 +150,7 @@ void GraphicsCore::RenderObject(Object3D object)
 	
 	glUseProgram(object.GetShaderID());
 	//set uniform variables?
+	//inte här det komma ifrån Logic delen
 
 	//---------temporary--------
 	tempValues(object.GetShaderID(), object);
@@ -178,7 +180,7 @@ void GraphicsCore::RenderObject(Object3D object)
 
 void GraphicsCore::EndRendering()
 {
-	glutSwapBuffers(); // swap drawing back-buffer to displayed front buffer
+	glutSwapBuffers(); // swap drawing back-buffer to be displayed as front buffer
 	glutPostRedisplay(); // flag for redraw
 }
  

@@ -9,13 +9,12 @@ PowerPacman::~PowerPacman(void)
 }
 int PowerPacman::Run()
 {
-	/*
-	// För optimering krävs en extra variabel !
 	int TimeLeft = Tick();
+	Behaviour *newBehaviour;
 	if (TimeLeft == GetMaxTime()-1)
 	{
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
-			mAffectedGhosts[i].SetBehaviour(Scared());
+			mAffectedGhosts[i].SetBehaviour(newBehaviour);
 		mPacman.ModifySpeed(2);
 		return 0;
 	}
@@ -26,7 +25,6 @@ int PowerPacman::Run()
 		mPacman.ModifySpeed(0);
 		return 5; //5 points
 	}
-	*/
 	return 0;
 }
 

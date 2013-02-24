@@ -10,7 +10,7 @@ class KillGhost : public Effect
 private:
 	Ghost mGhost;
 public:
-	virtual int Run() override;
+	int Run();
 	void AddEntity(Entity);
 
 	//KillGhost();

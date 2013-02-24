@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "Pacman.h"
 #include "Ghost.h"
+#include "Behaviour.h"
+#include "Scared.h"
 
 class PowerPacman : public Effect
 {
