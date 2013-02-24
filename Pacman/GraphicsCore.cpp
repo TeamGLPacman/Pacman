@@ -1,5 +1,4 @@
 #include "GraphicsCore.h"
-
 int windowWidth, windowHeight;
 
 void resizeCallback(int width, int height)
