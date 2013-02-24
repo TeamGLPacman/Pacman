@@ -1,7 +1,7 @@
 #include "GraphicsCore.h"
 
 int windowWidth, windowHeight;
-float fov = 30.0f;
+float fov = 40.0f;
 void resizeCallback(int width, int height)
 {
 	windowWidth = width; // remember new size
