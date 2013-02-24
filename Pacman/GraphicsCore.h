@@ -9,9 +9,13 @@
 //void resizeCallback(int width, int height);	
 //timer callback?							count fps
 
+
+
 class GraphicsCore
 {
 private:
+	
+	float fov;
 	char* windowTitle;
 	//Camera mCamera;
 	TempCam mCam;

@@ -1,7 +1,7 @@
 #include "GraphicsCore.h"
 
 int windowWidth, windowHeight;
-float fov = 40.0f;
+
 void resizeCallback(int width, int height)
 {
 	windowWidth = width; // remember new size
@@ -11,6 +11,7 @@ void resizeCallback(int width, int height)
 
 GraphicsCore::GraphicsCore(void)
 {
+	fov = 40.0f;
 	windowWidth = 800;
 	windowHeight = 600;
 	windowTitle = "Pacman";
