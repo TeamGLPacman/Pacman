@@ -68,20 +68,20 @@ int* Level::GetSurroundingGrid( vec2 pos )
 		sGrid[0] = 1;
 
 	if(xPos + 1 > 0 && xPos + 1 < mWidth && yPos > 0 && yPos < mHeight) //Right
-		sGrid[0] = mMapValues[xPos + 1][yPos];
+		sGrid[1] = mMapValues[xPos + 1][yPos];
 	else
-		sGrid[0] = 1;
+		sGrid[1] = 1;
 
 	if(xPos + 1 > 0 && xPos < mWidth && yPos + 1 > 0 && yPos + 1 < mHeight) //Down
-		sGrid[0] = mMapValues[xPos][yPos + 1];
+		sGrid[2] = mMapValues[xPos][yPos + 1];
 	else
-		sGrid[0] = 1;
+		sGrid[2] = 1;
 
 
 	if(xPos - 1 > 0 && xPos - 1  < mWidth && yPos > 0 && yPos < mHeight) //Left
-		sGrid[0] = mMapValues[xPos - 1][yPos];
+		sGrid[3] = mMapValues[xPos - 1][yPos];
 	else
-		sGrid[0] = 1;
+		sGrid[3] = 1;
 
 		return sGrid;
 }
