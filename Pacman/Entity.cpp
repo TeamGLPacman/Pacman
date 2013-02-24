@@ -14,7 +14,7 @@ Entity::~Entity(void)
 {
 }
 
-int Entity::Update()
+int Entity::Update(int* surrondings)
 {
 	return 0;
 }

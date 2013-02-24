@@ -21,9 +21,10 @@ private:
 public:
 	Pacman();
 	~Pacman();
+
 	Pacman(vec3, float);
 
-	int Update();
+	int Update(int*);
 
 
 };

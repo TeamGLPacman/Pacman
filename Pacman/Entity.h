@@ -7,6 +7,8 @@ class Entity : public Object3D
 private:
 	float mModSpeed;
 	float mSpeed;
+	vec3 mSpawnPosition;
+	vec3 mTargetPoint;
 	vec3 mDirection;
 protected:
 	void SetSpeed(float speed) 
@@ -23,11 +25,9 @@ public:
 		{ return mSpeed; }
 	vec3 GetDirection()
 		{ return mDirection; }
-	vec3 mSpawnPosition;
-	// vec3 ??"#)"
-	vec3 mTargetPoint;
-
-	virtual int Update();
+	
+	virtual int Update(int*);
+	
 	void ReSpawn();
 	void UpdateTargetPoint(bool canMove[4]);
 	bool Collision(Object3D obj, float dist);
