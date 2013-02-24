@@ -23,6 +23,8 @@ Thumbs.db
 [Bb]in
 *.lib
 *.sbr
+*.sdf
+*.ipch
 *.lastbuildstate
 obj/
 [Rr]elease*/

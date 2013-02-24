@@ -23,6 +23,18 @@ GraphicsCore::~GraphicsCore(void)
 //temporary function
 void GraphicsCore::tempValues(uint shaderProgHandle, Object3D object)
 {
+	//lightinfo
+	vec4 lightPos = vec4(0.0, 0.0, 0.0, 1.0);
+	vec3 ambient = vec3(0.4, 0.4, 0.4);
+	vec3 diffuse = vec3(0.7, 0.7, 0.7);
+	vec3 specular = vec3(0.7, 0.7, 0.7);
+
+	//material
+	vec3 ambientRefl = vec3(1.0f, 1.0f, 1.0f);	
+	vec3 diffuseRefl = vec3(1.0f, 1.0f, 1.0f);	
+	vec3 specularRefl = vec3(0.7f, 0.7f, 0.7f);
+	float shininess = 1.6;
+
 	vec3 eye = mCam.GetCamPos(); 
 	vec3 centre = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
 	vec3 up(0.0f, 1.0f, 0.0f); 
@@ -37,7 +49,34 @@ void GraphicsCore::tempValues(uint shaderProgHandle, Object3D object)
 	
 	mat3 normalMatrix = glm::transpose(glm::inverse(mat3(ModelView)));
 
-	uint location = glGetUniformLocation(shaderProgHandle, "ProjectionMatrix");	//gets the UniformLocation from shader.vertex
+
+	uint location = glGetUniformLocation(shaderProgHandle, "Light.LightPosition");	//gets the UniformLocation from shader.vertex
+	glUniform4fv(location, 1, &lightPos[0]);
+
+	location = glGetUniformLocation(shaderProgHandle, "Light.La");	//gets the UniformLocation from shader.vertex
+	glUniform3fv(location, 1, &ambient[0]);
+
+	location = glGetUniformLocation(shaderProgHandle, "Light.Ld");	//gets the UniformLocation from shader.vertex
+	glUniform3fv(location, 1, &diffuse[0]);
+
+	location = glGetUniformLocation(shaderProgHandle, "Light.Ls");	//gets the UniformLocation from shader.vertex
+	glUniform3fv(location, 1, &specular[0]);
+
+	//-------------------
+	location = glGetUniformLocation(shaderProgHandle, "Material.Ka");	//gets the UniformLocation from shader.vertex
+	glUniform3fv(location, 1, &ambientRefl[0]);
+
+	location = glGetUniformLocation(shaderProgHandle, "Material.Kd");	//gets the UniformLocation from shader.vertex
+	glUniform3fv(location, 1, &diffuseRefl[0]);
+
+	location = glGetUniformLocation(shaderProgHandle, "Material.Ks");	//gets the UniformLocation from shader.vertex
+	glUniform3fv(location, 1, &specularRefl[0]);
+
+	location = glGetUniformLocation(shaderProgHandle, "Material.Shininess");	//gets the UniformLocation from shader.vertex
+	glUniform1fv(location, 1, &shininess);
+	
+	
+	location = glGetUniformLocation(shaderProgHandle, "ProjectionMatrix");	//gets the UniformLocation from shader.vertex
 	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &Projection[0][0]); }
 
 	location = glGetUniformLocation(shaderProgHandle, "ModelViewMatrix");	//gets the UniformLocation from shader.vertex
@@ -201,5 +240,5 @@ int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, vec
 
 void GraphicsCore::TempCamUpdate()
 {
-	mCam.Control(0.5, 3.0, true);
+	mCam.Control(0.2, 1.5, true);
 }
