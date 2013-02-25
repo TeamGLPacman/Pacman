@@ -14,7 +14,7 @@ public:
 	bool BuildGround ( uint modID, uint texID, uint shadID );
 
 	int** GetMapValues();
-	int* GetSurroundingGrid( glm::vec2 );
+	int* GetSurroundingGrid(glm::vec2);
 	vector<Object3D> GetBoxList();
 	Object3D GetGround();
 

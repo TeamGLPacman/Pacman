@@ -21,7 +21,21 @@ Pacman::Pacman(vec3 position, float speed)
 	SetSpeed(speed);
 	SetWorldPos(position);
 }
-
+/*
+vec2 Pacman::GetGridPosition()
+{
+	vec2 returnValue;
+	if ( floor(GetWorldPos().x) == floor(GetWorldPos().x+0.5f))
+		returnValue.x = floor(GetWorldPos().x);
+	else 
+		returnValue.x = floor(GetWorldPos().x+1);
+	if ( floor(GetWorldPos().y) == floor(GetWorldPos().y+0.5f))
+		returnValue.y = floor(GetWorldPos().y);
+	else 
+		returnValue.y = floor(GetWorldPos().y+1);
+	return returnValue;
+}
+*/
 int Pacman::Update(int* surrondings)
 {
 	// Up, Right, Down, Left (Clockwise)

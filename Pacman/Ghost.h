@@ -12,13 +12,16 @@ public:
 	Ghost();
 
 	int Update();
+
 	void SetDefaultBehaviour()
 		{ mBehaviour = mDefualtBehaviour; }
 	void SetBehaviour(Behaviour *set)
 		{ mBehaviour = set; }
 	Effect* GetEffect()
-	{ return mBehaviour->GetEffect(); }
+		{ return mBehaviour->GetEffect(); }
+
 private:
+
 	Behaviour *mBehaviour;
 	Behaviour *mDefualtBehaviour;
 };

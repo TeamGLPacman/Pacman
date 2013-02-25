@@ -42,8 +42,8 @@ void GameCore::Initialize( int argc, char** argv ){
 
 void GameCore::Update(){
 	mBridge.TempCamUpdate();
-	mPacman.Update();
-	mPacman.Update();
+	
+	//mPacman.Update(mLevel.GetSurroundingGrid(mPacman.GetGridPosition()));
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i].Update();
 	for (int i = 0; i < mEffects.size(); i++)

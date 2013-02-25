@@ -24,6 +24,8 @@ public:
 
 	Pacman(vec3, float);
 
+	vec2 GetGridPosition();
+
 	int Update(int*);
 
 

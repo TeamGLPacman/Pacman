@@ -42,15 +42,4 @@ public:
 	int GameLoop();
 };
 
-
-
-
-
-
-
-
-
-
-
-
 #endif
