@@ -7,15 +7,11 @@ LogicGraphicsBridge::LogicGraphicsBridge(void)
 LogicGraphicsBridge::~LogicGraphicsBridge(void)
 {
 }
-void LogicGraphicsBridge::UpdateLightAndTexture(Object3D object)
-{
-	mGraphics.UpdateLightAndTexture(object);
-}
+//void LogicGraphicsBridge::UpdateLightAndTexture(Object3D object)
+//{
+//	mGraphics.UpdateLightAndTexture(object);
+//}
 
-void LogicGraphicsBridge::RenderObjects(vector<Object3D> objects)
-{
-	mGraphics.RenderObjects(objects);
-}
 uint LogicGraphicsBridge::Initialize(int argc, char** argv)
 {
 	return mGraphics.Initialize(argc, argv);
@@ -41,11 +37,12 @@ void LogicGraphicsBridge::BeginRendering()
 {
 	mGraphics.BeginRendering();
 }
-void LogicGraphicsBridge::RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale){
-	mGraphics.RenderObject(textureID, modelID, shaderID, color, scale);
-}
 void LogicGraphicsBridge::RenderObject(Object3D renderThis){
 	mGraphics.RenderObject(renderThis);
+}
+void LogicGraphicsBridge::RenderObjects(vector<Object3D> objects)
+{
+	mGraphics.RenderObjects(objects);
 }
 void LogicGraphicsBridge::EndRendering()
 {

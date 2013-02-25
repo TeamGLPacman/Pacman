@@ -40,7 +40,6 @@ public:
 	void UpdateLightAndTexture(Object3D object);
 	void close() {exit(0);}
 	void BeginRendering();
-	void RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
 	void RenderObject(Object3D object);
 	void RenderObjects(vector<Object3D> objects);
 	void EndRendering();
