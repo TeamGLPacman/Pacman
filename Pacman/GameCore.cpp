@@ -82,12 +82,9 @@ void GameCore::RenderObjects(){
 	mBridge.BeginRendering(); // ADDED!
 
 	//Render Ground
-
 	mBridge.RenderObject(mLevel.GetGround());
-
 	//Render Boxes
-	for (int i = 0; i < mLevel.GetBoxList().size(); i++)
-		mBridge.RenderObject(mLevel.GetBoxList()[i]);
+	mBridge.RenderObjects(mLevel.GetBoxList());
 	/*
 	// Render Pacman
 	mBridge.RenderObject(mPacman);

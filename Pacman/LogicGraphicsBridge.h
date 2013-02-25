@@ -12,6 +12,7 @@ public:
 	LogicGraphicsBridge(void);
 	~LogicGraphicsBridge(void);
 	
+	void UpdateLightAndTexture(Object3D);
 	uint Initialize(int argc, char** argv);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath);
@@ -19,6 +20,7 @@ public:
 	uint SendModel(vector<VertexPoint> vertexList);
 	uint SendModel(vec3 position); 
 	
+	void RenderObjects(vector<Object3D> objects);
 	void BeginRendering();
 	void RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
 	void RenderObject(Object3D renderThis);

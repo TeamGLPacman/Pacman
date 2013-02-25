@@ -24,23 +24,25 @@ private:
 	TextureLoader mTexture;
 
 	//temporary
-	void tempValues(uint shaderProgHandle, Object3D object);
+	
 
 public:
 	GraphicsCore(void);
 	~GraphicsCore(void);
-
+	void UpdateObjectValues(Object3D);
 	uint Initialize(int argc, char** argv);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath); 
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath); 
-	uint LoadTexture(const char* file); 
-	uint SendModel(vector<VertexPoint> vertexList); 
-	uint SendModel(vec3 position); 
+	uint LoadTexture(const char* file);
+	uint SendModel(vector<VertexPoint> vertexList);
+	uint SendModel(vec3 position);
 
+	void UpdateLightAndTexture(Object3D object);
 	void close() {exit(0);}
 	void BeginRendering();
 	void RenderObject(uint textureID, uint modelID, uint shaderID, vec3 color, float scale);
 	void RenderObject(Object3D object);
+	void RenderObjects(vector<Object3D> objects);
 	void EndRendering();
  
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 

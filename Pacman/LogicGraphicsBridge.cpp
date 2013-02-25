@@ -7,7 +7,15 @@ LogicGraphicsBridge::LogicGraphicsBridge(void)
 LogicGraphicsBridge::~LogicGraphicsBridge(void)
 {
 }
+void LogicGraphicsBridge::UpdateLightAndTexture(Object3D object)
+{
+	mGraphics.UpdateLightAndTexture(object);
+}
 
+void LogicGraphicsBridge::RenderObjects(vector<Object3D> objects)
+{
+	mGraphics.RenderObjects(objects);
+}
 uint LogicGraphicsBridge::Initialize(int argc, char** argv)
 {
 	return mGraphics.Initialize(argc, argv);
