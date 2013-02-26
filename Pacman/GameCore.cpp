@@ -35,7 +35,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	uint shaderID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
 	uint billboardShaderID = mBridge.LoadShaderFiles("../Shaders/billboardShader.vertex", "../Shaders/billboardShader.fragment", "../Shaders/billboardShader.geometry" );
 
-	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall2.png");
+	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall.png");
 	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
 	uint texturePacmanID = mBridge.LoadTexture("../Textures/Pacman.png");
 
