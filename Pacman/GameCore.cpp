@@ -20,11 +20,10 @@ int GameCore::GameLoop(){
 
 		if(GetAsyncKeyState(VK_ESCAPE) != 0)
 			return 0;
-		wait(0.015f);
+		wait(0.01f);
 	}
 	return 0;
 }
-
 
 
 void GameCore::Initialize( int argc, char** argv ){
@@ -33,15 +32,12 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
 	
-	
 	uint shaderID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
 	uint billboardShaderID = mBridge.LoadShaderFiles("../Shaders/billboardShader.vertex", "../Shaders/billboardShader.fragment", "../Shaders/billboardShader.geometry" );
 
 	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall.png");
 	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
 	uint texturePacmanID = mBridge.LoadTexture("../Textures/Pacman.png");
-
-
 
 	mLevel.LoadMap("../Maps/map001.png");
 
