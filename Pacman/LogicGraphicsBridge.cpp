@@ -36,7 +36,7 @@ void LogicGraphicsBridge::BeginRendering()
 void LogicGraphicsBridge::RenderObject(Object3D renderThis){
 	mGraphics.RenderObject(renderThis);
 }
-void LogicGraphicsBridge::RenderObjects(vector<Object3D> objects)
+void LogicGraphicsBridge::RenderObjects(vector<Object3D*> objects)
 {
 	mGraphics.RenderObjects(objects);
 }

@@ -15,11 +15,12 @@ public:
 
 	int** GetMapValues();
 	int* GetSurroundingGrid(glm::vec2);
-	vector<Object3D> GetBoxList();
+	vector<Object3D*> GetBoxList();
 	Object3D GetGround();
 
 	vec3 GetPacmanSpawn();
 	vec3 GetGhostSpawn();
+	vector<vec3> GetCandyPosList();
 
 	int GetHeight();
 	int GetWidth();
@@ -28,8 +29,9 @@ private:
 	int mWidth, mHeight;
 
 	vec3 mPacmanSpawn, mGhostSpawn;
+	vector<vec3> mCandyPosList;
 
-	vector<Object3D> mBoxList;
+	vector<Object3D*> mBoxList;
 	Object3D mGround;
 	int** mMapValues;
 

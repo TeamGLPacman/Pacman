@@ -5,9 +5,9 @@
 class Entity : public Object3D
 {
 private:
-	float mModSpeed;
-	float mSpeed;
 	vec3 mSpawnPosition;
+	float mSpeed;
+	float mModSpeed;
 	vec3 mTargetPoint;
 	vec3 mDirection;
 protected:
@@ -35,7 +35,7 @@ public:
 	
 	void ReSpawn();
 	void UpdateTargetPoint(bool canMove[4]);
-	bool Collision(Object3D obj, float dist);
+	bool Collision(Object3D* obj, float dist);
 };
 
 #endif

@@ -14,8 +14,8 @@ class GameCore
 {
 private:
 	LogicGraphicsBridge mBridge;
-	vector<Candy> mCandyList;
-	vector<Ghost> mGhostList;
+	vector<Object3D*> mCandyList;
+	vector<Ghost*> mGhostList;
 	vector<Effect*> mEffects;
 	//vector<SoundSource> mSoundList;
 	Level mLevel;
@@ -38,6 +38,7 @@ private:
 
 public:
 	GameCore();
+	~GameCore();
 	void Initialize( int argc, char** argv );
 	int GameLoop();
 };

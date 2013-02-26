@@ -40,6 +40,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall.png");
 	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
 	uint texturePacmanID = mBridge.LoadTexture("../Textures/Pacman.png");
+	uint textureCandyID = mBridge.LoadTexture("../Textures/Candy.png");
 
 
 
@@ -54,6 +55,8 @@ void GameCore::Initialize( int argc, char** argv ){
 
 
 	mPacman = Pacman( 0.01, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
+	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
 }
 
 void GameCore::Update(){
@@ -61,7 +64,7 @@ void GameCore::Update(){
 	
 	mPacman.Update(mLevel.GetSurroundingGrid(mPacman.GetGridPosition()));
 	for (int i = 0; i < mGhostList.size(); i++)
-		mGhostList[i].Update();
+		mGhostList[i]->Update();
 	for (int i = 0; i < mEffects.size(); i++)
 		mEffects[i]->Run();
 }
@@ -76,7 +79,7 @@ void GameCore::PacmanCollisionCandy(){
 	{
 		if (mPacman.Collision(mCandyList[i], 1))
 		{
-			mEffects.push_back(mCandyList[i].GetEffect());
+			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
 			break;
 		}
@@ -86,9 +89,9 @@ void GameCore::PacmanCollisionCandy(){
 void GameCore::GhostCollisionPacman(){
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
-		if (mGhostList[i].Collision(mPacman, 1))
+		if (mGhostList[i]->Collision(&mPacman, 1))
 		{
-			mEffects.push_back(mGhostList[i].GetEffect());
+			mEffects.push_back(mGhostList[i]->GetEffect());
 			break;
 		}
 	}
@@ -105,6 +108,7 @@ void GameCore::RenderObjects(){
 	// Render Pacman
 	mBridge.RenderObject(mPacman);
 	// Render Candy
+	mBridge.RenderObjects(mCandyList);
 	/*for (int i = 0; i < mCandyList.size(); i++)
 		mBridge.RenderObject(mCandyList[i]);
 	// Render Ghost
@@ -193,4 +197,11 @@ uint GameCore::SendGroundVertices()
 	verts.push_back(VertexPoint(vec3(width - 0.5,0,-0.5), vec3(0,1,0), vec2(1,1)));
 
 	return mBridge.SendModel(verts);
+}
+
+
+GameCore::~GameCore()
+{
+	for(int i = 0; i < mCandyList.size(); i++)
+		delete mCandyList[i];
 }

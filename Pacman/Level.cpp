@@ -51,6 +51,8 @@ Level::~Level()
 	{
 		delete mMapValues[i];
 	}
+	for(int i = 0; i < mBoxList.size(); i++)
+		delete mBoxList[i];
 }
 
 
@@ -101,7 +103,7 @@ int Level::GetWidth()
 	return mWidth;
 }
 
-vector<Object3D> Level::GetBoxList()
+vector<Object3D*> Level::GetBoxList()
 {
 	return mBoxList;
 }
@@ -121,6 +123,11 @@ vec3 Level::GetGhostSpawn()
 	return mGhostSpawn;
 }
 
+vector<vec3> Level::GetCandyPosList()
+{
+	return mCandyPosList;
+}
+
 bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 {
 	if(mWidth != 0)
@@ -131,8 +138,10 @@ bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 			{
 				int value = mMapValues[x][y];
 
+				if( value == 0 )
+					mCandyPosList.push_back(vec3(x, 0.5, y));
 				if( value == 1 )
-					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
+					mBoxList.push_back(new Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
 				if( value == 2 )
 					mPacmanSpawn = vec3(x, 0.5, y);
 				if( value == 3 )

@@ -7,7 +7,7 @@
 class Candy : public Object3D
 {
 public:
-	Candy();
+	Candy( uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size);
 	Effect* GetEffect();
 private:
 	Effect* mEffect;

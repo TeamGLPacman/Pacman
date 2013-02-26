@@ -9,7 +9,7 @@
 class Ghost : public Entity
 {
 public:
-	Ghost();
+	Ghost(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size);
 
 	int Update();
 

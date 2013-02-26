@@ -41,7 +41,7 @@ public:
 	void close() {exit(0);}
 	void BeginRendering();
 	void RenderObject(Object3D object);
-	void RenderObjects(vector<Object3D> objects);
+	void RenderObjects(vector<Object3D*> objects);
 	void EndRendering();
  
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 

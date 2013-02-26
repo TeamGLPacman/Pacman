@@ -20,7 +20,7 @@ public:
 	uint SendModel(vec3 position); 
 	
 	void BeginRendering();
-	void RenderObjects(vector<Object3D> objects);
+	void RenderObjects(vector<Object3D*> objects);
 	void RenderObject(Object3D renderThis);
 	void EndRendering();
 

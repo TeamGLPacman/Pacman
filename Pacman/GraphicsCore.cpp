@@ -232,20 +232,20 @@ void GraphicsCore::RenderObject(Object3D object)
 	}
 }
 
-void GraphicsCore::RenderObjects(vector<Object3D> objects)
+void GraphicsCore::RenderObjects(vector<Object3D*> objects)
 {
-	glUseProgram(objects[0].GetShaderID());
-	glBindTexture(GL_TEXTURE_2D, objects[0].GetTextureID());
-	glBindVertexArray(objects[0].GetModelID());
+	glUseProgram(objects[0]->GetShaderID());
+	glBindTexture(GL_TEXTURE_2D, objects[0]->GetTextureID());
+	glBindVertexArray(objects[0]->GetModelID());
 	
 	//if billboard
-	if(mVAOModel.GetVertexCount(objects[0].GetModelID()) == 1)
+	if(mVAOModel.GetVertexCount(objects[0]->GetModelID()) == 1)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		for (int i = 0; i < objects.size(); i++)
 		{
-			UpdateBillboardObjectValues(objects[i]);
+			UpdateBillboardObjectValues(*objects[i]);
 			glDrawArrays(GL_POINTS, 0, 1);
 		}
 		glDisable(GL_BLEND);
@@ -253,11 +253,11 @@ void GraphicsCore::RenderObjects(vector<Object3D> objects)
 	//if 
 	else
 	{
-		UpdateLightValues(objects[0]);
+		UpdateLightValues(*objects[0]);
 		for (int i = 0; i < objects.size(); i++)
 		{
-			UpdateObjectValues(objects[i]);
-			glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(objects[i].GetModelID()));
+			UpdateObjectValues(*objects[i]);
+			glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(objects[i]->GetModelID()));
 		}
 	}
 }

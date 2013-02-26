@@ -22,7 +22,7 @@ public:
 	Pacman();
 	~Pacman();
 
-	Pacman(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float scale);
+	Pacman(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size);
 
 	vec2 GetGridPosition();
 
