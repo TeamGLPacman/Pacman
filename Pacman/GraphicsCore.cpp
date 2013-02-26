@@ -21,10 +21,8 @@ GraphicsCore::~GraphicsCore(void)
 }
 
 //temporary function
-void GraphicsCore::UpdateLightAndTexture(Object3D object)
+void GraphicsCore::UpdateLightValues(Object3D object)
 {
-	glBindTexture(GL_TEXTURE_2D, object.GetTextureID());
-	
 	//lightinfo
 	vec4 lightPos = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 ambient = vec3(0.4, 0.4, 0.4);
@@ -66,6 +64,31 @@ void GraphicsCore::UpdateLightAndTexture(Object3D object)
 	
 }
 
+void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
+{
+	vec3 eye = mCam.GetCamPos(); 
+	vec3 centre = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
+	vec3 up(0.0f, 1.0f, 0.0f);
+	
+    mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 300.f); 	
+    mat4 Model = glm::translate(object.GetWorldPos());
+	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(eye, centre, up);
+    mat4 ModelView =  viewMatrix * Model; 
+
+	//float Size = 0.8f;
+	
+	uint shaderProgHandle = object.GetShaderID();
+
+	uint location = glGetUniformLocation(shaderProgHandle, "ProjectionMatrix");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &Projection[0][0]); }
+
+	location = glGetUniformLocation(shaderProgHandle, "ModelViewMatrix");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &ModelView[0][0]); }
+
+	//location = glGetUniformLocation(shaderProgHandle, "Size");	//gets the UniformLocation from shader.vertex
+	//glUniform1fv(location, 1, &Size);
+}
+
 void GraphicsCore::UpdateObjectValues(Object3D object)
 {
 	vec3 eye = mCam.GetCamPos(); 
@@ -95,7 +118,6 @@ void GraphicsCore::UpdateObjectValues(Object3D object)
 	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &MVP[0][0]); }
 
 }
-
 
 uint GraphicsCore::Initialize(int argc, char** argv)
 {
@@ -189,39 +211,52 @@ void GraphicsCore::BeginRendering()
 
 void GraphicsCore::RenderObject(Object3D object)
 {
-	UpdateLightAndTexture(object);
 	glUseProgram(object.GetShaderID());
+	glBindTexture(GL_TEXTURE_2D, object.GetTextureID());
 	glBindVertexArray(object.GetModelID());
 
-	UpdateObjectValues(object);
-
+	
 	if(mVAOModel.GetVertexCount(object.GetModelID()) == 1)
 	{
+		glEnable(GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		UpdateBillboardObjectValues(object);
 		glDrawArrays(GL_POINTS, 0, 1);
+		glDisable(GL_BLEND);
 	}
 	else
 	{
+		UpdateLightValues(object);
+		UpdateObjectValues(object);
 		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object.GetModelID()));
 	}
 }
 
 void GraphicsCore::RenderObjects(vector<Object3D> objects)
 {
-	UpdateLightAndTexture(objects[0]);
 	glUseProgram(objects[0].GetShaderID());
+	glBindTexture(GL_TEXTURE_2D, objects[0].GetTextureID());
 	glBindVertexArray(objects[0].GetModelID());
 	
-	for (int i = 0; i < objects.size(); i++)
+	//if billboard
+	if(mVAOModel.GetVertexCount(objects[0].GetModelID()) == 1)
 	{
-		UpdateObjectValues(objects[i]);
-		//if billboard
-		if(mVAOModel.GetVertexCount(objects[i].GetModelID()) == 1)
+		glEnable(GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		for (int i = 0; i < objects.size(); i++)
 		{
+			UpdateBillboardObjectValues(objects[i]);
 			glDrawArrays(GL_POINTS, 0, 1);
 		}
-		//if 
-		else
+		glDisable(GL_BLEND);
+	}
+	//if 
+	else
+	{
+		UpdateLightValues(objects[0]);
+		for (int i = 0; i < objects.size(); i++)
 		{
+			UpdateObjectValues(objects[i]);
 			glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(objects[i].GetModelID()));
 		}
 	}

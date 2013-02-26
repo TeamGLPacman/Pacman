@@ -2,13 +2,14 @@
 layout( points ) in;
 layout( triangle_strip, max_vertices = 4 ) out;
 
-uniform float Size2; // Half the width of the quad
+uniform float Size; // Half the width of the quad
 uniform mat4 ProjectionMatrix;
 out vec2 TexCoord;
 
 void main()
 {
 	mat4 m = ProjectionMatrix; // Reassign for brevity
+	float Size2 = Size*0.5;
 
 	gl_Position = m * (vec4(-Size2,-Size2,0.0,0.0) + gl_in[0].gl_Position);
 	TexCoord = vec2(0.0,0.0);

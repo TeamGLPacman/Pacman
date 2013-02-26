@@ -12,7 +12,6 @@ public:
 	LogicGraphicsBridge(void);
 	~LogicGraphicsBridge(void);
 	
-	//void UpdateLightAndTexture(Object3D);
 	uint Initialize(int argc, char** argv);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath);

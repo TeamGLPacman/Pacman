@@ -25,11 +25,10 @@ private:
 
 	//temporary
 	
-
 public:
 	GraphicsCore(void);
 	~GraphicsCore(void);
-	void UpdateObjectValues(Object3D);
+	
 	uint Initialize(int argc, char** argv);
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath); 
 	uint LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath, const char* geometryShaderPath); 
@@ -37,7 +36,9 @@ public:
 	uint SendModel(vector<VertexPoint> vertexList);
 	uint SendModel(vec3 position);
 
-	void UpdateLightAndTexture(Object3D object);
+	void UpdateLightValues(Object3D object);
+	void UpdateBillboardObjectValues(Object3D object);
+	void UpdateObjectValues(Object3D);
 	void close() {exit(0);}
 	void BeginRendering();
 	void RenderObject(Object3D object);
