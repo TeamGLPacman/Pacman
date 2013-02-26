@@ -25,6 +25,7 @@ Thumbs.db
 *.sbr
 *.sdf
 *.ipch
+*.psd
 *.lastbuildstate
 obj/
 [Rr]elease*/
