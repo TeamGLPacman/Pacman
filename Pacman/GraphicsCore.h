@@ -23,7 +23,6 @@ private:
 	ShaderHandler mShader;
 	TextureLoader mTexture;
 
-	//temporary
 	
 public:
 	GraphicsCore(void);

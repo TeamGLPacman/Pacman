@@ -25,7 +25,6 @@ Thumbs.db
 *.sbr
 *.sdf
 *.ipch
-*.psd
 *.lastbuildstate
 obj/
 [Rr]elease*/
@@ -34,3 +33,6 @@ _ReSharper*/
 *.vssscc
 $tf*/
 Pacman.opensdf
+
+Textures/Wall2.psd
+*.psd
