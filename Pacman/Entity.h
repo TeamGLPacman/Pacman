@@ -15,8 +15,13 @@ protected:
 		{ mSpeed = speed; }
 	void SetDirection(vec3 direction)
 		{ mDirection = direction;}
+	void SetSpawnPosition(vec3 spawnPos)
+		{ mSpawnPosition = spawnPos; }
 public:
-	Entity(float, vec3);
+	//Entity(float speed, vec3 direction);
+
+	Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float scale );
+
 	Entity(void);
 	~Entity(void);
 	void ModifySpeed(float mod)

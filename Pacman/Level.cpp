@@ -111,6 +111,16 @@ Object3D Level::GetGround()
 	return mGround;
 }
 
+vec3 Level::GetPacmanSpawn()
+{
+	return mPacmanSpawn;
+}
+
+vec3 Level::GetGhostSpawn()
+{
+	return mGhostSpawn;
+}
+
 bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 {
 	if(mWidth != 0)
@@ -123,6 +133,10 @@ bool Level::BuildBoxes( uint modelID, uint textureID, uint shaderID )
 
 				if( value == 1 )
 					mBoxList.push_back(Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
+				if( value == 2 )
+					mPacmanSpawn = vec3(x, 0.5, y);
+				if( value == 3 )
+					mGhostSpawn = vec3(x, 0.5, y);
 			}
 		}
 		return true;

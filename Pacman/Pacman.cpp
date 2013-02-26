@@ -16,12 +16,14 @@ Pacman::~Pacman()
 {
 }
 
-Pacman::Pacman(vec3 position, float speed)
+Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float scale ) : 
+	Entity( speed, direction, modelID, textureID, shaderID, worldPos, scale )
 {
 	SetSpeed(speed);
-	SetWorldPos(position);
+	SetWorldPos(worldPos);
+	SetSpawnPosition(worldPos);
 }
-/*
+
 vec2 Pacman::GetGridPosition()
 {
 	vec2 returnValue;
@@ -35,7 +37,7 @@ vec2 Pacman::GetGridPosition()
 		returnValue.y = floor(GetWorldPos().y+1);
 	return returnValue;
 }
-*/
+
 int Pacman::Update(int* surrondings)
 {
 	// Up, Right, Down, Left (Clockwise)
@@ -58,6 +60,10 @@ int Pacman::Update(int* surrondings)
 
 void Pacman::InputHandler()
 {
+	if(GetAsyncKeyState(VK_LEFT))
+		return;
+
+
 	// ta hand om input här
 	// och uppdatera mNextDirection
 }

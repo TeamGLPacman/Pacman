@@ -4,7 +4,8 @@
 Entity::Entity(void)
 {
 }
-Entity::Entity(float speed, vec3 direction)
+Entity::Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float scale ) : 
+	Object3D( modelID, textureID, shaderID, worldPos, scale )
 {
 	mSpeed = speed;
 	mDirection = direction;
@@ -20,7 +21,7 @@ int Entity::Update(int* surrondings)
 }
 void Entity::ReSpawn()
 {
-	
+	SetWorldPos(mSpawnPosition);
 }
 void Entity::UpdateTargetPoint(bool canMove[4])
 {

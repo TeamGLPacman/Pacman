@@ -18,11 +18,16 @@ public:
 	vector<Object3D> GetBoxList();
 	Object3D GetGround();
 
+	vec3 GetPacmanSpawn();
+	vec3 GetGhostSpawn();
+
 	int GetHeight();
 	int GetWidth();
 
 private:
 	int mWidth, mHeight;
+
+	vec3 mPacmanSpawn, mGhostSpawn;
 
 	vector<Object3D> mBoxList;
 	Object3D mGround;
