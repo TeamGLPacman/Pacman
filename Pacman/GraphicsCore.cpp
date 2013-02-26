@@ -75,7 +75,7 @@ void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(eye, centre, up);
     mat4 ModelView =  viewMatrix * Model; 
 
-	//float Size = 0.8f;
+	float Size = object.GetSize();
 	
 	uint shaderProgHandle = object.GetShaderID();
 
@@ -85,8 +85,8 @@ void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 	location = glGetUniformLocation(shaderProgHandle, "ModelViewMatrix");	//gets the UniformLocation from shader.vertex
 	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &ModelView[0][0]); }
 
-	//location = glGetUniformLocation(shaderProgHandle, "Size");	//gets the UniformLocation from shader.vertex
-	//glUniform1fv(location, 1, &Size);
+	location = glGetUniformLocation(object.GetShaderID(), "Size");	//gets the UniformLocation from shader.vertex
+	glUniform1fv(location, 1, &Size);
 }
 
 void GraphicsCore::UpdateObjectValues(Object3D object)

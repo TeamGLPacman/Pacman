@@ -148,6 +148,7 @@ uint ShaderHandler::CreateShaderProgram(const char* shaderAFile, const char* sha
 
 int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, float value)
 {
+	glUseProgram(shaderProgHandle);
 	//use same name for value in shader 
 	uint location = glGetUniformLocation(shaderProgHandle, variable);
 	if( location >= 0 )
@@ -159,6 +160,7 @@ int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, fl
 
 int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value)
 {
+	glUseProgram(shaderProgHandle);
 	//use same name for value in shader 
 	uint location = glGetUniformLocation(shaderProgHandle, variable);
 	if( location >= 0 )
