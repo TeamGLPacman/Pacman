@@ -53,13 +53,13 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.BuildGround(groundID, textureGroundID, shaderID);
 
 
-	mPacman = Pacman( 0.01, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(),1.0 );
+	mPacman = Pacman( 0.01, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 }
 
 void GameCore::Update(){
 	mBridge.TempCamUpdate();
 	
-	//mPacman.Update(mLevel.GetSurroundingGrid(mPacman.GetGridPosition()));
+	mPacman.Update(mLevel.GetSurroundingGrid(mPacman.GetGridPosition()));
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i].Update();
 	for (int i = 0; i < mEffects.size(); i++)

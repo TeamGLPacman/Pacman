@@ -4,8 +4,8 @@
 Entity::Entity(void)
 {
 }
-Entity::Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float scale ) : 
-	Object3D( modelID, textureID, shaderID, worldPos, scale )
+Entity::Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size ) : 
+	Object3D( modelID, textureID, shaderID, worldPos, size )
 {
 	mSpeed = speed;
 	mDirection = direction;
