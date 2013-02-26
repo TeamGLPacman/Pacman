@@ -2,6 +2,7 @@
 in vec4 EyePosition;
 in vec3 TNormal;
 in vec2 TexCoord;
+in float lightStrength;
 uniform sampler2D Tex1;
 
 struct LightInfo
@@ -40,7 +41,7 @@ void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec 
 	float sDotN = max( dot(s,tnorm), 0.0 );
 	
 	//Diffuse light
-	vec3 diffuse = Light.Ld * Material.Kd * sDotN;
+	vec3 diffuse = Light.Ld * Material.Kd * sDotN * lightStrength;
 
 	ambAndDiff = ambient + diffuse;
 
@@ -48,7 +49,7 @@ void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec 
 	
 	//Specular light
 	if( sDotN > 0.0 )
-	spec = Light.Ls * Material.Ks * pow( max( dot(r,v), 0.0 ), Material.Shininess );
+	spec = Light.Ls * Material.Ks * pow( max( dot(r,v), 0.0 ), Material.Shininess ) * lightStrength;
 	
 	//LightIntensity = ambient + diffuse + spec;
 }
