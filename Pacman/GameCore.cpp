@@ -20,7 +20,7 @@ int GameCore::GameLoop(){
 
 		if(GetAsyncKeyState(VK_ESCAPE) != 0)
 			return 0;
-		wait(0.015f);
+		wait(0.01f);
 	}
 	return 0;
 }

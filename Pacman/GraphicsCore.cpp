@@ -26,14 +26,14 @@ void GraphicsCore::UpdateLightValues(Object3D object)
 	//lightinfo
 	vec4 lightPos = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 ambient = vec3(0.4, 0.4, 0.4);
-	vec3 diffuse = vec3(0.7, 0.7, 0.7);
-	vec3 specular = vec3(0.7, 0.7, 0.7);
+	vec3 diffuse = vec3(0.9, 0.9, 0.9);
+	vec3 specular = vec3(0.6, 0.6, 0.6);
 
 	//material
 	vec3 ambientRefl = vec3(1.0f, 1.0f, 1.0f);	
-	vec3 diffuseRefl = vec3(1.0f, 1.0f, 1.0f);	
-	vec3 specularRefl = vec3(0.7f, 0.7f, 0.7f);
-	float shininess = 1.6;
+	vec3 diffuseRefl = vec3(0.9f, 0.9f, 0.9f);	
+	vec3 specularRefl = vec3(0.4f, 0.4f, 0.4f);
+	float shininess = 2.0;
 
 	uint shaderProgHandle = object.GetShaderID();
 	
@@ -75,7 +75,7 @@ void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(eye, centre, up);
     mat4 ModelView =  viewMatrix * Model; 
 
-	//float Size = 0.8f;
+	float Size = object.GetSize();;
 	
 	uint shaderProgHandle = object.GetShaderID();
 
@@ -85,8 +85,8 @@ void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 	location = glGetUniformLocation(shaderProgHandle, "ModelViewMatrix");	//gets the UniformLocation from shader.vertex
 	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &ModelView[0][0]); }
 
-	//location = glGetUniformLocation(shaderProgHandle, "Size");	//gets the UniformLocation from shader.vertex
-	//glUniform1fv(location, 1, &Size);
+	location = glGetUniformLocation(shaderProgHandle, "Size");	//gets the UniformLocation from shader.vertex
+	glUniform1fv(location, 1, &Size);
 }
 
 void GraphicsCore::UpdateObjectValues(Object3D object)
