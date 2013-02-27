@@ -21,7 +21,9 @@ Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint 
 {
 	SetWorldPos(worldPos);
 	SetSpawnPosition(worldPos);
-	mNextDirection = FORWARD;
+	mNextDirection = direction;
+	mTargetPoint = worldPos + direction;
+	mInputTimer = 0;
 }
 
 vec2 Pacman::GetGridPosition()
@@ -36,10 +38,57 @@ vec2 Pacman::GetGridPosition()
 	else 
 		returnValue.y = floor(GetWorldPos().z+1);
 	return returnValue;
+	//return vec2(mTargetPoint.x, mTargetPoint.z);
 }
 
-int Pacman::Update(int SurroundingGrid[4])
+int GetVecInt(vec3 theVec3)
 {
+	vec3 vec = glm::normalize(theVec3);
+	int i;
+
+	if( vec == vec3(0,0,1) )
+		i = 0;
+	else if( vec == vec3(1,0,0) )
+		i = 1;
+	else if( vec == vec3(0,0,-1) )
+		i = 2;
+	else
+		i = 3;
+
+	return i;
+}
+
+
+
+
+int Pacman::Update(int surroundingGrid[4])
+{
+	float distX = GetWorldPos().x - mTargetPoint.x;
+	float distZ = GetWorldPos().z - mTargetPoint.z;
+
+	if(distX <= GetSpeed() && distX >= -GetSpeed() && distZ <= GetSpeed() && distZ >= -GetSpeed())
+	{
+		SetWorldPos(mTargetPoint);
+
+		if(surroundingGrid[GetVecInt(mNextDirection)] != 1)
+		{
+			mTargetPoint += mNextDirection;
+			mDirection = mNextDirection;
+		}
+		else if(surroundingGrid[GetVecInt(mDirection)] != 1)
+		{
+			mTargetPoint += mDirection;
+		}
+			else
+				mTargetPoint = mTargetPoint;
+	}
+	else
+		SetWorldPos(vec3(GetWorldPos() + mDirection * GetSpeed()));
+
+
+	//if(GetWorldPos().x == mTargetPoint.x)
+
+		/*
 	if (mDirection.x == 1 && SurroundingGrid[1] != 1)
 		SetWorldPos(GetWorldPos() + mDirection*0.05f);
 	else if (mDirection.x == -1 && SurroundingGrid[3]  != 1)
@@ -48,9 +97,10 @@ int Pacman::Update(int SurroundingGrid[4])
 		SetWorldPos(GetWorldPos() + mDirection*0.05f);
 	else if (mDirection.z == -1 && SurroundingGrid[0]  != 1)
 		SetWorldPos(GetWorldPos() + mDirection*0.05f);
+		*/
 	// Up, Right, Down, Left (Clockwise)
-	InputHandler(i); // added
-
+	InputHandler(surroundingGrid); // added
+	/*
 	if(mNextDirection == BACKWARD)
 	{
 		mDirection *= -1;
@@ -59,30 +109,31 @@ int Pacman::Update(int SurroundingGrid[4])
 	if(mNextDirection == RIGHT)
 	{
 		mDirection = glm::cross(mDirection, vec3(0,1,0));
-		mNextDirection = FORWARD;
 	}
 	if(mNextDirection == LEFT)
 	{
 		mDirection = glm::cross(mDirection, vec3(0,1,0));
 		mDirection *= -1;
-		mNextDirection = FORWARD;
 	}
-
+	//mNextDirection = mDirection;
+*//*
 	if ((SurroundingGrid[0] != 1 || SurroundingGrid[2] != 1) 
 		&& (SurroundingGrid[1] != 1 || SurroundingGrid[3] != 1))
 	{
 		// pacman kan nu svänga!
 		// eftersom!
-		/* Up och ner (kräver inte att vi kollar i buffern
+		 Up och ner (kräver inte att vi kollar i buffern
 			|
 			P
 			|
 		Så oavsätt om vi kan gå upp och ner eller ner/upp betyder det att vi inte behöver ändra riktning
 		vi kommer enbart behöva ändra när man kan svänga i 90 grader
-		*/
-	}
+		
+	}*/
 	return 0;
 }
+
+
 
 void Pacman::InputHandler(int SurroundingGrid[4])
 {
@@ -117,33 +168,25 @@ void Pacman::InputHandler(int SurroundingGrid[4])
 			mNextDirection = LEFT;
 	}
 	*/
-	if(GetAsyncKeyState('L') != 0)
+	if(mInputTimer > 1)
 	{
-		if (GetDirection().x == 1 && SurroundingGrid[2] != 1)
-			mNextDirection = RIGHT;
-		else if (mDirection.x == -1 && SurroundingGrid[0] != 1)
-			mNextDirection = RIGHT;
-		else if (mDirection.z == -1 && SurroundingGrid[1] != 1)
-			mNextDirection = RIGHT;
-		else if (mDirection.z == 1 && SurroundingGrid[3] != 1)
-			mNextDirection = RIGHT;
+		if(GetAsyncKeyState('L') != 0)
+		{
+			mNextDirection =  glm::cross(mDirection, vec3(0,1,0));
+			mInputTimer = 0;
+		}
+		else if(GetAsyncKeyState('J') != 0)
+		{
+			mNextDirection = -glm::cross(mDirection, vec3(0,1,0));
+			mInputTimer = 0;
+		}
+		else if(GetAsyncKeyState('K') != 0)
+		{
+			mNextDirection *= -1;
+			mInputTimer = 0;
+		}
 	}
-
-	else if(GetAsyncKeyState('J') != 0)
-	{
-		if (mDirection.x == 1 && SurroundingGrid[0] != 1)
-			mNextDirection = LEFT;
-		else if (mDirection.x == -1 && SurroundingGrid[2] != 1)
-			mNextDirection = LEFT;
-		else if (mDirection.z == -1 && SurroundingGrid[3] != 1)
-			mNextDirection = LEFT;
-		else if (mDirection.z == 1 && SurroundingGrid[1] != 1)
-			mNextDirection = LEFT;
-	}
-	else if(GetAsyncKeyState('K') != 0)
-	{
-		mNextDirection = BACKWARD;
-	}
+	mInputTimer+= 0.01;
 
 
 

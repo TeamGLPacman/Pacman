@@ -3,21 +3,23 @@
 #include "CommonIncludes.h"
 #include "Entity.h"
 
-enum RelativeDirection
+/*enum RelativeDirection
 {
 	FORWARD,
 	RIGHT,
 	BACKWARD,
 	LEFT
-};
+};*/
 
 class Pacman : public Entity
 {
 private:
-	RelativeDirection mNextDirection;
+	vec3 mNextDirection;
 	int mLives;
+	
 
-	void InputHandler(int[4]); 
+	void InputHandler(int[4]);
+	float mInputTimer;
 public:
 	Pacman();
 	~Pacman();
