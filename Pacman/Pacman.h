@@ -3,22 +3,13 @@
 #include "CommonIncludes.h"
 #include "Entity.h"
 
-/*enum RelativeDirection
-{
-	FORWARD,
-	RIGHT,
-	BACKWARD,
-	LEFT
-};*/
-
 class Pacman : public Entity
 {
 private:
 	vec3 mNextDirection;
 	int mLives;
-	
 
-	void InputHandler(int[4]);
+	void InputHandler();
 	float mInputTimer;
 public:
 	Pacman();
@@ -28,9 +19,7 @@ public:
 
 	vec2 GetGridPosition();
 
-	int Update(int [4]);
-
-
+	int Update(int surroundings[4]);
 };
 
 #endif

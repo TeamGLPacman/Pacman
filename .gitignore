@@ -33,6 +33,6 @@ _ReSharper*/
 *.vssscc
 $tf*/
 Pacman.opensdf
-
+*.orig
 Textures/Wall2.psd
 *.psd
