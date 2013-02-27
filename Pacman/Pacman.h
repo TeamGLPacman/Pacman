@@ -20,6 +20,9 @@ public:
 	vec2 GetGridPosition();
 
 	int Update(int surroundings[4]);
+
+	//Converts a vector to one of four int values (1=up, 2=right, 3=down, 4= left)
+	int GetVecInt(vec3 theVec3);
 };
 
 #endif

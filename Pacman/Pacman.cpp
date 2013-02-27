@@ -23,7 +23,8 @@ vec2 Pacman::GetGridPosition()
 	return vec2(mTargetPoint.x, mTargetPoint.z);
 }
 
-int GetVecInt(vec3 theVec3)
+//Converts a vector to one of four int values (1=up, 2=right, 3=down, 4= left)
+int Pacman::GetVecInt(vec3 theVec3)
 {
 	vec3 vec = glm::normalize(theVec3);
 	int i;
@@ -75,7 +76,7 @@ int Pacman::Update(int surroundingGrid[4])
 		}
 	}
 
-	InputHandler(surroundingGrid);
+	InputHandler();
 	
 	return 0;
 }
