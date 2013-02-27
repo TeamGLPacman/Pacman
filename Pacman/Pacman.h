@@ -9,8 +9,6 @@ private:
 	vec3 mNextDirection;
 	int mLives;
 
-	float mPressIndicator;
-
 	void InputHandler();
 	float mInputTimer;
 public:
