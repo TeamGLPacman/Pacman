@@ -16,6 +16,7 @@ Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint 
 	mNextDirection = direction;
 	mTargetPoint = worldPos + direction;
 	mInputTimer = 0;
+	mPressIndicator = 0;
 }
 
 vec2 Pacman::GetGridPosition()
@@ -80,23 +81,31 @@ int Pacman::Update(int surroundingGrid[4])
 
 void Pacman::InputHandler()
 {
-	if(mInputTimer > 1)
+	if(GetAsyncKeyState('L') != 0)
 	{
-		if(GetAsyncKeyState('L') != 0)
-		{
-			mNextDirection =  glm::cross(mDirection, vec3(0,1,0));
-			mInputTimer = 0;
-		}
-		else if(GetAsyncKeyState('J') != 0)
-		{
-			mNextDirection = -glm::cross(mDirection, vec3(0,1,0));
-			mInputTimer = 0;
-		}
-		else if(GetAsyncKeyState('K') != 0)
-		{
-			mNextDirection *= -1;
-			mInputTimer = 0;
-		}
+		mPressIndicator = 1;
 	}
-	mInputTimer+= 0.1;
+	else if(mPressIndicator == 1)
+	{
+		mNextDirection = glm::cross(mDirection, vec3(0,1,0));
+		mPressIndicator = 0;
+	}
+	else if(GetAsyncKeyState('J') != 0)
+	{
+		mPressIndicator = 2;
+	}
+	else if(mPressIndicator == 2)
+	{
+		mNextDirection = -glm::cross(mDirection, vec3(0,1,0));
+		mPressIndicator = 0;
+	}
+	else if(GetAsyncKeyState('K') != 0)
+	{
+		mPressIndicator = 3;
+	}
+	else if(mPressIndicator == 3)
+	{
+		mNextDirection *= -1;
+		mPressIndicator = 0;
+	}
 }
