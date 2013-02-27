@@ -58,9 +58,18 @@ void GameCore::Initialize( int argc, char** argv ){
 }
 
 void GameCore::Update(){
+	/*
+	hax... vi får fixa en bättre lösning sen
+	*/
+	int i[4];
+	int *j = mLevel.GetSurroundingGrid(mPacman.GetGridPosition());
+	i[0] = j[0];
+	i[1] = j[1];
+	i[2] = j[2];
+	i[3] = j[3];
+
 	mBridge.TempCamUpdate();
-	
-	mPacman.Update(mLevel.GetSurroundingGrid(mPacman.GetGridPosition()));
+	mPacman.Update(i);
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i]->Update();
 	for (int i = 0; i < mEffects.size(); i++)
@@ -196,7 +205,6 @@ uint GameCore::SendGroundVertices()
 
 	return mBridge.SendModel(verts);
 }
-
 
 GameCore::~GameCore()
 {

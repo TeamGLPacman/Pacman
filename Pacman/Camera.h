@@ -24,7 +24,7 @@ public:
 	void CameraAngle( float , float );
 	glm::vec3 GetEye() { return eye; }
 
-	glm::mat4 GetMVP ( int, int );  
+	glm::mat4 GetMVP ( int, int ); 
 };
 
 #endif

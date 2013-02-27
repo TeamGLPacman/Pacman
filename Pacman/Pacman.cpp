@@ -38,11 +38,18 @@ vec2 Pacman::GetGridPosition()
 	return returnValue;
 }
 
-int Pacman::Update(int* surroundings)
+int Pacman::Update(int SurroundingGrid[4])
 {
-	SetWorldPos(GetWorldPos() + mDirection*0.05f);
+	if (mDirection.x == 1 && SurroundingGrid[1] != 1)
+		SetWorldPos(GetWorldPos() + mDirection*0.05f);
+	else if (mDirection.x == -1 && SurroundingGrid[3]  != 1)
+		SetWorldPos(GetWorldPos() + mDirection*0.05f);
+	else if (mDirection.z == 1 && SurroundingGrid[2]  != 1)
+		SetWorldPos(GetWorldPos() + mDirection*0.05f);
+	else if (mDirection.z == -1 && SurroundingGrid[0]  != 1)
+		SetWorldPos(GetWorldPos() + mDirection*0.05f);
 	// Up, Right, Down, Left (Clockwise)
-	InputHandler(); // added
+	InputHandler(i); // added
 
 	if(mNextDirection == BACKWARD)
 	{
@@ -61,8 +68,8 @@ int Pacman::Update(int* surroundings)
 		mNextDirection = FORWARD;
 	}
 
-	if ((surroundings[0] != 1 || surroundings[2] != 1) 
-		&& (surroundings[1] != 1 || surroundings[3] != 1))
+	if ((SurroundingGrid[0] != 1 || SurroundingGrid[2] != 1) 
+		&& (SurroundingGrid[1] != 1 || SurroundingGrid[3] != 1))
 	{
 		// pacman kan nu svänga!
 		// eftersom!
@@ -77,18 +84,62 @@ int Pacman::Update(int* surroundings)
 	return 0;
 }
 
-void Pacman::InputHandler()
+void Pacman::InputHandler(int SurroundingGrid[4])
 {
+	// vec (1,0,0) höger
+	// vec (-1,0,0) vänster
+	// vec (0,0,-1) up
+	// vec (0,0,1) ner
+	vec2 GridPos = GetGridPosition();
+	cout << SurroundingGrid[0] << " " << SurroundingGrid[1] << " " << SurroundingGrid[2] << " " << SurroundingGrid[3] << endl;
+	/*
 	if(GetAsyncKeyState('L') != 0)
 	{
-		mNextDirection = RIGHT;
+		if (GetDirection().x == 1 && level->GetSurroundingGrid(GridPos)[2] != 1)
+			mNextDirection = RIGHT;
+		else if (mDirection.x == -1 && level->GetSurroundingGrid(GridPos)[0] != 1)
+			mNextDirection = RIGHT;
+		else if (mDirection.z == -1 && level->GetSurroundingGrid(GridPos)[1] != 1)
+			mNextDirection = RIGHT;
+		else if (mDirection.z == 1 && level->GetSurroundingGrid(GridPos)[3] != 1)
+			mNextDirection = RIGHT;
 	}
 
 	else if(GetAsyncKeyState('J') != 0)
 	{
-		mNextDirection = LEFT;
+		if (mDirection.x == 1 && level->GetSurroundingGrid(GridPos)[0] != 1)
+			mNextDirection = LEFT;
+		else if (mDirection.x == -1 && level->GetSurroundingGrid(GridPos)[2] != 1)
+			mNextDirection = LEFT;
+		else if (mDirection.z == -1 && level->GetSurroundingGrid(GridPos)[3] != 1)
+			mNextDirection = LEFT;
+		else if (mDirection.z == 1 && level->GetSurroundingGrid(GridPos)[1] != 1)
+			mNextDirection = LEFT;
+	}
+	*/
+	if(GetAsyncKeyState('L') != 0)
+	{
+		if (GetDirection().x == 1 && SurroundingGrid[2] != 1)
+			mNextDirection = RIGHT;
+		else if (mDirection.x == -1 && SurroundingGrid[0] != 1)
+			mNextDirection = RIGHT;
+		else if (mDirection.z == -1 && SurroundingGrid[1] != 1)
+			mNextDirection = RIGHT;
+		else if (mDirection.z == 1 && SurroundingGrid[3] != 1)
+			mNextDirection = RIGHT;
 	}
 
+	else if(GetAsyncKeyState('J') != 0)
+	{
+		if (mDirection.x == 1 && SurroundingGrid[0] != 1)
+			mNextDirection = LEFT;
+		else if (mDirection.x == -1 && SurroundingGrid[2] != 1)
+			mNextDirection = LEFT;
+		else if (mDirection.z == -1 && SurroundingGrid[3] != 1)
+			mNextDirection = LEFT;
+		else if (mDirection.z == 1 && SurroundingGrid[1] != 1)
+			mNextDirection = LEFT;
+	}
 	else if(GetAsyncKeyState('K') != 0)
 	{
 		mNextDirection = BACKWARD;

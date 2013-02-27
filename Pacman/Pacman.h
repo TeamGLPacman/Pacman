@@ -17,7 +17,7 @@ private:
 	RelativeDirection mNextDirection;
 	int mLives;
 
-	void InputHandler(); 
+	void InputHandler(int[4]); 
 public:
 	Pacman();
 	~Pacman();
@@ -26,7 +26,7 @@ public:
 
 	vec2 GetGridPosition();
 
-	int Update(int*);
+	int Update(int [4]);
 
 
 };
