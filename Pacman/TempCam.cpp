@@ -10,9 +10,9 @@ bool mousein = false;
 
 TempCam::TempCam(void)
 {
-	camX = 18.0, camY = 0.5, camZ = 18.0;
+	camX = 15.0, camY = 12.5, camZ = 18.0;
 	camYaw = 0.0;
-	camPitch = 0.0;
+	camPitch = -65.0;
 }
 
 TempCam::~TempCam(void)

@@ -8,9 +8,11 @@ private:
 	vec3 mSpawnPosition;
 	float mSpeed;
 	float mModSpeed;
-	vec3 mTargetPoint;
-	vec3 mDirection;
+	
 protected:
+	vec3 mDirection;
+	vec3 mTargetPoint;
+
 	void SetSpeed(float speed) 
 		{ mSpeed = speed; }
 	void SetDirection(vec3 direction)

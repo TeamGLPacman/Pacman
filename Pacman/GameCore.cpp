@@ -25,8 +25,6 @@ int GameCore::GameLoop(){
 	return 0;
 }
 
-
-
 void GameCore::Initialize( int argc, char** argv ){
 	uint test = mBridge.Initialize( argc, argv );
 
