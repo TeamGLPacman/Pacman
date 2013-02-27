@@ -48,8 +48,15 @@ int Pacman::Update(int SurroundingGrid[4])
 		SetWorldPos(GetWorldPos() + mDirection*0.05f);
 	else if (mDirection.z == -1 && SurroundingGrid[0]  != 1)
 		SetWorldPos(GetWorldPos() + mDirection*0.05f);
+	else 
+	{
+		vec3 newPosition = GetWorldPos();
+		newPosition.x = GetGridPosition().x;
+		newPosition.z = GetGridPosition().y;
+		SetWorldPos(newPosition);
+	}
 	// Up, Right, Down, Left (Clockwise)
-	InputHandler(i); // added
+	InputHandler(SurroundingGrid); // added
 
 	if(mNextDirection == BACKWARD)
 	{
