@@ -43,12 +43,9 @@ int Pacman::GetVecInt(vec3 theVec3)
 
 int Pacman::Update(int surroundingGrid[4])
 {
-	vec3 distV = GetWorldPos() - mTargetPoint;
+	float dist = glm::length(GetWorldPos() - mTargetPoint);
 
-	float distX = GetWorldPos().x - mTargetPoint.x;
-	float distZ = GetWorldPos().z - mTargetPoint.z;
-
-	if(abs(distX) <= GetSpeed() && abs(distZ) <= GetSpeed())
+	if(dist <= GetSpeed())
 	{
 		SetWorldPos(mTargetPoint);
 

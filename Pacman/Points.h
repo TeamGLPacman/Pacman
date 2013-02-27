@@ -9,10 +9,11 @@ private:
 	int mPoints;
 public:
 	Points();
+	~Points();
 	Points(int);
 
 	int Run();
 
-	~Points();
+
 };
 #endif

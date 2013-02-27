@@ -27,7 +27,12 @@ void Entity::UpdateTargetPoint(bool canMove[4])
 {
 
 }
-bool Entity::Collision(Object3D* obj, float dist)
+bool Entity::Collision(Object3D* obj, float collDist)
 {
-	return false;
+	float dist = glm::length(GetWorldPos() - obj->GetWorldPos());
+
+	if(dist <= collDist)
+		return true;
+	else
+		return false;
 }

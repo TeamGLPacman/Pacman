@@ -73,7 +73,17 @@ void GameCore::Update(){
 	for (int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i]->Update();
 	for (int i = 0; i < mEffects.size(); i++)
-		mEffects[i]->Run();
+	{
+		if(mEffects[i]->GetTimeLeft() <= 0)
+		{
+			delete mEffects[i];
+
+			mEffects.erase(mEffects.begin()+i);
+		}
+		else
+			mPoints += mEffects[i]->Run();
+	}
+
 }
 
 void GameCore::CheckCollision(){
@@ -84,10 +94,17 @@ void GameCore::CheckCollision(){
 void GameCore::PacmanCollisionCandy(){
 	for (int i = 0; i < mCandyList.size(); i++)
 	{
-		if (mPacman.Collision(mCandyList[i], 1))
+		if (mPacman.Collision(mCandyList[i], 0.2))
 		{
 			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
+
+			//Candy* tCandy = (Candy*)mCandyList[i];
+
+			delete (Candy*)mCandyList[i];
+
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
+
+			//delete tCandy;
 			break;
 		}
 	}
