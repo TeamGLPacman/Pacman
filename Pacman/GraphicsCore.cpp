@@ -24,10 +24,10 @@ GraphicsCore::~GraphicsCore(void)
 void GraphicsCore::UpdateLightValues(Object3D object)
 {
 	//lightinfo
-	vec4 lightPos = vec4(0.0, 0.0, 0.0, 1.0);
+	//vec4 lightPos = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 ambient = vec3(0.4, 0.4, 0.4);
-	vec3 diffuse = vec3(0.9, 0.9, 0.9);
-	vec3 specular = vec3(0.6, 0.6, 0.6);
+	//vec3 diffuse = vec3(0.9, 0.9, 0.9);
+	//vec3 specular = vec3(0.6, 0.6, 0.6);
 
 	//material
 	vec3 ambientRefl = vec3(1.0f, 1.0f, 1.0f);	
@@ -37,17 +37,17 @@ void GraphicsCore::UpdateLightValues(Object3D object)
 
 	uint shaderProgHandle = object.GetShaderID();
 	
-	uint location = glGetUniformLocation(shaderProgHandle, "Light.LightPosition");	//gets the UniformLocation from shader.vertex
-	glUniform4fv(location, 1, &lightPos[0]);
+	//uint location = glGetUniformLocation(shaderProgHandle, "Light.LightPosition");	//gets the UniformLocation from shader.vertex
+	//glUniform4fv(location, 1, &lightPos[0]);
 
-	location = glGetUniformLocation(shaderProgHandle, "Light.La");	//gets the UniformLocation from shader.vertex
+	uint location = glGetUniformLocation(shaderProgHandle, "Light.La");	//gets the UniformLocation from shader.vertex
 	glUniform3fv(location, 1, &ambient[0]);
 
-	location = glGetUniformLocation(shaderProgHandle, "Light.Ld");	//gets the UniformLocation from shader.vertex
-	glUniform3fv(location, 1, &diffuse[0]);
+	//location = glGetUniformLocation(shaderProgHandle, "Light.Ld");	//gets the UniformLocation from shader.vertex
+	//glUniform3fv(location, 1, &diffuse[0]);
 
-	location = glGetUniformLocation(shaderProgHandle, "Light.Ls");	//gets the UniformLocation from shader.vertex
-	glUniform3fv(location, 1, &specular[0]);
+	//location = glGetUniformLocation(shaderProgHandle, "Light.Ls");	//gets the UniformLocation from shader.vertex
+	//glUniform3fv(location, 1, &specular[0]);
 
 	//-------------------
 	location = glGetUniformLocation(shaderProgHandle, "Material.Ka");	//gets the UniformLocation from shader.vertex
@@ -110,6 +110,9 @@ void GraphicsCore::UpdateObjectValues(Object3D object)
 
 		location = glGetUniformLocation(shaderProgHandle, "ProjectionMatrix");	//gets the UniformLocation from shader.vertex
 	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &Projection[0][0]); }
+
+	location = glGetUniformLocation(shaderProgHandle, "ViewMatrix");	//gets the UniformLocation from shader.vertex
+	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &viewMatrix[0][0]); }
 
 	location = glGetUniformLocation(shaderProgHandle, "ModelViewMatrix");	//gets the UniformLocation from shader.vertex
 	if( location >= 0 ){ glUniformMatrix4fv(location, 1, GL_FALSE, &ModelView[0][0]); }

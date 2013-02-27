@@ -7,14 +7,17 @@ out vec4 EyePosition;
 out vec3 TNormal;
 out vec2 TexCoord;
 out float lightStrength;
+out vec4 LightWPos;
 
 //Matrices-----------------------------------------
+uniform mat4 ViewMatrix;
 uniform mat4 ModelViewMatrix;
 uniform mat3 NormalMatrix;
 uniform mat4 ProjectionMatrix;
 uniform mat4 MVP;		   // Projection * ModelView
 
-float maxDist = 20.0;
+uniform vec3 LightWorldPos;
+uniform float range;
 
 void main()
 {
@@ -23,14 +26,15 @@ void main()
 	TexCoord = VertexTexCoord;
 	TNormal = normalize(NormalMatrix * VertexNormal);
 	EyePosition = ModelViewMatrix * vec4(VertexPosition,1.0);
+	LightWPos = ViewMatrix * vec4(LightWorldPos, 1.0);
 
-	//vec4 tempVec = (ModelViewMatrix * vec4(VertexPosition,1.0)) - LightWorldPos;
-	float lightDist = abs(length(EyePosition));
-	if( lightDist > maxDist )
+	vec4 tempVec = (ModelViewMatrix * vec4(VertexPosition,1.0)) - LightWPos;
+	float lightDist = abs(length(tempVec));
+	if( lightDist > range )
 		lightStrength = 0;
 	else
 	{
-		lightStrength = 1.0-(lightDist / maxDist);
+		lightStrength = 1.0-(lightDist / range);
 	}
 
 	gl_Position = MVP * vec4(VertexPosition,1.0);

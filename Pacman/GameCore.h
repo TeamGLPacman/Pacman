@@ -8,6 +8,7 @@
 #include "Candy.h"
 #include "Ghost.h"
 #include "Pacman.h"
+#include "Light.h"
 
 
 class GameCore
@@ -20,7 +21,7 @@ private:
 	//vector<SoundSource> mSoundList;
 	Level mLevel;
 	Pacman mPacman;
-	//Light mLight;
+	Light mLight;
 	int mPoints;
 
 

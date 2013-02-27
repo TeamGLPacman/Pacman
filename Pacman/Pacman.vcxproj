@@ -15,6 +15,7 @@
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Candy.h" />
     <ClInclude Include="Ghost.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="LogicGraphicsBridge.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommonIncludes.h" />
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ClCompile Include="Candy.cpp" />
     <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="LogicGraphicsBridge.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Effect.cpp" />

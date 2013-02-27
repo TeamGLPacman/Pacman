@@ -105,6 +105,9 @@
     <ClInclude Include="TempCam.h">
       <Filter>Graphics\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Logic\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object3D.cpp">
@@ -171,6 +174,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TempCam.cpp">
       <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Logic\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,11 +3,12 @@ in vec4 EyePosition;
 in vec3 TNormal;
 in vec2 TexCoord;
 in float lightStrength;
+in vec4 LightWPos;
 uniform sampler2D Tex1;
 
 struct LightInfo
 {
-	vec4 LightPosition; // Light position in eye coords.
+	//vec4 LightPosition; // Light position in eye coords.
 	vec3 La;			// Ambient light intensity
 	vec3 Ld;			// Diffuse light intensity
 	vec3 Ls;			// Specular light intensity
@@ -31,7 +32,7 @@ void phongModel( vec4 eyeCoords, vec3 tnorm, out vec3 ambAndDiff, out vec3 spec 
 	// and diffuse color in ambAndDiff, and return specular
 	// color in spec…
 
-	vec3 s = normalize(vec3(Light.LightPosition - eyeCoords));
+	vec3 s = normalize(vec3(LightWPos - eyeCoords));
 	vec3 v = normalize(-eyeCoords.xyz);	
 	vec3 r = reflect( -s, tnorm );
 

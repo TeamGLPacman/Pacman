@@ -55,6 +55,11 @@ void GameCore::Initialize( int argc, char** argv ){
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
+
+	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
+	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
+	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
+	mBridge.UpdateUniform("Light.Ls", mLight.GetShaderID(), mLight.GetSpecular());
 }
 
 void GameCore::Update(){
@@ -123,6 +128,8 @@ void GameCore::GhostCollisionPacman(){
 
 void GameCore::RenderObjects(){
 	mBridge.BeginRendering(); // ADDED!
+
+	mBridge.UpdateUniform("LightWorldPos", mLight.GetShaderID(), mPacman.GetWorldPos());
 
 	//Render Ground
 	mBridge.RenderObject(mLevel.GetGround());
