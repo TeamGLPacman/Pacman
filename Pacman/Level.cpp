@@ -104,7 +104,7 @@ int Level::GetWidth()
 	return mWidth;
 }
 
-Object3D Level::GetBoxes()
+Object3D Level::GetWalls()
 {
 	return mBoxes;
 }

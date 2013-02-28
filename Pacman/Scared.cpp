@@ -5,18 +5,20 @@ Scared::Scared(void)
 {
 }
 
-Scared::Scared(vec3* pacmanPos)
+Scared::Scared(vec3* pacmanPos, Effect *effect)
 {
 	mPacmanPos = pacmanPos;
+	SetEffect(effect);
 }
 
 
 Scared::~Scared(void)
 {
 }
-
-int Scared::Run()
+void Scared::AddEntity(Entity *entity)
+{
+}
+void Scared::Update()
 {
 	// logik!!! Behöver surroundinggrid!
-	return 0;
 }

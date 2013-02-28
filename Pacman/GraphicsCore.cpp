@@ -212,26 +212,26 @@ void GraphicsCore::BeginRendering()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear buffer using colour
 }
 
-void GraphicsCore::RenderObject(Object3D object)
+void GraphicsCore::RenderObject(Object3D *object)
 {
-	glUseProgram(object.GetShaderID());
-	glBindTexture(GL_TEXTURE_2D, object.GetTextureID());
-	glBindVertexArray(object.GetModelID());
+	glUseProgram(object->GetShaderID());
+	glBindTexture(GL_TEXTURE_2D, object->GetTextureID());
+	glBindVertexArray(object->GetModelID());
 
 	
-	if(mVAOModel.GetVertexCount(object.GetModelID()) == 1)
+	if(mVAOModel.GetVertexCount(object->GetModelID()) == 1)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		UpdateBillboardObjectValues(object);
+		UpdateBillboardObjectValues(*object);
 		glDrawArrays(GL_POINTS, 0, 1);
 		glDisable(GL_BLEND);
 	}
 	else
 	{
-		UpdateLightValues(object);
-		UpdateObjectValues(object);
-		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object.GetModelID()));
+		UpdateLightValues(*object);
+		UpdateObjectValues(*object);
+		glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(object->GetModelID()));
 	}
 }
 

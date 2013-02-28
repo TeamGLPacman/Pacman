@@ -9,6 +9,9 @@
 #include "Ghost.h"
 #include "Pacman.h"
 #include "Light.h"
+#include "Behaviour.h"
+#include "PowerPacman.h"
+#include "Scared.h"
 
 
 class GameCore

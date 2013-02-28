@@ -40,7 +40,7 @@ public:
 	void UpdateObjectValues(Object3D);
 	void close() {exit(0);}
 	void BeginRendering();
-	void RenderObject(Object3D object);
+	void RenderObject(Object3D *object);
 	void RenderObjects(vector<Object3D*> objects);
 	void EndRendering();
  

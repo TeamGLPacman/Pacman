@@ -50,12 +50,13 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	mLevel.CreateBoxes(boxID, textureBoxID, shaderID);
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
-
+	
 
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
-
+	Behaviour *a = new Scared(mPacman.GetPosition(), new PowerPacman());
+	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
 	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
 	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
@@ -103,13 +104,10 @@ void GameCore::PacmanCollisionCandy(){
 		{
 			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 
-			//Candy* tCandy = (Candy*)mCandyList[i];
-
 			delete (Candy*)mCandyList[i];
 
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
 
-			//delete tCandy;
 			break;
 		}
 	}
@@ -132,19 +130,18 @@ void GameCore::RenderObjects(){
 	mBridge.UpdateUniform("LightWorldPos", mLight.GetShaderID(), mPacman.GetWorldPos());
 
 	//Render Ground
-	mBridge.RenderObject(mLevel.GetGround());
-	//Render Boxes
-	mBridge.RenderObject(mLevel.GetBoxes());
+	mBridge.RenderObject(&(mLevel.GetGround()));
+	//Render Walls
+	mBridge.RenderObject(&(mLevel.GetWalls()));
 	
 	// Render Pacman
-	mBridge.RenderObject(mPacman);
-	// Render Candy
-	mBridge.RenderObjects(mCandyList);
-	/*for (int i = 0; i < mCandyList.size(); i++)
+	mBridge.RenderObject(&mPacman);
+	// Render Candy (enbart test av optimering)
+	for(int i = 0; i < mCandyList.size(); i++)
 		mBridge.RenderObject(mCandyList[i]);
+	
 	// Render Ghost
-	for (int i = 0; i < mGhostList.size(); i++)
-		mBridge.RenderObject(mGhostList[i]);*/
+	mBridge.RenderObject(mGhostList[0]);
 
 	mBridge.EndRendering(); // ADDED!
 }

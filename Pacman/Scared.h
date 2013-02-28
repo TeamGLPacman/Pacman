@@ -2,19 +2,20 @@
 #define SCARED_H_
 
 #include "CommonIncludes.h"
+#include "Behaviour.h"
 #include "Effect.h"
 #include "Entity.h"
 
-class Scared : public Effect
+class Scared : public Behaviour
 {
 private:
 	vec3 *mPacmanPos;
 public:
-	Scared(vec3*);
+	Scared(vec3*, Effect*);
 	Scared(void);
 
-	int Run();
-	void AddEntity(Entity);
+	void Update();
+	void AddEntity(Entity*);
 
 	~Scared(void);
 };

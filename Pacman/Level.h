@@ -20,7 +20,7 @@ public:
 	int** GetMapValues();
 	int* GetSurroundingGrid(glm::vec2);
 
-	Object3D GetBoxes();
+	Object3D GetWalls();
 	Object3D GetGround();
 
 	vector<VertexPoint> GetGroundVertices();

@@ -8,9 +8,12 @@ class Behaviour
 {
 private:
 	Effect* mEffect;
+protected:
+	void SetEffect(Effect* effect) 
+		{ mEffect = effect; }
 public:
 	virtual void Update() = 0; // abstract
-	virtual void AddEntity(Entity) = 0; // abstract
+	virtual void AddEntity(Entity*) = 0; // abstract
 
 	Effect* GetEffect() 
 		{ return mEffect; }

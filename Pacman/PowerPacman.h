@@ -12,7 +12,7 @@
 class PowerPacman : public Effect
 {
 private:
-	vector<Ghost> mAffectedGhosts;
+	vector<Ghost*> mAffectedGhosts;
 	Pacman mPacman;
 public:
 

@@ -14,14 +14,14 @@ int PowerPacman::Run()
 	if (TimeLeft == GetMaxTime()-1)
 	{
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
-			mAffectedGhosts[i].SetBehaviour(newBehaviour);
+			mAffectedGhosts[i]->SetBehaviour(newBehaviour);
 		mPacman.ModifySpeed(2);
 		return 0;
 	}
 	else if (TimeLeft <= 0)
 	{
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
-			mAffectedGhosts[i].SetDefaultBehaviour();
+			mAffectedGhosts[i]->SetDefaultBehaviour();
 		mPacman.ModifySpeed(0);
 		return 5; //5 points
 	}

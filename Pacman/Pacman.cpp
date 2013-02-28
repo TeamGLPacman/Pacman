@@ -94,7 +94,7 @@ void Pacman::InputHandler()
 		}
 		else if(GetAsyncKeyState('K') != 0)
 		{
-			mNextDirection *= -1;
+			mNextDirection =  -mDirection;
 			mInputTimer = 0;
 		}
 	}

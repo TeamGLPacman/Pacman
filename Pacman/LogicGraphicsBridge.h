@@ -21,7 +21,7 @@ public:
 	
 	void BeginRendering();
 	void RenderObjects(vector<Object3D*> objects);
-	void RenderObject(Object3D renderThis);
+	void RenderObject(Object3D *renderThis);
 	void EndRendering();
 
 	int UpdateCamera(vec3 eye, vec3 target, vec3 up);

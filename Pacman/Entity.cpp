@@ -8,6 +8,7 @@ Entity::Entity( float speed, vec3 direction, uint modelID, uint textureID, uint 
 	Object3D( modelID, textureID, shaderID, worldPos, size )
 {
 	mSpeed = speed;
+	mModSpeed = 0;
 	mDirection = direction;
 }
 
