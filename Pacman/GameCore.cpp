@@ -39,7 +39,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
 	uint texturePacmanID = mBridge.LoadTexture("../Textures/Pacman.png");
 	uint textureCandyID = mBridge.LoadTexture("../Textures/Candy.png");
-
+	uint textureGhostID = mBridge.LoadTexture("../Textures/Ghost-128.png");
 
 
 	mLevel.LoadMap("../Maps/map001.png");
@@ -55,8 +55,8 @@ void GameCore::Initialize( int argc, char** argv ){
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
-	Behaviour *a = new Scared(mPacman.GetPosition(), new PowerPacman());
-	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
+	Behaviour *a = new Scared(mPacman.GetPosition(), new KillPacman());
+	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
 	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
 	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
@@ -82,9 +82,7 @@ void GameCore::Update(){
 	{
 		if(mEffects[i]->GetTimeLeft() <= 0)
 		{
-			Effect* toDelete = mEffects[i];
 			mEffects.erase(mEffects.begin()+i);
-			//delete(toDelete);
 			i--;
 		}
 		else
@@ -143,7 +141,8 @@ void GameCore::RenderObjects(){
 		mBridge.RenderObject(mCandyList[i]);
 	
 	// Render Ghost
-	mBridge.RenderObject(mGhostList[0]);
+	for (int i = 0; i < mGhostList.size(); i++)
+		mBridge.RenderObject(mGhostList[i]);
 
 	mBridge.EndRendering(); // ADDED!
 }

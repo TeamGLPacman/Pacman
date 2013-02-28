@@ -31,7 +31,7 @@ public:
 	void ModifySpeed(float mod)
 		{mModSpeed = mod; }
 	float GetSpeed()
-		{ return mSpeed; }
+		{ return mSpeed + mModSpeed; }
 	vec3 GetDirection()
 		{ return mDirection; }
 	

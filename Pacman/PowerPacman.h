@@ -17,8 +17,9 @@ private:
 public:
 
 	int Run();
-	void AddEntity(Entity*);
-	void AddPacman(Pacman*);
+	//void AddGhost(Ghost *ghost);
+	void AddEntity(Entity* newEntity);
+	void AddPacman(Pacman* pacman);
 
 	PowerPacman(void);
 	~PowerPacman(void);

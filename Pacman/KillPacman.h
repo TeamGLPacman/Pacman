@@ -8,13 +8,15 @@
 #include "Pacman.h"
 #include "Ghost.h"
 
-class KillPacman : Effect
+class KillPacman : public Effect
 {
 private:
+	Pacman *mPacman;
 	vector<Entity*> mEnties;
 public:
 	int Run();
-	void AddEntity(Entity*);
+	void AddEntity(Entity *newEntity);
+	void AddPacman(Pacman *pacman);
 
 	//KillPacman();
 	//~KillPacman();

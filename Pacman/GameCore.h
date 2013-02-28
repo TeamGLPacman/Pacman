@@ -11,6 +11,7 @@
 #include "Light.h"
 #include "Behaviour.h"
 #include "PowerPacman.h"
+#include "KillPacman.h"
 #include "Scared.h"
 
 

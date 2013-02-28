@@ -11,6 +11,7 @@ int KillPacman::Run()
 
 	if (timeLeft == GetMaxTime()-1)
 	{
+		mPacman->ReSpawn();
 		for (int i = 0; i < mEnties.size(); i++)
 		{
 			mEnties[i]->ReSpawn();
@@ -31,4 +32,8 @@ int KillPacman::Run()
 void KillPacman::AddEntity(Entity* entity)
 {
 	mEnties.push_back(entity);
+}
+void KillPacman::AddPacman(Pacman* pacman)
+{
+	mPacman = pacman;
 }

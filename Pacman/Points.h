@@ -14,7 +14,8 @@ public:
 	Points(int);
 
 	int Run();
-	void AddPacman(Pacman*){ }
+	void AddEntity(Entity* newEntity){}
+	void AddPacman(Pacman* pacman){ }
 
 
 };
