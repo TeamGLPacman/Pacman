@@ -15,7 +15,7 @@ public:
 	bool LoadMap( const char* path );
 
 	bool CreateGround ( uint modID, uint texID, uint shadID );
-	bool CreateBoxes ( uint modID, uint texID, uint shadID );
+	bool CreateWalls ( uint modID, uint texID, uint shadID );
 
 	int** GetMapValues();
 	int* GetSurroundingGrid(glm::vec2);
@@ -24,7 +24,7 @@ public:
 	Object3D GetGround();
 
 	vector<VertexPoint> GetGroundVertices();
-	vector<VertexPoint> GetBoxVertices();
+	vector<VertexPoint> GetWallVertices();
 
 	vec3 GetPacmanSpawn();
 	vec3 GetGhostSpawn();
@@ -40,15 +40,15 @@ private:
 	vector<vec3> mCandyPosList;
 
 	vector<VertexPoint> mGroundVertices;
-	vector<VertexPoint> mBoxVertices;
+	vector<VertexPoint> mWallVertices;
 
-	Object3D mBoxes;
+	Object3D mWalls;
 	Object3D mGround;
 	int** mMapValues;
 
 	bool BuildLevel();
 
-	void AddBoxVertices( vec3 pos );
+	void AddWallVertices( vec3 pos );
 	void AddGroundVertices( vec3 pos );
 
 };

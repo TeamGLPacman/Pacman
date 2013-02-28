@@ -44,11 +44,11 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	mLevel.LoadMap("../Maps/map001.png");
 
-	uint boxID = mBridge.SendModel(mLevel.GetBoxVertices());
+	uint boxID = mBridge.SendModel(mLevel.GetWallVertices());
 	uint groundID = mBridge.SendModel(mLevel.GetGroundVertices());
 	uint pointID = SendPoint();
 
-	mLevel.CreateBoxes(boxID, textureBoxID, shaderID);
+	mLevel.CreateWalls(boxID, textureBoxID, shaderID);
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 
