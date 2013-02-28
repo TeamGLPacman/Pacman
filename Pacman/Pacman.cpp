@@ -62,7 +62,7 @@ int Pacman::Update(int surroundingGrid[4])
 			mTargetPoint = mTargetPoint;
 	}
 	else
-		SetWorldPos(vec3(GetWorldPos() + mDirection * GetSpeed()));
+		SetWorldPos(vec3(GetWorldPos() + mDirection * (GetSpeed() + GetModSpeed())));
 
 	if(mNextDirection == -mDirection)
 	{

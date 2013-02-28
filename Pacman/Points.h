@@ -10,9 +10,11 @@ private:
 public:
 	Points();
 	~Points();
+
 	Points(int);
 
 	int Run();
+	void AddPacman(Pacman*){ }
 
 
 };

@@ -13,11 +13,12 @@ class PowerPacman : public Effect
 {
 private:
 	vector<Ghost*> mAffectedGhosts;
-	Pacman mPacman;
+	Pacman *mPacman;
 public:
 
 	int Run();
-	void AddEntity(Entity);
+	void AddEntity(Entity*);
+	void AddPacman(Pacman*);
 
 	PowerPacman(void);
 	~PowerPacman(void);

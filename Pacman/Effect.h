@@ -1,5 +1,6 @@
 #ifndef EFFECT_H_
 #define EFFECT_H_
+#include "Pacman.h"
 
 class Effect
 {
@@ -15,6 +16,7 @@ public:
 	~Effect();
 
 	virtual int Run() = 0; // abstract!
+	virtual void AddPacman(Pacman*) = 0;
 
 	int GetTimeLeft() 
 		{ return mTimeLeft; }

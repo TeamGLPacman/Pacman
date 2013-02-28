@@ -19,6 +19,8 @@ protected:
 		{ mDirection = direction;}
 	void SetSpawnPosition(vec3 spawnPos)
 		{ mSpawnPosition = spawnPos; }
+	float GetModSpeed()
+		{ return mModSpeed; }
 public:
 	//Entity(float speed, vec3 direction);
 

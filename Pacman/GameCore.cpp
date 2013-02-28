@@ -82,9 +82,10 @@ void GameCore::Update(){
 	{
 		if(mEffects[i]->GetTimeLeft() <= 0)
 		{
-			delete mEffects[i];
-
+			Effect* toDelete = mEffects[i];
 			mEffects.erase(mEffects.begin()+i);
+			//delete(toDelete);
+			i--;
 		}
 		else
 			mPoints += mEffects[i]->Run();
@@ -119,6 +120,7 @@ void GameCore::GhostCollisionPacman(){
 		if (mGhostList[i]->Collision(&mPacman, 1))
 		{
 			mEffects.push_back(mGhostList[i]->GetEffect());
+			mEffects[mEffects.size()-1]->AddPacman(&mPacman);
 			break;
 		}
 	}
