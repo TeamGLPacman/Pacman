@@ -12,19 +12,19 @@ void main()
 	float Size2 = Size*0.5;
 
 	gl_Position = m * (vec4(-Size2,-Size2,0.0,0.0) + gl_in[0].gl_Position);
-	TexCoord = vec2(0.0,0.0);
+	TexCoord = vec2(1.0,1.0);
 	EmitVertex();
 
 	gl_Position = m * (vec4(Size2,-Size2,0.0,0.0) + gl_in[0].gl_Position);
-	TexCoord = vec2(1.0,0.0);
-	EmitVertex();
-
-	gl_Position = m * (vec4(-Size2,Size2,0.0,0.0) + gl_in[0].gl_Position);
 	TexCoord = vec2(0.0,1.0);
 	EmitVertex();
 
+	gl_Position = m * (vec4(-Size2,Size2,0.0,0.0) + gl_in[0].gl_Position);
+	TexCoord = vec2(1.0,0.0);
+	EmitVertex();
+
 	gl_Position = m * (vec4(Size2,Size2,0.0,0.0) + gl_in[0].gl_Position);
-	TexCoord = vec2(1.0,1.0);
+	TexCoord = vec2(0.0,0.0);
 	EmitVertex();
 
 	EndPrimitive();

@@ -44,12 +44,12 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	mLevel.LoadMap("../Maps/map001.png");
 
-	uint boxID = SendBoxVertices();
-	uint groundID = SendGroundVertices();
+	uint boxID = mBridge.SendModel(mLevel.GetBoxVertices());
+	uint groundID = mBridge.SendModel(mLevel.GetGroundVertices());
 	uint pointID = SendPoint();
 
-	mLevel.BuildBoxes(boxID, textureBoxID, shaderID);
-	mLevel.BuildGround(groundID, textureGroundID, shaderID);
+	mLevel.CreateBoxes(boxID, textureBoxID, shaderID);
+	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 
 
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
@@ -134,7 +134,7 @@ void GameCore::RenderObjects(){
 	//Render Ground
 	mBridge.RenderObject(mLevel.GetGround());
 	//Render Boxes
-	mBridge.RenderObjects(mLevel.GetBoxList());
+	mBridge.RenderObject(mLevel.GetBoxes());
 	
 	// Render Pacman
 	mBridge.RenderObject(mPacman);
@@ -149,85 +149,9 @@ void GameCore::RenderObjects(){
 	mBridge.EndRendering(); // ADDED!
 }
 
-uint GameCore::SendBoxVertices()
-{
-	vector<VertexPoint> verts;
-
-	/*
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(0,-1,0), vec2(0.666467,0.666467)));
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,0.5), vec3(0,-1,0), vec2(0.333533,0.666467)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(0,-1,0), vec2(0.333533,0.333533)));
-
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,-0.5), vec3(0,-1,0), vec2(0.666467,0.333533)));
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(0,-1,0), vec2(0.666467,0.666467)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(0,-1,0), vec2(0.333533,0.333533)));
-	*/
-
-	verts.push_back(VertexPoint(vec3(0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.0002,0.333134)));
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
-
-	verts.push_back(VertexPoint(vec3(0.5,0.5,0.5), vec3(-0,1,0), vec2(0.333133,0.0002)));
-	verts.push_back(VertexPoint(vec3(0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
-
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(1,-0,1e-006), vec2(0.666467,0.0002)));
-	verts.push_back(VertexPoint(vec3(0.5,0.5,-0.5), vec3(1,-0,1e-006), vec2(0.666467,0.333133)));
-	verts.push_back(VertexPoint(vec3(0.5,0.5,0.5), vec3(1,-0,1e-006), vec2(0.333533,0.333134)));
-
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,0.5), vec3(1,0,-0), vec2(0.333533,0.0002)));
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(1,0,-0), vec2(0.666467,0.0002)));
-	verts.push_back(VertexPoint(vec3(0.5,0.5,0.5), vec3(1,0,-0), vec2(0.333533,0.333134)));
-
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.333533)));
-	verts.push_back(VertexPoint(vec3(0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.666467)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.333533)));
-
-	verts.push_back(VertexPoint(vec3(0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.666467)));
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.666467)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.333533)));
-
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.9998)));
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.666867)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.9998)));
-
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.666867)));
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.666867)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.9998)));
-
-	verts.push_back(VertexPoint(vec3(0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.333533)));
-	verts.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.666467)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.666467)));
-
-	verts.push_back(VertexPoint(vec3(-0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.333533)));
-	verts.push_back(VertexPoint(vec3(0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.333533)));
-	verts.push_back(VertexPoint(vec3(-0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.666467)));
-
-
-	return mBridge.SendModel(verts);
-}
-
 uint GameCore::SendPoint()
 {
 	return mBridge.SendModel(vec3(0,0,0));
-}
-
-uint GameCore::SendGroundVertices()
-{
-	vector<VertexPoint> verts;
-
-	int width = mLevel.GetWidth();
-	int height = mLevel.GetHeight();
-
-	verts.push_back(VertexPoint(vec3(-0.5,0,-0.5), vec3(0,1,0), vec2(1,0)));
-	verts.push_back(VertexPoint(vec3(-0.5,0,height - 0.5), vec3(0,1,0), vec2(0,0)));
-	verts.push_back(VertexPoint(vec3(width - 0.5,0,height - 0.5), vec3(0,1,0), vec2(0,1)));
-
-	verts.push_back(VertexPoint(vec3(-0.5,0,-0.5), vec3(0,1,0), vec2(1,0)));
-	verts.push_back(VertexPoint(vec3(width - 0.5,0,height - 0.5), vec3(0,1,0), vec2(0,1)));
-	verts.push_back(VertexPoint(vec3(width - 0.5,0,-0.5), vec3(0,1,0), vec2(1,1)));
-
-	return mBridge.SendModel(verts);
 }
 
 GameCore::~GameCore()
