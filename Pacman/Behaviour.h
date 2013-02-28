@@ -7,7 +7,7 @@
 class Behaviour
 {
 private:
-	Effect* mEffect;
+	Effect *mEffect;
 protected:
 	void SetEffect(Effect* effect) 
 		{ mEffect = effect; }
