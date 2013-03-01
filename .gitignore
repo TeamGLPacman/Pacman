@@ -21,11 +21,11 @@ Thumbs.db
 *.tlog
 *.idb
 [Bb]in
-*.lib
 *.sbr
 *.sdf
 *.ipch
 *.lastbuildstate
+*.unsuccessfulbuild
 obj/
 [Rr]elease*/
 _ReSharper*/

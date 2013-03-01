@@ -21,7 +21,7 @@ private:
 	VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;
-
+	bool fullsceen();
 	vec3 mEye;
 	vec3 mTarget;
 
