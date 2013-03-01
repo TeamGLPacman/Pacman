@@ -39,16 +39,16 @@ void GameCore::Initialize( int argc, char** argv ){
 	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
 	uint texturePacmanID = mBridge.LoadTexture("../Textures/Pacman.png");
 	uint textureCandyID = mBridge.LoadTexture("../Textures/Candy.png");
-	uint textureGhostID = mBridge.LoadTexture("../Textures/Ghost-128.png");
+	uint textureGhostID = mBridge.LoadTexture("../Textures/Ghost-256.png");
 
 
 	mLevel.LoadMap("../Maps/map001.png");
 
-	uint boxID = mBridge.SendModel(mLevel.GetWallVertices());
+	uint wallID = mBridge.SendModel(mLevel.GetWallVertices());
 	uint groundID = mBridge.SendModel(mLevel.GetGroundVertices());
 	uint pointID = SendPoint();
 
-	mLevel.CreateWalls(boxID, textureBoxID, shaderID);
+	mLevel.CreateWalls(wallID, textureBoxID, shaderID);
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 
