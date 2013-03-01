@@ -34,7 +34,7 @@ private:
 	void CheckCollision();
 	void PacmanCollisionCandy(); // ADDED!
 	void GhostCollisionPacman(); // ADDED!
-
+	bool StillRunning();
 	void RenderObjects();
 	
 	uint SendBoxVertices();

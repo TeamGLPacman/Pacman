@@ -12,9 +12,13 @@ Effect::Effect(int timeLeft)
 	mTimeLeft = timeLeft;
 	mMaxTime = mTimeLeft;
 }
-
+void Effect::Reset()
+{
+	mTimeLeft = mMaxTime;
+}
 Effect::~Effect(void)
 {
+	
 }
 
 int Effect::Tick()

@@ -12,6 +12,7 @@ private:
 protected:
 	vec3 mDirection;
 	vec3 mTargetPoint;
+	vec3 mNextDirection;
 
 	void SetSpeed(float speed) 
 		{ mSpeed = speed; }

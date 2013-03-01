@@ -4,7 +4,6 @@
 //#include "CommonIncludes.h"
 #include "Effect.h"
 #include "Entity.h"
-#include <typeinfo>
 #include "Pacman.h"
 #include "Ghost.h"
 
@@ -18,8 +17,8 @@ public:
 	void AddEntity(Entity *newEntity);
 	void AddPacman(Pacman *pacman);
 
-	//KillPacman();
-	//~KillPacman();
+	KillPacman();
+	~KillPacman();
 };
 
 #endif

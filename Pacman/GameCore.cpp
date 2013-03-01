@@ -13,7 +13,8 @@ void wait ( float seconds )
 }
 
 int GameCore::GameLoop(){
-	while(true){
+	//GameLoop
+	while(StillRunning()){
 		Update(); // Update Entities
 		CheckCollision(); // Checking Collisions
 		RenderObjects(); // Draw Objects
@@ -23,6 +24,11 @@ int GameCore::GameLoop(){
 		wait(0.01f);
 	}
 	return 0;
+}
+
+bool GameCore::StillRunning()
+{
+	return mPacman.StillAlive() || mCandyList.size() == 0;
 }
 
 void GameCore::Initialize( int argc, char** argv ){
@@ -80,9 +86,11 @@ void GameCore::Update(){
 		mGhostList[i]->Update();
 	for (int i = 0; i < mEffects.size(); i++)
 	{
-		if(mEffects[i]->GetTimeLeft() <= 0)
+		if(mEffects[i]->GetTimeLeft() < 0)
 		{
+			Effect *toRemove = mEffects[i];
 			mEffects.erase(mEffects.begin()+i);
+			toRemove->Reset();
 			i--;
 		}
 		else
