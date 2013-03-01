@@ -10,9 +10,9 @@ bool mousein = false;
 
 TempCam::TempCam(void)
 {
-	camX = 15.0, camY = 12.5, camZ = 18.0;
+	camX = 15.0, camY = 36.0, camZ = 15.0;
 	camYaw = 0.0;
-	camPitch = -65.0;
+	camPitch = -87.0;
 }
 
 TempCam::~TempCam(void)
@@ -96,12 +96,18 @@ glm::vec3 TempCam::GetCamPos()
 	return glm::vec3(camX, camY, camZ);
 }
 
-void TempCam::SetYPos(float y)
+void TempCam::SetPitch(float pitch)
 {
-	camY = y;
+	camPitch = pitch;
+}
+
+void TempCam::SetYaw(float yaw)
+{
+	camYaw = yaw;
 }
 
 glm::mat4 TempCam::GetRotationMatrix()
 {
 	return glm::rotate(-GetPitch(), 1.0f, 0.0f, 0.0f) * glm::rotate(-GetYaw(), 0.0f, 1.0f, 0.0f);
 }
+

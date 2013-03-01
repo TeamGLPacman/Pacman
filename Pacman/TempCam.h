@@ -25,8 +25,9 @@ public:
 	void Control(float moveVel, float mouseSense, bool mi);
 	float GetYaw();
 	float GetPitch();
+	void SetPitch(float pitch);
+	void SetYaw(float yaw);
 	glm::vec3 GetCamPos();
-	void SetYPos(float y);
 	glm::mat4 GetRotationMatrix();
 };
 

@@ -28,15 +28,13 @@ private:
 	vector<SoundSource> mGhostSounds;
 
 	SoundHandler mSoundHandler;
-	SoundSource mMusicSound;
-	SoundSource mEatSound;
-
+	SoundSource mMusicSound, mEatSound, mDeathSound;
+	
 	Level mLevel;
 	Pacman mPacman;
 	Light mLight;
 	int mPoints;
 	bool mSoundsStarted;
-
 
 	void Update();
 
