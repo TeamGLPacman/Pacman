@@ -106,7 +106,7 @@ int Level::GetWidth()
 
 Object3D Level::GetWalls()
 {
-	return mBoxes;
+	return mWalls;
 }
 
 Object3D Level::GetGround()
@@ -134,9 +134,9 @@ vector<VertexPoint> Level::GetGroundVertices()
 	return mGroundVertices;
 }
 
-vector<VertexPoint> Level::GetBoxVertices()
+vector<VertexPoint> Level::GetWallVertices()
 {
-	return mBoxVertices;
+	return mWallVertices;
 }
 
 bool Level::BuildLevel()
@@ -152,7 +152,7 @@ bool Level::BuildLevel()
 				if( value == 0 )
 					mCandyPosList.push_back(vec3(x, 0.5, y));
 				if( value == 1 )
-					AddBoxVertices(vec3(x, 0.5, y)); //mBoxList.push_back(new Object3D(modelID, textureID, shaderID, vec3(x, 0.5, y), 1.0));
+					AddWallVertices(vec3(x, 0.5, y));
 				if( value == 2 )
 					mPacmanSpawn = vec3(x, 0.5, y);
 				if( value == 3 )
@@ -163,19 +163,16 @@ bool Level::BuildLevel()
 					AddGroundVertices(vec3(x, 0.5, y));
 			}
 		}
-
-		//mBoxes = Object3D(modelID, textureID, shaderID, vec3(0,0,0), 1.0);
-
 		return true;
 	}
 	return false;
 }
 
-bool Level::CreateBoxes( uint modelID, uint textureID, uint shaderID )
+bool Level::CreateWalls( uint modelID, uint textureID, uint shaderID )
 {
 	if(mWidth != 0)
 	{
-		mBoxes = Object3D(modelID, textureID, shaderID, vec3(0,0,0), 1.0);
+		mWalls = Object3D(modelID, textureID, shaderID, vec3(0,0,0), 1.0);
 		return true;
 	}
 	return false;
@@ -192,60 +189,47 @@ bool Level::CreateGround( uint modelID, uint textureID, uint shaderID )
 }
 
 
-void Level::AddBoxVertices(vec3 pos)
+void Level::AddWallVertices(vec3 pos)
 {
-	//vector<VertexPoint> verts;
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.0002,0.333134)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
 
-	/*
-	mBoxVertices.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(0,-1,0), vec2(0.666467,0.666467)));
-	mBoxVertices.push_back(VertexPoint(vec3(0.5,-0.5,0.5), vec3(0,-1,0), vec2(0.333533,0.666467)));
-	mBoxVertices.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(0,-1,0), vec2(0.333533,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(-0,1,0), vec2(0.333133,0.0002)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
 
-	mBoxVertices.push_back(VertexPoint(vec3(-0.5,-0.5,-0.5), vec3(0,-1,0), vec2(0.666467,0.333533)));
-	mBoxVertices.push_back(VertexPoint(vec3(0.5,-0.5,-0.5), vec3(0,-1,0), vec2(0.666467,0.666467)));
-	mBoxVertices.push_back(VertexPoint(vec3(-0.5,-0.5,0.5), vec3(0,-1,0), vec2(0.333533,0.333533)));
-	*/
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(1,-0,1e-006), vec2(0.666467,0.0002)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(1,-0,1e-006), vec2(0.666467,0.333133)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(1,-0,1e-006), vec2(0.333533,0.333134)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.0002,0.333134)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,0.5), vec3(1,0,-0), vec2(0.333533,0.0002)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(1,0,-0), vec2(0.666467,0.0002)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(1,0,-0), vec2(0.333533,0.333134)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(-0,1,0), vec2(0.333133,0.0002)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.666467)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.333533)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(1,-0,1e-006), vec2(0.666467,0.0002)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(1,-0,1e-006), vec2(0.666467,0.333133)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(1,-0,1e-006), vec2(0.333533,0.333134)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.666467)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.666467)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.333533)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,0.5), vec3(1,0,-0), vec2(0.333533,0.0002)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(1,0,-0), vec2(0.666467,0.0002)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(1,0,-0), vec2(0.333533,0.333134)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.9998)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.666867)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.9998)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.333533)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.666467)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.666867)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.666867)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.9998)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.9998,0.666467)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.666467)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,-0,1), vec2(0.666867,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.666467)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.666467)));
 
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.9998)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.666867)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.9998)));
-
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,0.5), vec3(-1,-0,-0), vec2(0.0002,0.666867)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.666867)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(-1,-0,-0), vec2(0.333134,0.9998)));
-
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.333533)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.666467)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.666467)));
-
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.333533)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.333533)));
-	mBoxVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.666467)));
-
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(0.5,0.5,-0.5), vec3(0,0,-1), vec2(0.333134,0.333533)));
+	mWallVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(0,0,-1), vec2(0.0002,0.666467)));
 }
 
 
