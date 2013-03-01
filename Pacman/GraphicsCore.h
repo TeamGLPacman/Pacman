@@ -21,7 +21,7 @@ private:
 	VAOModelLoader mVAOModel;
 	ShaderHandler mShader;
 	TextureLoader mTexture;
-
+	bool fullsceen();
 	void GetDesktopResolution(int& Width, int& Heigth);
 public:
 	GraphicsCore(void);

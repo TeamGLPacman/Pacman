@@ -7,13 +7,33 @@ void resizeCallback(int width, int height)
 	windowHeight = height;
 	glViewport(0, 0, width, height); // change viewport size in gl
 }
+bool GraphicsCore::fullsceen(){
+	while(true)
+	{
+		char ans= 'y';
+		printf("Do you want to play in fullscreen? (y/n)");
+		cin >> ans;
+		if(ans == 'y') 
+			return true;
+		else if (ans == 'n')
+			return false;
+	}
+}
 
 GraphicsCore::GraphicsCore(void)
 {
 	fov = 40.0f;
 	//int w, h;
-	//GetDesktopResolution(windowWidth, windowHeight);
-	windowWidth = 800; windowHeight = 600;
+	if(fullsceen())
+	{
+		GetDesktopResolution(windowWidth, windowHeight);
+		//glutFullScreen();
+	}
+	else
+	{
+		windowWidth = 800; 
+		windowHeight = 600;
+	}
 	windowTitle = "Pacman";
 }
 void GraphicsCore::GetDesktopResolution(int& Width,int& Heigth)
