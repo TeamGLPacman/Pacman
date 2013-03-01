@@ -7,7 +7,7 @@ class Pacman : public Entity
 {
 private:
 	int mLives;
-
+	
 	void InputHandler();
 	float mInputTimer;
 public:

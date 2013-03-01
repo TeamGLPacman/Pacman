@@ -5,9 +5,8 @@
 #include "ShaderHandler.h"
 #include "VAOModelLoader.h"
 #include "TempCam.h"
-
-//void resizeCallback(int width, int height);	
-//timer callback?							count fps
+#include "wtypes.h"
+#include <iostream>
 
 
 
@@ -23,7 +22,7 @@ private:
 	ShaderHandler mShader;
 	TextureLoader mTexture;
 
-	
+	void GetDesktopResolution(int& Width, int& Heigth);
 public:
 	GraphicsCore(void);
 	~GraphicsCore(void);

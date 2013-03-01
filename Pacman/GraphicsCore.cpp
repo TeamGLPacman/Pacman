@@ -11,9 +11,18 @@ void resizeCallback(int width, int height)
 GraphicsCore::GraphicsCore(void)
 {
 	fov = 40.0f;
-	windowWidth = 800;
-	windowHeight = 600;
+	//int w, h;
+	//GetDesktopResolution(windowWidth, windowHeight);
+	windowWidth = 800; windowHeight = 600;
 	windowTitle = "Pacman";
+}
+void GraphicsCore::GetDesktopResolution(int& Width,int& Heigth)
+{
+   RECT skrivbord; 
+   const HWND hSkrivbord = GetDesktopWindow();// hämtar handtaget till skrivbordet
+   GetWindowRect(hSkrivbord, &skrivbord);// lägger in skrivbordets " RECT" i skrivbord
+   Width = skrivbord.right; // hämtar width
+   Heigth = skrivbord.bottom; // hämtar Height
 }
 
 GraphicsCore::~GraphicsCore(void)
