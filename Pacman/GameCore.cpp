@@ -3,6 +3,7 @@
 
 GameCore::GameCore()
 {
+	mSoundsStarted = false;
 }
 
 void wait ( float seconds )
@@ -33,8 +34,7 @@ bool GameCore::StillRunning()
 
 void GameCore::Initialize( int argc, char** argv ){
 	uint test = mBridge.Initialize( argc, argv );
-
-
+	mSoundHandler.Init();
 	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
 	
 	
@@ -57,7 +57,6 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.CreateWalls(wallID, textureBoxID, shaderID);
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
-
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
@@ -67,6 +66,17 @@ void GameCore::Initialize( int argc, char** argv ){
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
 	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
 	mBridge.UpdateUniform("Light.Ls", mLight.GetShaderID(), mLight.GetSpecular());
+
+	mMusicSound = SoundSource("../Audio/DaftPunk.wav", mPacman.GetPositionPointer(), 0.2, 1.2, true);
+	mSoundList.push_back(mMusicSound);
+	mEatSound = SoundSource("../Audio/pop.wav", mPacman.GetPositionPointer(), 0.5, 1.0, false);
+	mSoundList.push_back(mEatSound);
+
+	for(int i = 0; i < mGhostList.size(); i++)
+	{
+		mGhostSounds.push_back(SoundSource("../Audio/haunting.wav", mGhostList[i]->GetPositionPointer(), 0.3, 1.4, true));
+		mSoundList.push_back(mGhostSounds[i]);
+	}
 }
 
 void GameCore::Update(){
@@ -97,6 +107,20 @@ void GameCore::Update(){
 			mPoints += mEffects[i]->Run();
 	}
 
+	mSoundHandler.UpdateSounds(mSoundList, mPacman.GetWorldPos(), mPacman.GetDirection(), mPacman.GetSpeed());
+
+	if(!mSoundsStarted)
+	{
+		mSoundHandler.PlaySound(mMusicSound.GetSource());
+		mSoundHandler.PlaySound(mGhostSounds[0].GetSource());
+		mSoundsStarted = true;
+	}
+
+	for(int i = 0; i < mGhostSounds.size(); i++)
+	{
+		mGhostSounds[i].SetPosition(mGhostList[i]->GetPositionPointer());
+	}
+	mEatSound.SetPosition(mPacman.GetPositionPointer());
 }
 
 void GameCore::CheckCollision(){
@@ -109,6 +133,7 @@ void GameCore::PacmanCollisionCandy(){
 	{
 		if (mPacman.Collision(mCandyList[i], 0.2))
 		{
+			mSoundHandler.PlaySound(mEatSound.GetSource());
 			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 
 			delete (Candy*)mCandyList[i];

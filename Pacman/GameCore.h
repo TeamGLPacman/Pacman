@@ -13,6 +13,8 @@
 #include "PowerPacman.h"
 #include "KillPacman.h"
 #include "Scared.h"
+#include "SoundHandler.h"
+#include "SoundSource.h"
 
 
 class GameCore
@@ -22,11 +24,18 @@ private:
 	vector<Object3D*> mCandyList;
 	vector<Ghost*> mGhostList;
 	vector<Effect*> mEffects;
-	//vector<SoundSource> mSoundList;
+	vector<SoundSource> mSoundList;
+	vector<SoundSource> mGhostSounds;
+
+	SoundHandler mSoundHandler;
+	SoundSource mMusicSound;
+	SoundSource mEatSound;
+
 	Level mLevel;
 	Pacman mPacman;
 	Light mLight;
 	int mPoints;
+	bool mSoundsStarted;
 
 
 	void Update();

@@ -35,6 +35,10 @@ public:
 		{ return mSpeed + mModSpeed; }
 	vec3 GetDirection()
 		{ return mDirection; }
+	vec3* GetPositionPointer()
+	{
+		return &mWorldPos;
+	}
 	
 	virtual int Update(int*);
 	
