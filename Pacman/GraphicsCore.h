@@ -22,6 +22,9 @@ private:
 	ShaderHandler mShader;
 	TextureLoader mTexture;
 	bool fullsceen();
+	vec3 mEye;
+	vec3 mTarget;
+
 	void GetDesktopResolution(int& Width, int& Heigth);
 public:
 	GraphicsCore(void);
@@ -43,7 +46,7 @@ public:
 	void RenderObjects(vector<Object3D*> objects);
 	void EndRendering();
  
-	int UpdateCamera(vec3 eye, vec3 target, vec3 up); 
+	int UpdateCamera(vec3 eye, vec3 target); 
 	int UpdateUniform(const char* variable, uint shaderProgHandle, float value);
 	int UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value);
 

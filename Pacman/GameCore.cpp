@@ -74,10 +74,12 @@ void GameCore::Initialize( int argc, char** argv ){
 	mSoundList.push_back(mMusicSound);
 	mEatSound = SoundSource("../Audio/pop.wav", mPacman.GetPositionPointer(), 0.5, 1.0, false);
 	mSoundList.push_back(mEatSound);
+	mDeathSound = SoundSource("../Audio/pacman_death.wav", mPacman.GetPositionPointer(), 0.9, 1.0, false);
+	mSoundList.push_back(mDeathSound);
 
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
-		mGhostSounds.push_back(SoundSource("../Audio/haunting.wav", mGhostList[i]->GetPositionPointer(), 0.3, 1.4, true));
+		mGhostSounds.push_back(SoundSource("../Audio/haunting.wav", mGhostList[i]->GetPositionPointer(), 0.5, 1.4, true));
 		mSoundList.push_back(mGhostSounds[i]);
 	}
 }
@@ -93,7 +95,11 @@ void GameCore::Update(){
 	i[2] = j[2];
 	i[3] = j[3];
 
+	if(GetAsyncKeyState(VK_SPACE) == 0)
+ 		mBridge.UpdateCamera(mPacman.GetWorldPos()+vec3(0, 0.1, 0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
+	else
 	mBridge.TempCamUpdate();
+
 	mPacman.Update(i);
 	for (int i = 0; i < mGhostList.size(); i++)
 	{
@@ -161,6 +167,9 @@ void GameCore::GhostCollisionPacman(){
 	{
 		if (mGhostList[i]->Collision(&mPacman, 1))
 		{
+			mDeathSound.SetPosition(mPacman.GetPositionPointer());
+			mSoundHandler.PlaySound(mDeathSound.GetSource());
+			wait(1.8);
 			mEffects.push_back(mGhostList[i]->GetEffect());
 			mEffects[mEffects.size()-1]->AddPacman(&mPacman);
 			break;

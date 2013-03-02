@@ -52,11 +52,8 @@ GraphicsCore::~GraphicsCore(void)
 //temporary function
 void GraphicsCore::UpdateLightValues(Object3D object)
 {
-	//lightinfo
-	//vec4 lightPos = vec4(0.0, 0.0, 0.0, 1.0);
+	//lightinfos
 	vec3 ambient = vec3(0.4, 0.4, 0.4);
-	//vec3 diffuse = vec3(0.9, 0.9, 0.9);
-	//vec3 specular = vec3(0.6, 0.6, 0.6);
 
 	//material
 	vec3 ambientRefl = vec3(1.0f, 1.0f, 1.0f);	
@@ -66,17 +63,8 @@ void GraphicsCore::UpdateLightValues(Object3D object)
 
 	uint shaderProgHandle = object.GetShaderID();
 	
-	//uint location = glGetUniformLocation(shaderProgHandle, "Light.LightPosition");	//gets the UniformLocation from shader.vertex
-	//glUniform4fv(location, 1, &lightPos[0]);
-
 	uint location = glGetUniformLocation(shaderProgHandle, "Light.La");	//gets the UniformLocation from shader.vertex
 	glUniform3fv(location, 1, &ambient[0]);
-
-	//location = glGetUniformLocation(shaderProgHandle, "Light.Ld");	//gets the UniformLocation from shader.vertex
-	//glUniform3fv(location, 1, &diffuse[0]);
-
-	//location = glGetUniformLocation(shaderProgHandle, "Light.Ls");	//gets the UniformLocation from shader.vertex
-	//glUniform3fv(location, 1, &specular[0]);
 
 	//-------------------
 	location = glGetUniformLocation(shaderProgHandle, "Material.Ka");	//gets the UniformLocation from shader.vertex
@@ -95,13 +83,13 @@ void GraphicsCore::UpdateLightValues(Object3D object)
 
 void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 {
-	vec3 eye = mCam.GetCamPos(); 
-	vec3 centre = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
+	//vec3 eye = mEye;
+	//vec3 centre = mTarget;
 	vec3 up(0.0f, 1.0f, 0.0f);
 	
-    mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 300.f); 	
+    mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 200.f); 	
     mat4 Model = glm::translate(object.GetWorldPos());
-	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(eye, centre, up);
+	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(mEye, mTarget, up);
     mat4 ModelView =  viewMatrix * Model; 
 
 	float Size = object.GetSize();;
@@ -120,13 +108,13 @@ void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 
 void GraphicsCore::UpdateObjectValues(Object3D object)
 {
-	vec3 eye = mCam.GetCamPos(); 
-	vec3 centre = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
+	//vec3 eye = mEye;
+	//vec3 centre = mTarget;
 	vec3 up(0.0f, 1.0f, 0.0f);
 	
-    mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 300.f); 	
+    mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 200.f); 	
     mat4 Model = glm::translate(object.GetWorldPos());
-	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(eye, centre, up);
+	mat4 viewMatrix = mCam.GetRotationMatrix() * glm::lookAt(mEye, mTarget, up);
     mat4 ModelView =  viewMatrix * Model;   	
     mat4 MVP = Projection * ModelView;
 
@@ -300,8 +288,12 @@ void GraphicsCore::EndRendering()
 	//glutPostRedisplay(); // flag for redraw
 }
  
-int GraphicsCore::UpdateCamera(vec3 eye, vec3 target, vec3 up)
+int GraphicsCore::UpdateCamera(vec3 eye, vec3 target)
 {
+	mCam.SetPitch(0.0);
+	mCam.SetYaw(0.0);
+	mEye = eye;
+	mTarget = target;
 	return 0;
 }
 
@@ -317,5 +309,9 @@ int GraphicsCore::UpdateUniform(const char* variable, uint shaderProgHandle, vec
 
 void GraphicsCore::TempCamUpdate()
 {
+	mCam.SetPitch(-87.0);
+	mCam.SetYaw(0.0);
+	mEye = mCam.GetCamPos();
+	mTarget = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
 	mCam.Control(0.1, 2.5, true);
 }
