@@ -64,6 +64,10 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	Behaviour *a = new Hunt(mPacman.GetPosition(), new KillPacman());
 	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
+	Behaviour *b = new Hunt(mPacman.GetPosition(), new KillPacman());
+	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, b));
+	Behaviour *c = new Hunt(mPacman.GetPosition(), new KillPacman());
+	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, c));
 
 	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
@@ -96,7 +100,7 @@ void GameCore::Update(){
 	i[3] = j[3];
 
 	if(GetAsyncKeyState(VK_SPACE) == 0)
- 		mBridge.UpdateCamera(mPacman.GetWorldPos()+vec3(0, 0.1, 0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
+		mBridge.UpdateCamera(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
 	else
 	mBridge.TempCamUpdate();
 
