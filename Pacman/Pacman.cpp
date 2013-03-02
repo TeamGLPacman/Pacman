@@ -19,10 +19,7 @@ Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint 
 	mInputTimer = 0;
 }
 
-vec2 Pacman::GetGridPosition()
-{
-	return vec2(mTargetPoint.x, mTargetPoint.z);
-}
+
 int Pacman::TakeDamaga()
 {
 	mLives--;

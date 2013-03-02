@@ -15,10 +15,9 @@ Scared::Scared(vec3* pacmanPos, Effect *effect)
 Scared::~Scared(void)
 {
 }
-void Scared::AddEntity(Entity *entity)
+
+vec3 Scared::Update(int sur[4], float dist, vec3 &worldPos, float speed, vec3 &target)
 {
-}
-void Scared::Update()
-{
+	return vec3(0);
 	// logik!!! Behöver surroundinggrid!
 }

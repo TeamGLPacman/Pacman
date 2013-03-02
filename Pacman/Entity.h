@@ -14,6 +14,8 @@ protected:
 	vec3 mTargetPoint;
 	vec3 mNextDirection;
 
+	vec3 *GetTargetPointPointer()
+		{return &mTargetPoint; }
 	void SetSpeed(float speed) 
 		{ mSpeed = speed; }
 	void SetDirection(vec3 direction)
@@ -39,8 +41,8 @@ public:
 	{
 		return &mWorldPos;
 	}
-	
-	virtual int Update(int*);
+	vec2 GetGridPosition();
+	virtual int Update(int[4]);
 	
 	void ReSpawn();
 	void UpdateTargetPoint(bool canMove[4]);

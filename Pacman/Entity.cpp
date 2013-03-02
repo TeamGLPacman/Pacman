@@ -20,6 +20,12 @@ int Entity::Update(int* surrondings)
 {
 	return 0;
 }
+
+vec2 Entity::GetGridPosition()
+{
+	return vec2(mTargetPoint.x, mTargetPoint.z);
+}
+
 void Entity::ReSpawn()
 {
 	SetWorldPos(mSpawnPosition);

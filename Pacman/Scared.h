@@ -14,8 +14,7 @@ public:
 	Scared(vec3*, Effect*);
 	Scared(void);
 
-	void Update();
-	void AddEntity(Entity*);
+	vec3 Update(int sur[4], float dist, vec3 &worldPos, float speed, vec3 &target);
 
 	~Scared(void);
 };

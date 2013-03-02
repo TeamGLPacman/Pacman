@@ -13,9 +13,10 @@
 #include "PowerPacman.h"
 #include "KillPacman.h"
 #include "Scared.h"
+#include "Hunt.h"
 #include "SoundHandler.h"
 #include "SoundSource.h"
-
+#include <time.h>
 
 class GameCore
 {

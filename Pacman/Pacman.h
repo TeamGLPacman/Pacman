@@ -16,7 +16,7 @@ public:
 
 	Pacman(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size);
 	vec3 *GetPosition(){ return &mWorldPos; }
-	vec2 GetGridPosition();
+	
 	int TakeDamaga();
 	int Update(int surroundings[4]);
 	bool StillAlive()

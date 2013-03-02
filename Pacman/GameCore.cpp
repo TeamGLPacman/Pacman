@@ -1,5 +1,5 @@
 #include "GameCore.h"
-#include <time.h>
+
 
 GameCore::GameCore()
 {
@@ -58,10 +58,13 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
+
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
-	Behaviour *a = new Scared(mPacman.GetPosition(), new KillPacman());
+
+	Behaviour *a = new Hunt(mPacman.GetPosition(), new KillPacman());
 	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
+
 	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
 	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
@@ -93,7 +96,15 @@ void GameCore::Update(){
 	mBridge.TempCamUpdate();
 	mPacman.Update(i);
 	for (int i = 0; i < mGhostList.size(); i++)
-		mGhostList[i]->Update();
+	{
+		int v[4];
+		j = mLevel.GetSurroundingGrid(mGhostList[i]->GetGridPosition());
+		v[0] = j[0];
+		v[1] = j[1];
+		v[2] = j[2];
+		v[3] = j[3];
+		mGhostList[i]->Update(v);
+	}
 	for (int i = 0; i < mEffects.size(); i++)
 	{
 		if(mEffects[i]->GetTimeLeft() < 0)

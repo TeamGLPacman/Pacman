@@ -11,7 +11,9 @@ class Ghost : public Entity
 public:
 	Ghost(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size, Behaviour *behaviour);
 
-	int Update();
+	int Update(int sur[4]);
+
+	vec2 GetGridPos();
 
 	void SetDefaultBehaviour()
 		{ mBehaviour = mDefualtBehaviour; }

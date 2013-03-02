@@ -3,6 +3,7 @@
 
 #include "Effect.h"
 #include "Entity.h"
+#include "CommonIncludes.h"
 
 class Behaviour
 {
@@ -12,8 +13,7 @@ protected:
 	void SetEffect(Effect* effect) 
 		{ mEffect = effect; }
 public:
-	virtual void Update() = 0; // abstract
-	virtual void AddEntity(Entity*) = 0; // abstract
+	virtual vec3 Update(int sur[4], vec3 *worldPos, float speed, vec3 *target) = 0; // abstract
 
 	Effect* GetEffect() 
 		{ return mEffect; }
