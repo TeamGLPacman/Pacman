@@ -83,7 +83,7 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
-		mGhostSounds.push_back(SoundSource("../Audio/haunting.wav", mGhostList[i]->GetPositionPointer(), 0.5, 1.4, true));
+		mGhostSounds.push_back(SoundSource("../Audio/haunting.wav", mGhostList[i]->GetPositionPointer(), 0.4, 1.4, true));
 		mSoundList.push_back(mGhostSounds[i]);
 	}
 }
@@ -133,7 +133,10 @@ void GameCore::Update(){
 	if(!mSoundsStarted)
 	{
 		mSoundHandler.PlaySound(mMusicSound.GetSource());
-		mSoundHandler.PlaySound(mGhostSounds[0].GetSource());
+		for(int i = 0; i < mGhostSounds.size(); i++)
+		{
+			mSoundHandler.PlaySound(mGhostSounds[i].GetSource());
+		}
 		mSoundsStarted = true;
 	}
 
@@ -169,7 +172,7 @@ void GameCore::PacmanCollisionCandy(){
 void GameCore::GhostCollisionPacman(){
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
-		if (mGhostList[i]->Collision(&mPacman, 1))
+		if (mGhostList[i]->Collision(&mPacman, 0.5))
 		{
 			mDeathSound.SetPosition(mPacman.GetPositionPointer());
 			mSoundHandler.PlaySound(mDeathSound.GetSource());
