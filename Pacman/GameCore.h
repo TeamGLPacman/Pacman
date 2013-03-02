@@ -38,7 +38,11 @@ private:
 	bool mSoundsStarted;
 
 	void Update();
-
+	void UpdateGhost();
+	void UpdatePacman();
+	void UpdateEffects();
+	void UpdateSounds();
+	void UpdateCamera();
 	void CheckCollision();
 	void PacmanCollisionCandy(); // ADDED!
 	void GhostCollisionPacman(); // ADDED!

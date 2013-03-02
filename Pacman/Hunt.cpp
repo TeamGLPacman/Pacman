@@ -72,6 +72,7 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 			*worldPos = *target;
 			return vec3(0);
 		}
+		//mLastDir = glm::normalize(*worldPos - *target);
 		return mLastDir;
 		
 	}

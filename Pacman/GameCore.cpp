@@ -35,45 +35,52 @@ bool GameCore::StillRunning()
 void GameCore::Initialize( int argc, char** argv ){
 	uint test = mBridge.Initialize( argc, argv );
 	mSoundHandler.Init();
-	// SKAPA CANDY, GHOST, PACMAN OCH LEVEL
-	
-	
+
+	// Load/Create Shaders
 	uint shaderID = mBridge.LoadShaderFiles("../Shaders/shader.vertex", "../Shaders/shader.fragment");
 	uint billboardShaderID = mBridge.LoadShaderFiles("../Shaders/billboardShader.vertex", "../Shaders/billboardShader.fragment", "../Shaders/billboardShader.geometry" );
 
+	// Load Textures
 	uint textureBoxID = mBridge.LoadTexture("../Textures/Wall.png");
 	uint textureGroundID = mBridge.LoadTexture("../Textures/Floor.png");
 	uint texturePacmanID = mBridge.LoadTexture("../Textures/Pacman.png");
 	uint textureCandyID = mBridge.LoadTexture("../Textures/Candy.png");
 	uint textureGhostID = mBridge.LoadTexture("../Textures/Ghost-256.png");
 
-
+	// Load Level
 	mLevel.LoadMap("../Maps/map001.png");
 
+	// Load Models
 	uint wallID = mBridge.SendModel(mLevel.GetWallVertices());
 	uint groundID = mBridge.SendModel(mLevel.GetGroundVertices());
 	uint pointID = SendPoint();
 
+	// Create Level
 	mLevel.CreateWalls(wallID, textureBoxID, shaderID);
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
+	//Create Pacman
 	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 
+	//Create Candy
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
 
-	Behaviour *a = new Hunt(mPacman.GetPosition(), new KillPacman());
-	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
-	Behaviour *b = new Hunt(mPacman.GetPosition(), new KillPacman());
-	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, b));
-	Behaviour *c = new Hunt(mPacman.GetPosition(), new KillPacman());
-	mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, c));
+	// Create Ghosts
+	Behaviour *a;
+	for(int i = 0; i < 5; i++)
+	{
+		a = new Hunt(mPacman.GetPosition(), new KillPacman());
+		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
+	}
 
+	// Adding Light
 	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
 	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
 	mBridge.UpdateUniform("Light.Ls", mLight.GetShaderID(), mLight.GetSpecular());
 
+	// Load Music/Sounds
 	mMusicSound = SoundSource("../Audio/DaftPunk.wav", mPacman.GetPositionPointer(), 0.2, 1.2, true);
 	mSoundList.push_back(mMusicSound);
 	mEatSound = SoundSource("../Audio/pop.wav", mPacman.GetPositionPointer(), 0.5, 1.0, false);
@@ -89,32 +96,37 @@ void GameCore::Initialize( int argc, char** argv ){
 }
 
 void GameCore::Update(){
-	/*
-	hax... vi får fixa en bättre lösning sen
-	*/
-	int i[4];
-	int *j = mLevel.GetSurroundingGrid(mPacman.GetGridPosition());
-	i[0] = j[0];
-	i[1] = j[1];
-	i[2] = j[2];
-	i[3] = j[3];
-
-	if(GetAsyncKeyState(VK_SPACE) == 0)
-		mBridge.UpdateCamera(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
-	else
-		mBridge.TempCamUpdate();
-
-	mPacman.Update(i);
+	UpdateCamera();
+	UpdatePacman();
+	UpdateGhost();
+	UpdateEffects();
+	UpdateSounds();
+}
+void GameCore::UpdateGhost()
+{
 	for (int i = 0; i < mGhostList.size(); i++)
 	{
 		int v[4];
-		j = mLevel.GetSurroundingGrid(mGhostList[i]->GetGridPosition());
+		int *j = mLevel.GetSurroundingGrid(mGhostList[i]->GetGridPosition());
 		v[0] = j[0];
 		v[1] = j[1];
 		v[2] = j[2];
 		v[3] = j[3];
 		mGhostList[i]->Update(v);
 	}
+}
+void GameCore::UpdatePacman()
+{
+	int i[4];
+	int *j = mLevel.GetSurroundingGrid(mPacman.GetGridPosition());
+	i[0] = j[0];
+	i[1] = j[1];
+	i[2] = j[2];
+	i[3] = j[3];
+	mPacman.Update(i);
+}
+void GameCore::UpdateEffects()
+{
 	for (int i = 0; i < mEffects.size(); i++)
 	{
 		if(mEffects[i]->GetTimeLeft() < 0)
@@ -127,7 +139,9 @@ void GameCore::Update(){
 		else
 			mPoints += mEffects[i]->Run();
 	}
-
+}
+void GameCore::UpdateSounds()
+{
 	mSoundHandler.UpdateSounds(mSoundList, mPacman.GetWorldPos(), mPacman.GetDirection(), mPacman.GetSpeed());
 
 	if(!mSoundsStarted)
@@ -143,12 +157,18 @@ void GameCore::Update(){
 	}
 	mEatSound.SetPosition(mPacman.GetPositionPointer());
 }
+void GameCore::UpdateCamera()
+{
+	if(GetAsyncKeyState(VK_SPACE) == 0)
+		mBridge.UpdateCamera(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
+	else
+		mBridge.TempCamUpdate();
+}
 
 void GameCore::CheckCollision(){
 	PacmanCollisionCandy();
 	GhostCollisionPacman();
 }
-
 void GameCore::PacmanCollisionCandy(){
 	for (int i = 0; i < mCandyList.size(); i++)
 	{
@@ -165,7 +185,6 @@ void GameCore::PacmanCollisionCandy(){
 		}
 	}
 }
-
 void GameCore::GhostCollisionPacman(){
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
@@ -184,17 +203,19 @@ void GameCore::GhostCollisionPacman(){
 }
 
 void GameCore::RenderObjects(){
-	mBridge.BeginRendering(); // ADDED!
+	mBridge.BeginRendering();
 
 	mBridge.UpdateUniform("LightWorldPos", mLight.GetShaderID(), mPacman.GetWorldPos());
 
 	//Render Ground
 	mBridge.RenderObject(&(mLevel.GetGround()));
+
 	//Render Walls
 	mBridge.RenderObject(&(mLevel.GetWalls()));
 	
 	// Render Pacman
 	mBridge.RenderObject(&mPacman);
+
 	// Render Candy (enbart test av optimering)
 	for(int i = 0; i < mCandyList.size(); i++)
 		mBridge.RenderObject(mCandyList[i]);
@@ -203,7 +224,7 @@ void GameCore::RenderObjects(){
 	for (int i = 0; i < mGhostList.size(); i++)
 		mBridge.RenderObject(mGhostList[i]);
 
-	mBridge.EndRendering(); // ADDED!
+	mBridge.EndRendering();
 }
 
 uint GameCore::SendPoint()

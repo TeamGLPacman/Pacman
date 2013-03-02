@@ -29,7 +29,6 @@ vec2 Entity::GetGridPosition()
 void Entity::ReSpawn()
 {
 	SetWorldPos(mSpawnPosition);
-	mDirection = vec3(1,0,0);
 	mTargetPoint = GetWorldPos() + mDirection;
 	mNextDirection = mDirection;
 }
