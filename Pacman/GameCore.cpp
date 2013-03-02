@@ -102,7 +102,7 @@ void GameCore::Update(){
 	if(GetAsyncKeyState(VK_SPACE) == 0)
 		mBridge.UpdateCamera(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
 	else
-	mBridge.TempCamUpdate();
+		mBridge.TempCamUpdate();
 
 	mPacman.Update(i);
 	for (int i = 0; i < mGhostList.size(); i++)
@@ -176,6 +176,8 @@ void GameCore::GhostCollisionPacman(){
 			wait(1.8);
 			mEffects.push_back(mGhostList[i]->GetEffect());
 			mEffects[mEffects.size()-1]->AddPacman(&mPacman);
+			for(int i = 0; i < mGhostList.size(); i++)
+				mEffects[mEffects.size()-1]->AddEntity((Entity*)mGhostList[i]);
 			break;
 		}
 	}
