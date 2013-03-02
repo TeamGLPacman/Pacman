@@ -169,7 +169,7 @@ void GameCore::PacmanCollisionCandy(){
 void GameCore::GhostCollisionPacman(){
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
-		if (mGhostList[i]->Collision(&mPacman, 1))
+		if (mGhostList[i]->Collision(&mPacman, 0.7))
 		{
 			mDeathSound.SetPosition(mPacman.GetPositionPointer());
 			mSoundHandler.PlaySound(mDeathSound.GetSource());
