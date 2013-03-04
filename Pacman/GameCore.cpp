@@ -143,6 +143,11 @@ void GameCore::UpdateEffects()
 			Effect *toRemove = mEffects[i];
 			mEffects.erase(mEffects.begin()+i);
 			toRemove->Reset();
+			if (typeid(*toRemove).hash_code() == typeid(PowerPacman).hash_code())
+			{
+				mSoundsStarted = false;
+				mSoundHandler.StopSound(mPowerPacmanSound.GetSource());
+			}
 			i--;
 		}
 		else
