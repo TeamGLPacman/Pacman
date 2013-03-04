@@ -53,11 +53,19 @@ void SoundHandler::UpdateSounds(vector<SoundSource> sounds, vec3 pacmanPos, vec3
 	}
 }
 
-int SoundHandler::PlaySound(uint source)
+void SoundHandler::PlaySound(uint source)
 {
 	//PLAY 
     alSourcePlay(source);                                                       //Play the sound buffer linked to the source
     //if(alGetError() != AL_NO_ERROR) return endWithError("Error playing sound"); //Error when playing sound
-	return 0;                                                         //Pause to let the sound play
 }
 
+void SoundHandler::PauseSound(uint source)
+{
+	alSourcePause(source); 
+}
+
+void SoundHandler::StopSound(uint source)
+{
+	alSourceStop(source); 
+}

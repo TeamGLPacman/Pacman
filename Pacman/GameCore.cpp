@@ -86,9 +86,11 @@ void GameCore::Initialize( int argc, char** argv ){
 	mBridge.UpdateUniform("Light.Ls", mLight.GetShaderID(), mLight.GetSpecular());
 
 	// Load Music/Sounds
-	mMusicSound = SoundSource("../Audio/DaftPunk.wav", mPacman.GetPositionPointer(), 0.1, 1.2, true);
+	mMusicSound = SoundSource("../Audio/DaftPunk.wav", mPacman.GetPositionPointer(), 0.2, 1.0, true);
 	mSoundList.push_back(mMusicSound);
-	mEatSound = SoundSource("../Audio/pop.wav", mPacman.GetPositionPointer(), 0.5, 1.0, false);
+	mPowerPacmanSound = SoundSource("../Audio/Ghostbusters.wav", mPacman.GetPositionPointer(), 0.8, 1.2, true);
+	mSoundList.push_back(mPowerPacmanSound);
+	mEatSound = SoundSource("../Audio/pop.wav", mPacman.GetPositionPointer(), 0.7, 1.0, false);
 	mSoundList.push_back(mEatSound);
 	mDeathSound = SoundSource("../Audio/pacman_death.wav", mPacman.GetPositionPointer(), 0.9, 1.0, false);
 	mSoundList.push_back(mDeathSound);
@@ -166,6 +168,7 @@ void GameCore::UpdateSounds()
 		mGhostSounds[i].SetPosition(mGhostList[i]->GetPositionPointer());
 	}
 	mEatSound.SetPosition(mPacman.GetPositionPointer());
+	mPowerPacmanSound.SetPosition(mPacman.GetPositionPointer());
 }
 void GameCore::UpdateCamera()
 {
@@ -186,6 +189,14 @@ void GameCore::PacmanCollisionCandy(){
 		if (mPacman.Collision(mCandyList[i], 0.2))
 		{
 			mSoundHandler.PlaySound(mEatSound.GetSource());
+			if(mCandyList[i]->GetSize() >= 0.3)
+			{
+				mSoundHandler.StopSound(mMusicSound.GetSource());
+				for(int i = 0; i < mGhostList.size(); i++)
+					mSoundHandler.StopSound(mGhostSounds[i].GetSource());
+
+				mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
+			}
 			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 			
 			delete (Candy*)mCandyList[i];
