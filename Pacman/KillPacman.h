@@ -16,7 +16,7 @@ public:
 	int Run();
 	void AddEntity(Entity *newEntity);
 	void AddPacman(Pacman *pacman);
-
+	bool isGhostDead() { return false; }
 	KillPacman();
 	~KillPacman();
 };

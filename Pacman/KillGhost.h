@@ -12,7 +12,7 @@ private:
 public:
 	int Run();
 	void AddEntity(Entity);
-
+	bool isGhostDead() { return true; }
 	//KillGhost();
 	//~KillGhost();
 };

@@ -20,6 +20,7 @@ public:
 	//void AddGhost(Ghost *ghost);
 	void AddEntity(Entity* newEntity);
 	void AddPacman(Pacman* pacman);
+	bool isGhostDead() { return false; }
 
 	PowerPacman(void);
 	~PowerPacman(void);

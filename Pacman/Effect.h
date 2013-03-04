@@ -18,6 +18,7 @@ public:
 	virtual int Run() = 0; // abstract!
 	virtual void AddEntity(Entity*) = 0;
 	virtual void AddPacman(Pacman*) = 0;
+	virtual bool isGhostDead() = 0;
 
 	int GetTimeLeft() 
 		{ return mTimeLeft; }

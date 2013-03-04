@@ -164,7 +164,7 @@ void GameCore::UpdateSounds()
 void GameCore::UpdateCamera()
 {
 	if(GetAsyncKeyState(VK_SPACE) == 0)
-		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), 0.4f);
+		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,2,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), 0.4f);
 	else
 		//mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(15.0,35.0,15.0), 0.4f);
 	    mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(mPacman.GetWorldPos()), 0.4f);
