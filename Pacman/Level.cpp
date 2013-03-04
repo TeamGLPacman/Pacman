@@ -172,7 +172,7 @@ bool Level::CreateWalls( uint modelID, uint textureID, uint shaderID )
 {
 	if(mWidth != 0)
 	{
-		mWalls = Object3D(modelID, textureID, shaderID, vec3(0,0,0), 1.0);
+		mWalls = Object3D(modelID, textureID, shaderID, vec3(255,255,255), vec3(0,0,0), 1.0);
 		return true;
 	}
 	return false;
@@ -182,7 +182,7 @@ bool Level::CreateGround( uint modelID, uint textureID, uint shaderID )
 {
 	if(mWidth != 0)
 	{
-		mGround = Object3D(modelID, textureID, shaderID, vec3(0, 0, 0), 1.0);
+		mGround = Object3D(modelID, textureID, shaderID, vec3(255,255,255), vec3(0, 0, 0), 1.0);
 		return true;
 	}
 	return false;

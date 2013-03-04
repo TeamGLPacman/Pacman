@@ -14,7 +14,7 @@ public:
 	Pacman();
 	~Pacman();
 
-	Pacman(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size);
+	Pacman(float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size);
 	vec3 *GetPosition(){ return &mWorldPos; }
 	
 	int TakeDamaga();

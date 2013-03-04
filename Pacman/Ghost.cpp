@@ -1,7 +1,7 @@
 #include "Ghost.h"
 
-Ghost::Ghost( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size , Behaviour *behaviour) : 
-	Entity( speed, direction, modelID, textureID, shaderID, worldPos, size )
+Ghost::Ghost( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size , Behaviour *behaviour) : 
+	Entity( speed, direction, modelID, textureID, shaderID, colour, worldPos, size )
 {
 	SetSpawnPosition(worldPos);
 	mBehaviour = behaviour;

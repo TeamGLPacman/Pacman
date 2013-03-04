@@ -8,8 +8,8 @@ Pacman::~Pacman()
 {
 }
 
-Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size ) : 
-	Entity( speed, direction, modelID, textureID, shaderID, worldPos, size )
+Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size ) : 
+	Entity( speed, direction, modelID, textureID, shaderID, colour, worldPos, size )
 {
 	mLives = 3;
 	SetWorldPos(worldPos);

@@ -27,7 +27,7 @@ protected:
 public:
 	//Entity(float speed, vec3 direction);
 
-	Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 worldPos, float size );
+	Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size );
 
 	Entity(void);
 	~Entity(void);

@@ -60,18 +60,20 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 	//Create Pacman
-	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
+	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, vec3(255,255,255), mLevel.GetPacmanSpawn(), 0.8 );
 
 	//Create Candy
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
-		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(255, 255, 255), mLevel.GetCandyPosList()[i], 0.1 ));
 
 	// Create Ghosts
 	Behaviour *a;
 	for(int i = 0; i < 5; i++)
 	{
+		vec3 colours[] = { vec3(255,0,0), vec3(0,255,0), vec3(255,0,255), vec3(0,255,255), vec3(200, 255, 0) };
+
 		a = new Hunt(mPacman.GetPosition(), new KillPacman());
-		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
+		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID,colours[i], mLevel.GetGhostSpawn(), 0.8, a));
 	}
 
 	// Adding Light
