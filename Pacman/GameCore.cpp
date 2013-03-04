@@ -60,7 +60,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 	//Create Pacman
-	mPacman = Pacman( 0.08, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, vec3(1,1,1), mLevel.GetPacmanSpawn(), 0.8 );
+	mPacman = Pacman( 0.08, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, vec3(1,1,0), mLevel.GetPacmanSpawn(), 0.8 );
 
 	//Create Candy
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
@@ -73,7 +73,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	Behaviour *a;
 	for(int i = 0; i < 5; i++)
 	{
-		vec3 colours[] = { vec3(255,0,0), vec3(0,255,0), vec3(255,0,255), vec3(0,255,255), vec3(200, 255, 0) };
+		vec3 colours[] = { vec3(1,0,0), vec3(0,1,0), vec3(1,0,1), vec3(0,1,1), vec3(0.8, 1, 0) };
 
 		a = new Hunt(mPacman.GetPosition(), new KillPacman());
 		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID,colours[i], mLevel.GetGhostSpawn(), 0.8, a));
@@ -237,6 +237,7 @@ void GameCore::RenderObjects(){
 	}
 	
 	// Render Pacman
+	mBridge.UpdateUniform("billboardColor" , mPacman.GetShaderID(), mPacman.GetColor());
 	mBridge.RenderObject(&mPacman);
 	
 	mBridge.EndRendering();
