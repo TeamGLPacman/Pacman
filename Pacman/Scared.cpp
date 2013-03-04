@@ -3,6 +3,7 @@
 
 Scared::Scared(void)
 {
+
 }
 
 Scared::Scared(vec3* pacmanPos, Effect *effect)
