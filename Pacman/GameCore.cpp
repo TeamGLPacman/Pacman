@@ -164,9 +164,10 @@ void GameCore::UpdateSounds()
 void GameCore::UpdateCamera()
 {
 	if(GetAsyncKeyState(VK_SPACE) == 0)
-		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
+		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), 0.4f);
 	else
-		mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(mPacman.GetWorldPos()) );
+		//mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(15.0,35.0,15.0), 0.4f);
+	    mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(mPacman.GetWorldPos()), 0.4f);
 }
 
 void GameCore::CheckCollision(){
@@ -210,16 +211,12 @@ void GameCore::RenderObjects(){
 	mBridge.BeginRendering();
 
 	mBridge.UpdateUniform("LightWorldPos", mLight.GetShaderID(), mPacman.GetWorldPos());
-
 	//Render Ground
 	mBridge.RenderObject(&(mLevel.GetGround()));
 
 	//Render Walls
 	mBridge.RenderObject(&(mLevel.GetWalls()));
 	
-	// Render Pacman
-	mBridge.RenderObject(&mPacman);
-
 	// Render Candy (enbart test av optimering)
 	for(int i = 0; i < mCandyList.size(); i++)
 		mBridge.RenderObject(mCandyList[i]);
@@ -227,7 +224,10 @@ void GameCore::RenderObjects(){
 	// Render Ghost
 	for (int i = 0; i < mGhostList.size(); i++)
 		mBridge.RenderObject(mGhostList[i]);
-
+	
+	// Render Pacman
+	mBridge.RenderObject(&mPacman);
+	
 	mBridge.EndRendering();
 }
 

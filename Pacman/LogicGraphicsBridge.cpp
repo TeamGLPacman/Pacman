@@ -44,8 +44,8 @@ void LogicGraphicsBridge::EndRendering()
 {
 	mGraphics.EndRendering();
 }
-int LogicGraphicsBridge::UpdateCameraSmooth(vec3 eye, vec3 target){
-	return mGraphics.UpdateCameraSmooth(eye, target);
+int LogicGraphicsBridge::UpdateCameraSmooth(vec3 eye, vec3 target, float speed){
+	return mGraphics.UpdateCameraSmooth(eye, target, speed);
 }
 
 int LogicGraphicsBridge::UpdateCamera(vec3 eye, vec3 target){

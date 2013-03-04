@@ -24,7 +24,7 @@ public:
 	void RenderObject(Object3D *renderThis);
 	void EndRendering();
 
-	int UpdateCameraSmooth(vec3 eye, vec3 target);
+	int UpdateCameraSmooth(vec3 eye, vec3 target, float speed);
 	int UpdateCamera(vec3 eye, vec3 target);
 	int UpdateUniform(const char* variable, uint shaderProgHandle, float value);
 	int UpdateUniform(const char* variable, uint shaderProgHandle, vec3 value);

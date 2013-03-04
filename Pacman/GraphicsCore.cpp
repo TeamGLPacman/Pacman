@@ -288,22 +288,33 @@ void GraphicsCore::EndRendering()
 	//glutPostRedisplay(); // flag for redraw
 }
  
-int GraphicsCore::UpdateCameraSmooth(vec3 eye, vec3 target)
+int GraphicsCore::UpdateCameraSmooth(vec3 eye, vec3 target, float speed)
 {
 	mCam.SetPitch(0.0);
 	mCam.SetYaw(0.0);
 	float dist = glm::length(mEye - eye);
-	if (dist < 0.2)
+	if (dist < 0.2){
 		mEye = eye;
+	}
 	else
 	{
 		vec3 d = glm::normalize(eye - mEye);
-		d *= 0.3f;
+		d *= speed*((dist/3) *2);
 		mEye += d;
 	}
-	mTarget = target;
+	dist = glm::length(mTarget - target);
+	if (dist < 0.2){
+		mTarget = target;
+	}
+	else
+	{
+		vec3 d = glm::normalize(target - mTarget);
+		d *= 0.3f;
+		mTarget += d;
+	}
 	return 0;
 }
+
 int GraphicsCore::UpdateCamera(vec3 eye, vec3 target)
 {
 	mCam.SetPitch(0.0);
