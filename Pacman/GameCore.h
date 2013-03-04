@@ -17,6 +17,7 @@
 #include "SoundHandler.h"
 #include "SoundSource.h"
 #include <time.h>
+#include <typeinfo>
 
 class GameCore
 {
@@ -29,7 +30,7 @@ private:
 	vector<SoundSource> mGhostSounds;
 
 	SoundHandler mSoundHandler;
-	SoundSource mMusicSound, mEatSound, mDeathSound;
+	SoundSource mMusicSound, mPowerPacmanSound, mEatSound, mDeathSound;
 	
 	Level mLevel;
 	Pacman mPacman;

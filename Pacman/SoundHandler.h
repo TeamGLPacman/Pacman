@@ -27,7 +27,10 @@ public:
 	~SoundHandler();
 
 	int Init();
-	int PlaySound(uint sourceHandle);
+	void PlaySound(uint sourceHandle);
+	void PauseSound(uint sourceHandle);
+	void StopSound(uint sourceHandle);
+
 	void UpdateSounds(vector<SoundSource> sounds, vec3 pacmanPos, vec3 pacmanDir, float pacSpeed);
 	void ClearSoundData();
 };
