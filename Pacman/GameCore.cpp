@@ -29,7 +29,8 @@ int GameCore::GameLoop(){
 
 bool GameCore::StillRunning()
 {
-	return mPacman.StillAlive() || mCandyList.size() == 0;
+	cout << mCandyList.size() << endl;
+	return (mPacman.StillAlive() && mCandyList.size() != 0);
 }
 
 void GameCore::Initialize( int argc, char** argv ){
@@ -60,18 +61,19 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 	//Create Pacman
-	mPacman = Pacman( 0.05, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
+	mPacman = Pacman( 0.08, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, mLevel.GetPacmanSpawn(), 0.8 );
 
 	//Create Candy
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
+	{
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, mLevel.GetCandyPosList()[i], 0.1 ));
-
+	}
 	// Create Ghosts
 	Behaviour *a;
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < 1; i++)
 	{
 		a = new Hunt(mPacman.GetPosition(), new KillPacman());
-		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
+		mGhostList.push_back(new Ghost( 0.08, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID, mLevel.GetGhostSpawn(), 0.8, a));
 	}
 
 	// Adding Light
@@ -81,7 +83,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	mBridge.UpdateUniform("Light.Ls", mLight.GetShaderID(), mLight.GetSpecular());
 
 	// Load Music/Sounds
-	mMusicSound = SoundSource("../Audio/DaftPunk.wav", mPacman.GetPositionPointer(), 0.2, 1.2, true);
+	mMusicSound = SoundSource("../Audio/DaftPunk.wav", mPacman.GetPositionPointer(), 0.1, 1.2, true);
 	mSoundList.push_back(mMusicSound);
 	mEatSound = SoundSource("../Audio/pop.wav", mPacman.GetPositionPointer(), 0.5, 1.0, false);
 	mSoundList.push_back(mEatSound);
@@ -103,6 +105,7 @@ void GameCore::Update(){
 	UpdateEffects();
 	UpdateSounds();
 }
+
 void GameCore::UpdateGhost()
 {
 	for (int i = 0; i < mGhostList.size(); i++)
@@ -164,7 +167,7 @@ void GameCore::UpdateSounds()
 void GameCore::UpdateCamera()
 {
 	if(GetAsyncKeyState(VK_SPACE) == 0)
-		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,2,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), 0.4f);
+		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,2,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), mPacman.GetSpeed());
 	else
 		//mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(15.0,35.0,15.0), 0.4f);
 	    mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(mPacman.GetWorldPos()), 0.4f);
@@ -181,11 +184,10 @@ void GameCore::PacmanCollisionCandy(){
 		{
 			mSoundHandler.PlaySound(mEatSound.GetSource());
 			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
-
+			
 			delete (Candy*)mCandyList[i];
 
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
-
 			break;
 		}
 	}
