@@ -93,6 +93,7 @@ void GameCore::Initialize( int argc, char** argv ){
 		mGhostSounds.push_back(SoundSource("../Audio/haunting.wav", mGhostList[i]->GetPositionPointer(), 0.4, 1.4, true));
 		mSoundList.push_back(mGhostSounds[i]);
 	}
+	mBridge.UpdateCamera(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
 }
 
 void GameCore::Update(){
@@ -163,9 +164,9 @@ void GameCore::UpdateSounds()
 void GameCore::UpdateCamera()
 {
 	if(GetAsyncKeyState(VK_SPACE) == 0)
-		mBridge.UpdateCamera(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
+		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,1,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()) );
 	else
-		mBridge.TempCamUpdate();
+		mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(mPacman.GetWorldPos()) );
 }
 
 void GameCore::CheckCollision(){
