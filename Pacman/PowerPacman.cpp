@@ -1,7 +1,7 @@
 #include "PowerPacman.h"
 
 
-PowerPacman::PowerPacman(Pacman* pacman, vector<Ghost*> ghosts) : Effect (10000)
+PowerPacman::PowerPacman(Pacman* pacman, vector<Ghost*> ghosts) : Effect (500)
 {
 	mPacman = pacman;
 	mAffectedGhosts = ghosts;
@@ -14,16 +14,22 @@ int PowerPacman::Run()
 	int TimeLeft = Tick();
 	if (TimeLeft == GetMaxTime()-1)
 	{
-		Behaviour *newBehaviour;
+		//Behaviour *newBehaviour;
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
-			((Ghost*)(mAffectedGhosts[i]))->SetBehaviour(newBehaviour);
-		mPacman->ModifySpeed(0.05);
+		{
+			mAffectedGhosts[i]->ModifySpeed(-0.02);
+			//((Ghost*)(mAffectedGhosts[i]))->SetBehaviour(newBehaviour);
+		}
+		mPacman->ModifySpeed(0.02);
 		return 0;
 	}
 	else if (TimeLeft <= 0)
 	{
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
+		{
+			mAffectedGhosts[i]->ModifySpeed(0);
 			((Ghost*)(mAffectedGhosts[i]))->SetDefaultBehaviour();
+		}
 		mPacman->ModifySpeed(0);
 		return 5; //5 points
 	}

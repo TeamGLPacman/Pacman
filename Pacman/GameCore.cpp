@@ -69,14 +69,14 @@ void GameCore::Initialize( int argc, char** argv ){
 	for( int i = 0; i < mLevel.GetSpecCandyPosList().size(); i++ )
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(1, 0.2, 0.2), mLevel.GetSpecCandyPosList()[i], 0.3, new PowerPacman(&mPacman, mGhostList) ));
 
-	// Create Ghosts
-	Behaviour *a;
-	for(int i = 0; i < 5; i++)
-	{
-		vec3 colours[] = { vec3(1,0,0), vec3(0,1,0), vec3(1,0,1), vec3(0,1,1), vec3(0.8, 1, 0) };
+	// Create Ghostsy
 
+	Behaviour *a;
+	for(int i = 0; i < 10; i++)
+	{
+		vec3 colour = vec3((float)(rand()%100)/100,(float)(rand()%100)/100,(float)(rand()%100)/100);
 		a = new Hunt(mPacman.GetPosition(), new KillPacman());
-		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID,colours[i], mLevel.GetGhostSpawn(), 0.8, a));
+		mGhostList.push_back(new Ghost( 0.05, vec3(1, 0, 0), pointID, textureGhostID, billboardShaderID,colour, mLevel.GetGhostSpawn(), 0.8, a));
 	}
 
 	// Adding Light
