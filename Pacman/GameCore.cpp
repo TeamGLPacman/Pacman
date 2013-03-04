@@ -60,14 +60,14 @@ void GameCore::Initialize( int argc, char** argv ){
 	mLevel.CreateGround(groundID, textureGroundID, shaderID);
 	
 	//Create Pacman
-	mPacman = Pacman( 0.08, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, vec3(255,255,255), mLevel.GetPacmanSpawn(), 0.8 );
+	mPacman = Pacman( 0.08, vec3(1, 0, 0), pointID, texturePacmanID, billboardShaderID, vec3(1,1,1), mLevel.GetPacmanSpawn(), 0.8 );
 
 	//Create Candy
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
-		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(255, 255, 255), mLevel.GetCandyPosList()[i], 0.1, new Points(10)));
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(1, 1, 1), mLevel.GetCandyPosList()[i], 0.1, new Points(10)));
 
 	for( int i = 0; i < mLevel.GetSpecCandyPosList().size(); i++ )
-		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(255, 255, 255), mLevel.GetSpecCandyPosList()[i], 0.3, new PowerPacman(&mPacman, mGhostList) ));
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(1, 0.2, 0.2), mLevel.GetSpecCandyPosList()[i], 0.3, new PowerPacman(&mPacman, mGhostList) ));
 
 	// Create Ghosts
 	Behaviour *a;
@@ -224,11 +224,17 @@ void GameCore::RenderObjects(){
 	
 	// Render Candy (enbart test av optimering)
 	for(int i = 0; i < mCandyList.size(); i++)
+	{
+		mBridge.UpdateUniform("billboardColor" , mCandyList[i]->GetShaderID(), mCandyList[i]->GetColor());
 		mBridge.RenderObject(mCandyList[i]);
+	}
 	
 	// Render Ghost
 	for (int i = 0; i < mGhostList.size(); i++)
+	{
+		mBridge.UpdateUniform("billboardColor" , mGhostList[i]->GetShaderID(), mGhostList[i]->GetColor());
 		mBridge.RenderObject(mGhostList[i]);
+	}
 	
 	// Render Pacman
 	mBridge.RenderObject(&mPacman);
