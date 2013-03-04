@@ -1,8 +1,10 @@
 #include "PowerPacman.h"
 
 
-PowerPacman::PowerPacman(void) : Effect (10000)
+PowerPacman::PowerPacman(Pacman* pacman, vector<Ghost*> ghosts) : Effect (10000)
 {
+	mPacman = pacman;
+	mAffectedGhosts = ghosts;
 }
 PowerPacman::~PowerPacman(void)
 {

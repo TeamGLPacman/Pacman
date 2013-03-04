@@ -29,8 +29,7 @@ int GameCore::GameLoop(){
 
 bool GameCore::StillRunning()
 {
-	cout << mCandyList.size() << endl;
-	return (mPacman.StillAlive() && mCandyList.size() != 0);
+	return mPacman.StillAlive() || mCandyList.size() == 0;
 }
 
 void GameCore::Initialize( int argc, char** argv ){
@@ -65,8 +64,11 @@ void GameCore::Initialize( int argc, char** argv ){
 
 	//Create Candy
 	for( int i = 0; i < mLevel.GetCandyPosList().size(); i++ )
-		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(255, 255, 255), mLevel.GetCandyPosList()[i], 0.1 ));
-	}
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(255, 255, 255), mLevel.GetCandyPosList()[i], 0.1, new Points(10)));
+
+	for( int i = 0; i < mLevel.GetSpecCandyPosList().size(); i++ )
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(255, 255, 255), mLevel.GetSpecCandyPosList()[i], 0.3, new PowerPacman(&mPacman, mGhostList) ));
+
 	// Create Ghosts
 	Behaviour *a;
 	for(int i = 0; i < 5; i++)

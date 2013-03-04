@@ -129,6 +129,11 @@ vector<vec3> Level::GetCandyPosList()
 	return mCandyPosList;
 }
 
+vector<vec3> Level::GetSpecCandyPosList()
+{
+	return mSpecCandyPosList;
+}
+
 vector<VertexPoint> Level::GetGroundVertices()
 {
 	return mGroundVertices;
@@ -157,7 +162,8 @@ bool Level::BuildLevel()
 					mPacmanSpawn = vec3(x, 0.5, y);
 				if( value == 3 )
 					mGhostSpawn = vec3(x, 0.5, y);
-
+				if( value == 4 )
+					mSpecCandyPosList.push_back(vec3(x, 0.5, y));
 				
 				if(value != 1)
 					AddGroundVertices(vec3(x, 0.5, y));

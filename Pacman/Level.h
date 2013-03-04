@@ -29,6 +29,7 @@ public:
 	vec3 GetPacmanSpawn();
 	vec3 GetGhostSpawn();
 	vector<vec3> GetCandyPosList();
+	vector<vec3> GetSpecCandyPosList();
 
 	int GetHeight();
 	int GetWidth();
@@ -38,6 +39,7 @@ private:
 
 	vec3 mPacmanSpawn, mGhostSpawn;
 	vector<vec3> mCandyPosList;
+	vector<vec3> mSpecCandyPosList;
 
 	vector<VertexPoint> mGroundVertices;
 	vector<VertexPoint> mWallVertices;

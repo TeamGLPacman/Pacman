@@ -13,7 +13,7 @@ class PowerPacman : public Effect
 {
 private:
 	vector<Ghost*> mAffectedGhosts;
-	Pacman *mPacman;
+	Pacman* mPacman;
 public:
 
 	int Run();
@@ -22,7 +22,7 @@ public:
 	void AddPacman(Pacman* pacman);
 	bool isGhostDead() { return false; }
 
-	PowerPacman(void);
+	PowerPacman(Pacman* pacman, vector<Ghost*> ghosts);
 	~PowerPacman(void);
 };
 
