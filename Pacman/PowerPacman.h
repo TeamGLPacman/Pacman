@@ -7,12 +7,13 @@
 #include "Pacman.h"
 #include "Ghost.h"
 #include "Behaviour.h"
+#include "KillGhost.h"
 #include "Scared.h"
 
 class PowerPacman : public Effect
 {
 private:
-	vector<Ghost*> mAffectedGhosts;
+	vector<Ghost*>* mAffectedGhosts;
 	Pacman* mPacman;
 public:
 
@@ -22,7 +23,7 @@ public:
 	void AddPacman(Pacman* pacman);
 	bool isGhostDead() { return false; }
 
-	PowerPacman(Pacman* pacman, vector<Ghost*> ghosts);
+	PowerPacman(Pacman* pacman, vector<Ghost*>* ghosts);
 	~PowerPacman(void);
 };
 

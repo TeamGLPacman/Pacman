@@ -1,19 +1,21 @@
 #include "KillGhost.h"
 
-
+KillGhost::KillGhost(Ghost *ghost) : Effect(1)
+{
+	mGhost = ghost;
+}
 int KillGhost::Run()
 {
 	int timeLeft = Tick();
-	if (timeLeft != 0)
-	{
-		//Ghost.ReSpawn(); // ändra här! om vi ska ha att spöket går tillbaka!
-		return 0;
-	}
-	else
-		return 5; // 5 points
+	mGhost->ReSpawn(); // ändra här! om vi ska ha att spöket går tillbaka!
+	mGhost->SetDefaultBehaviour();
+	return 5; // 5 points
 }
-
-void KillGhost::AddEntity(Entity entity)
+void KillGhost::AddPacman(Pacman *pacman)
 {
-	//mGhost = entity;
+	cout << "a" << endl;
+}
+void KillGhost::AddEntity(Entity *entity)
+{
+	mGhost = (Ghost*)entity;
 }

@@ -10,7 +10,7 @@ class Behaviour
 private:
 	Effect *mEffect;
 protected:
-	void SetEffect(Effect* effect) 
+	void SetEffect(Effect* effect)
 		{ mEffect = effect; }
 public:
 	virtual vec3 Update(int sur[4], vec3 *worldPos, float speed, vec3 *target) = 0; // abstract

@@ -4,6 +4,7 @@
 GameCore::GameCore()
 {
 	mSoundsStarted = false;
+	mCantMove = 0;
 }
 
 void wait ( float seconds )
@@ -67,7 +68,7 @@ void GameCore::Initialize( int argc, char** argv ){
 		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(1, 1, 1), mLevel.GetCandyPosList()[i], 0.1, new Points(10)));
 
 	for( int i = 0; i < mLevel.GetSpecCandyPosList().size(); i++ )
-		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(1, 0.2, 0.2), mLevel.GetSpecCandyPosList()[i], 0.3, new PowerPacman(&mPacman, mGhostList) ));
+		mCandyList.push_back(new Candy( pointID, textureCandyID, billboardShaderID, vec3(1, 0.2, 0.2), mLevel.GetSpecCandyPosList()[i], 0.3, new PowerPacman(&mPacman, &mGhostList) ));
 
 	// Create Ghostsy
 
@@ -105,9 +106,13 @@ void GameCore::Initialize( int argc, char** argv ){
 
 void GameCore::Update(){
 	UpdateCamera();
-	UpdatePacman();
-	UpdateGhost();
-	UpdateEffects();
+	if (mCantMove == 0)
+	{
+		UpdatePacman();
+		UpdateGhost();
+		UpdateEffects();
+	} 
+	else if (mCantMove > 0) mCantMove -= 1;
 	UpdateSounds();
 }
 
@@ -152,8 +157,13 @@ void GameCore::UpdateEffects()
 				mSoundsStarted = false;
 				mSoundHandler.StopSound(mPowerPacmanSound.GetSource());
 			}
+			else if(typeid(*toRemove).hash_code() == typeid(KillPacman).hash_code())
+			{
+				mCantMove = 40;
+			}
 			i--;
 		}
+		
 		else
 			mPoints += mEffects[i]->Run();
 	}
@@ -182,7 +192,7 @@ void GameCore::UpdateSounds()
 void GameCore::UpdateCamera()
 {
 	if(GetAsyncKeyState(VK_SPACE) == 0)
-		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,2,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), mPacman.GetSpeed());
+		mBridge.UpdateCameraSmooth(mPacman.GetWorldPos()-mPacman.GetDirection()-mPacman.GetDirection()-mPacman.GetDirection()+vec3(0,2.0f,0), vec3(mPacman.GetWorldPos() + mPacman.GetDirection()), mPacman.GetSpeed());
 	else
 		//mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(15.0,35.0,15.0), 0.4f);
 	    mBridge.UpdateCameraSmooth(vec3(15.0,36.0,15.0), vec3(mPacman.GetWorldPos()), 0.4f);
@@ -202,12 +212,15 @@ void GameCore::PacmanCollisionCandy(){
 			{
 				mSoundHandler.StopSound(mMusicSound.GetSource());
 				for(int i = 0; i < mGhostList.size(); i++)
+				{
 					mSoundHandler.StopSound(mGhostSounds[i].GetSource());
+					((Candy*)mCandyList[i])->GetEffect()->AddEntity(mGhostList[i]);
+				}
 
 				mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
 			}
-			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 			
+			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 			delete (Candy*)mCandyList[i];
 
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
@@ -220,13 +233,22 @@ void GameCore::GhostCollisionPacman(){
 	{
 		if (mGhostList[i]->Collision(&mPacman, 0.5))
 		{
+			// ändra!
 			mDeathSound.SetPosition(mPacman.GetPositionPointer());
 			mSoundHandler.PlaySound(mDeathSound.GetSource());
-			wait(1.8);
+			// ändra
 			mEffects.push_back(mGhostList[i]->GetEffect());
 			mEffects[mEffects.size()-1]->AddPacman(&mPacman);
-			for(int i = 0; i < mGhostList.size(); i++)
-				mEffects[mEffects.size()-1]->AddEntity((Entity*)mGhostList[i]);
+			if (typeid(*mEffects[mEffects.size()-1]).hash_code() != typeid(KillGhost).hash_code())
+			{
+				for(int j = 0; j < mGhostList.size(); j++)
+					mEffects[mEffects.size()-1]->AddEntity(mGhostList[j]);
+			}
+			else
+			{
+				mEffects[mEffects.size()-1]->AddEntity(mGhostList[i]);
+			}
+
 			break;
 		}
 	}

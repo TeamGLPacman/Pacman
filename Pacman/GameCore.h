@@ -12,6 +12,7 @@
 #include "Behaviour.h"
 #include "PowerPacman.h"
 #include "KillPacman.h"
+#include "KillGhost.h"
 #include "Scared.h"
 #include "Hunt.h"
 #include "SoundHandler.h"
@@ -36,6 +37,7 @@ private:
 	Pacman mPacman;
 	Light mLight;
 	int mPoints;
+	int mCantMove;
 	bool mSoundsStarted;
 
 	void Update();

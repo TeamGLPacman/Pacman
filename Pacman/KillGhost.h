@@ -8,12 +8,14 @@
 class KillGhost : public Effect
 {
 private:
-	Ghost mGhost;
+	Ghost *mGhost;
 public:
+
 	int Run();
-	void AddEntity(Entity);
+	void AddPacman(Pacman* pacman);
+	void AddEntity(Entity *entity);
 	bool isGhostDead() { return true; }
-	//KillGhost();
+	KillGhost(Ghost *ghost);
 	//~KillGhost();
 };
 
