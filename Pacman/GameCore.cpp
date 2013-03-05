@@ -80,7 +80,7 @@ void GameCore::Initialize( int argc, char** argv ){
 	}
 
 	// Adding Light
-	mLight = Light(mPacman.GetWorldPos(), 15.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
+	mLight = Light(mPacman.GetWorldPos(), 2.0, vec3(0.8, 0.8, 0), vec3(0.5, 0.5, 0), shaderID);
 	mBridge.UpdateUniform("range", mLight.GetShaderID(), mLight.GetRange());
 	mBridge.UpdateUniform("Light.Ld", mLight.GetShaderID(), mLight.GetDiffuse());
 	mBridge.UpdateUniform("Light.Ls", mLight.GetShaderID(), mLight.GetSpecular());
@@ -145,6 +145,10 @@ void GameCore::UpdateEffects()
 			toRemove->Reset();
 			if (typeid(*toRemove).hash_code() == typeid(PowerPacman).hash_code())
 			{
+				bool remove = true;
+				for (int j = 0; j < mEffects.size(); j++)
+					if (typeid(*mEffects[j]).hash_code() == typeid(PowerPacman).hash_code())
+						return;
 				mSoundsStarted = false;
 				mSoundHandler.StopSound(mPowerPacmanSound.GetSource());
 			}

@@ -12,7 +12,7 @@ PowerPacman::~PowerPacman(void)
 int PowerPacman::Run()
 {
 	int TimeLeft = Tick();
-	if (TimeLeft == GetMaxTime()-1)
+	if (TimeLeft >= 0)
 	{
 		//Behaviour *newBehaviour;
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
@@ -23,7 +23,7 @@ int PowerPacman::Run()
 		mPacman->ModifySpeed(0.02);
 		return 0;
 	}
-	else if (TimeLeft <= 0)
+	else
 	{
 		for (int i = 0; i < mAffectedGhosts.size(); i++)
 		{
