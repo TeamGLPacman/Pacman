@@ -207,9 +207,18 @@ void GameCore::PacmanCollisionCandy(){
 	{
 		if (mPacman.Collision(mCandyList[i], 0.2))
 		{
+			bool addPowerPacman = true;
 			mSoundHandler.PlaySound(mEatSound.GetSource());
 			if(mCandyList[i]->GetSize() >= 0.3)
 			{
+				for (int i = 0; i < mEffects.size(); i++)
+				{
+					if (typeid(*mEffects[i]).hash_code() == typeid(PowerPacman).hash_code())
+					{
+						mEffects[i]->AddTime(500);
+						addPowerPacman = false;
+					}
+				}
 				mSoundHandler.StopSound(mMusicSound.GetSource());
 				for(int i = 0; i < mGhostList.size(); i++)
 				{
@@ -220,7 +229,9 @@ void GameCore::PacmanCollisionCandy(){
 				mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
 			}
 			
-			mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
+			
+			if(addPowerPacman)
+				mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
 			delete (Candy*)mCandyList[i];
 
 			mCandyList.erase(mCandyList.begin()+i); // remove candy

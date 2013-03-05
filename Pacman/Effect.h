@@ -10,6 +10,7 @@ private:
 protected:
 	int Tick();
 	int GetMaxTime();
+	
 public:
 	Effect(int);
 	Effect();
@@ -19,6 +20,8 @@ public:
 	virtual void AddEntity(Entity*) = 0;
 	virtual void AddPacman(Pacman*) = 0;
 	virtual bool isGhostDead() = 0;
+	void AddTime(int time) 
+		{ mTimeLeft += time; }
 
 	int GetTimeLeft() 
 		{ return mTimeLeft; }
