@@ -7,7 +7,8 @@ Candy::Candy(uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worl
 }
 Candy::~Candy()
 {
-	delete mEffect;
+	// cant delete it ;(
+	//delete mEffect;
 }
 Effect* Candy::GetEffect()
 {

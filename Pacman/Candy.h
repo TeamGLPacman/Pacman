@@ -11,7 +11,7 @@ public:
 	~Candy();
 	Effect* GetEffect();
 private:
-	Effect* mEffect;
+	Effect *mEffect;
 };
 
 

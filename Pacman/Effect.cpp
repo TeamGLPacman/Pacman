@@ -18,7 +18,6 @@ void Effect::Reset()
 }
 Effect::~Effect(void)
 {
-	
 }
 
 int Effect::Tick()
