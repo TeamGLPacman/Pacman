@@ -160,6 +160,9 @@ void GameCore::UpdateEffects()
 			else if(typeid(*toRemove).hash_code() == typeid(KillPacman).hash_code())
 			{
 				mCantMove = 40;
+			}else if(typeid(*toRemove).hash_code() == typeid(Points).hash_code())
+			{
+				delete toRemove;
 			}
 			i--;
 		}
