@@ -83,8 +83,6 @@ void GraphicsCore::UpdateLightValues(Object3D object)
 
 void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 {
-	//vec3 eye = mEye;
-	//vec3 centre = mTarget;
 	vec3 up(0.0f, 1.0f, 0.0f);
 	
     mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 200.f); 	
@@ -108,8 +106,6 @@ void GraphicsCore::UpdateBillboardObjectValues(Object3D object)
 
 void GraphicsCore::UpdateObjectValues(Object3D object)
 {
-	//vec3 eye = mEye;
-	//vec3 centre = mTarget;
 	vec3 up(0.0f, 1.0f, 0.0f);
 	
     mat4 Projection = glm::perspective(fov, float(windowWidth) / (float)windowHeight, 0.1f, 200.f); 	

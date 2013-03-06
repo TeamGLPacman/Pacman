@@ -17,6 +17,7 @@ Scared::Scared(vec3* pacmanPos, Effect *effect)
 
 Scared::~Scared(void)
 {
+	delete mPacmanPos;
 }
 
 vec3 Scared::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)

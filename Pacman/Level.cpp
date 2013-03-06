@@ -54,6 +54,7 @@ Level::~Level()
 	{
 		delete mMapValues[i];
 	}
+	delete mMapValues;
 }
 
 

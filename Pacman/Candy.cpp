@@ -5,7 +5,10 @@ Candy::Candy(uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worl
 {
 	mEffect = effect;
 }
-
+Candy::~Candy()
+{
+	delete mEffect;
+}
 Effect* Candy::GetEffect()
 {
 	return mEffect;

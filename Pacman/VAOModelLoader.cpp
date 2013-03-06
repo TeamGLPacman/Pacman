@@ -75,7 +75,9 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 	glBindVertexArray(0); // disable VAO
 	glUseProgram(0); // disable shader programme
 
-	delete positionData, normalData, texCoordData;
+	delete positionData;
+	delete normalData; 
+	delete texCoordData;
 
 	mModelVertexCount[VAOHandle] = vertexList.size();
 

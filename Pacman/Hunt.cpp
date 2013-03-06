@@ -17,6 +17,7 @@ Hunt::Hunt()
 
 Hunt::~Hunt()
 {
+	delete mPacmanPos;
 }
 
 vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)

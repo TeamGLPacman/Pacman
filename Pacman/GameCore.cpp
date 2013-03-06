@@ -307,5 +307,7 @@ uint GameCore::SendPoint()
 GameCore::~GameCore()
 {
 	for(int i = 0; i < mCandyList.size(); i++)
-		delete mCandyList[i];
+		delete (Candy*)mCandyList[i];
+	for(int i = 0; i < mGhostList.size(); i++)
+		delete mGhostList[i];
 }

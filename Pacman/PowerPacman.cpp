@@ -8,6 +8,8 @@ PowerPacman::PowerPacman(Pacman* pacman, vector<Ghost*>* ghosts) : Effect (500)
 }
 PowerPacman::~PowerPacman(void)
 {
+	delete mAffectedGhosts;
+	delete mPacman;
 }
 int PowerPacman::Run()
 {

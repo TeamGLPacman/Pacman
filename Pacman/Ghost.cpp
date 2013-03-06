@@ -26,6 +26,11 @@ vec2 Ghost::GetGridPos(){
 	}
 	return returnv;
 }
+Ghost::~Ghost()
+{
+	delete mBehaviour;
+	delete mDefualtBehaviour;
+}
 int Ghost::Update(int sur[4])
 {
 	vec3 a= mBehaviour->Update(sur, GetPositionPointer(), GetSpeed(), &mTargetPoint);

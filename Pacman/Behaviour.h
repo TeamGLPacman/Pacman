@@ -19,7 +19,9 @@ public:
 		{ return mEffect; }
 
 	Behaviour(){}
-	~Behaviour(){}
+	~Behaviour() {
+		delete mEffect;
+	}
 };
 
 #endif

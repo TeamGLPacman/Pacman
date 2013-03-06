@@ -90,9 +90,6 @@
     <ClInclude Include="LogicGraphicsBridge.h">
       <Filter>Includes</Filter>
     </ClInclude>
-    <ClInclude Include="BaseStructures.h">
-      <Filter>Graphics\Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Candy.h">
       <Filter>Logic\Header Files</Filter>
     </ClInclude>
@@ -113,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="SoundSource.h">
       <Filter>Logic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseStructures.h">
+      <Filter>Includes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

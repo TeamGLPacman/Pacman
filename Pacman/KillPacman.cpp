@@ -5,6 +5,7 @@ KillPacman::KillPacman()
 }
 KillPacman::~KillPacman()
 {
+	delete mPacman;
 }
 int KillPacman::Run()
 {

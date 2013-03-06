@@ -16,7 +16,7 @@ public:
 	void AddEntity(Entity *entity);
 	bool isGhostDead() { return true; }
 	KillGhost(Ghost *ghost);
-	//~KillGhost();
+	~KillGhost();
 };
 
 #endif

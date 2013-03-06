@@ -8,10 +8,10 @@ class Candy : public Object3D
 {
 public:
 	Candy( uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size, Effect* effect);
+	~Candy();
 	Effect* GetEffect();
 private:
 	Effect* mEffect;
-
 };
 
 

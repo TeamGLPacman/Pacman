@@ -9,6 +9,7 @@ SoundHandler::~SoundHandler()
 {
 	alcDestroyContext(context);                                                 //Destroy the OpenAL Context
     alcCloseDevice(device);                                                     //Close the OpenAL Device
+
 }
 
 int SoundHandler::Init()

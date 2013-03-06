@@ -4,6 +4,10 @@ KillGhost::KillGhost(Ghost *ghost) : Effect(1)
 {
 	mGhost = ghost;
 }
+KillGhost::~KillGhost()
+{
+	delete mGhost;
+}
 int KillGhost::Run()
 {
 	int timeLeft = Tick();
