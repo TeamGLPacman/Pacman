@@ -30,7 +30,7 @@ int GameCore::GameLoop(){
 
 bool GameCore::StillRunning()
 {
-	return mPacman.StillAlive() || mCandyList.size() == 0;
+	return ((mPacman.StillAlive()) && (mCandyList.size() != 0));
 }
 
 void GameCore::Initialize( int argc, char** argv ){
@@ -219,14 +219,17 @@ void GameCore::PacmanCollisionCandy(){
 						addPowerPacman = false;
 					}
 				}
-				mSoundHandler.StopSound(mMusicSound.GetSource());
-				for(int i = 0; i < mGhostList.size(); i++)
+				if (addPowerPacman)
 				{
-					mSoundHandler.StopSound(mGhostSounds[i].GetSource());
-					((Candy*)mCandyList[i])->GetEffect()->AddEntity(mGhostList[i]);
-				}
+					mSoundHandler.StopSound(mMusicSound.GetSource());
+					for(int i = 0; i < mGhostList.size(); i++)
+					{
+						mSoundHandler.StopSound(mGhostSounds[i].GetSource());
+						((Candy*)mCandyList[i])->GetEffect()->AddEntity(mGhostList[i]);
+					}
 
-				mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
+					mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
+				}
 			}
 			
 			
