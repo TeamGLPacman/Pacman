@@ -6,7 +6,6 @@ Level::Level()
 
 bool Level::LoadMap( const char* path )
 {
-
 	int handle, amount;
 
 	int width, height, channels;
@@ -43,6 +42,8 @@ bool Level::LoadMap( const char* path )
 		}
 	}
 	
+	delete map;
+
 	return BuildLevel();
 }
 
