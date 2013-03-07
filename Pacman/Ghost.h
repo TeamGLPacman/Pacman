@@ -18,7 +18,7 @@ public:
 	void SetDefaultBehaviour();
 	void SetBehaviour(Behaviour *set)
 		{ mBehaviour = set; }
-	
+
 	Effect* GetEffect()
 		{ return mBehaviour->GetEffect(); }
 	
