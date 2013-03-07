@@ -8,6 +8,7 @@ Ghost::Ghost( float speed, vec3 direction, uint modelID, uint textureID, uint sh
 	mDefualtBehaviour = behaviour;
 	mTargetPoint = worldPos;
 	mDirection = vec3(0,0,-1);
+	mDefualtColour = GetColor();
 }
 vec2 Ghost::GetGridPos(){
 	vec3 pos = GetWorldPos();
@@ -25,6 +26,11 @@ vec2 Ghost::GetGridPos(){
 		returnv.y = floor(pos.z+1);
 	}
 	return returnv;
+}
+void Ghost::SetDefaultBehaviour()
+{ 
+	SetColour(mDefualtColour);
+	mBehaviour = mDefualtBehaviour; 
 }
 Ghost::~Ghost()
 {

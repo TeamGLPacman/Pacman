@@ -40,6 +40,7 @@ private:
 	int mCantMove;
 	bool mSoundsStarted;
 
+	bool PowerCandyCheck(int i);
 	void Update();
 	void UpdateGhost();
 	void UpdatePacman();

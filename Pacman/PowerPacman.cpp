@@ -22,6 +22,7 @@ int PowerPacman::Run()
 			newBehaviour = new Scared(mPacman->GetPositionPointer(), new KillGhost((*mAffectedGhosts)[i]));
 			(*mAffectedGhosts)[i]->ModifySpeed(-0.02);
 			((Ghost*)((*mAffectedGhosts)[i]))->SetBehaviour(newBehaviour);
+			((Ghost*)((*mAffectedGhosts)[i]))->SetColour(vec3(0.3f,0.3f,0.3f));
 		}
 		mPacman->ModifySpeed(0.02);
 		return 0;

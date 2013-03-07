@@ -19,6 +19,7 @@ Object3D::~Object3D()
 {
 }
 
+
 unsigned int Object3D::GetModelID()
 {
 	return mModelID;

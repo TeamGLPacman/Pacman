@@ -15,17 +15,16 @@ public:
 
 	vec2 GetGridPos();
 
-	void SetDefaultBehaviour()
-		{ mBehaviour = mDefualtBehaviour; }
+	void SetDefaultBehaviour();
 	void SetBehaviour(Behaviour *set)
-		{ 
-			mBehaviour = set; 
-		}
+		{ mBehaviour = set; }
+	
 	Effect* GetEffect()
 		{ return mBehaviour->GetEffect(); }
-
+	
 private:
 
+	vec3 mDefualtColour;
 	Behaviour *mBehaviour;
 	Behaviour *mDefualtBehaviour;
 };

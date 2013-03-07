@@ -210,40 +210,46 @@ void GameCore::PacmanCollisionCandy(){
 	{
 		if (mPacman.Collision(mCandyList[i], 0.2))
 		{
-			bool addPowerPacman = true;
-			mSoundHandler.PlaySound(mEatSound.GetSource());
-			if(mCandyList[i]->GetSize() >= 0.3)
+			
+			mSoundHandler.PlaySound(mEatSound.GetSource());		
+			bool noPowerPacmanInList = PowerCandyCheck(i);
+			if(noPowerPacmanInList)
 			{
-				for (int i = 0; i < mEffects.size(); i++)
-				{
-					if (typeid(*mEffects[i]).hash_code() == typeid(PowerPacman).hash_code())
-					{
-						mEffects[i]->AddTime(500);
-						addPowerPacman = false;
-					}
-				}
-				if (addPowerPacman)
-				{
-					mSoundHandler.StopSound(mMusicSound.GetSource());
-					for(int i = 0; i < mGhostList.size(); i++)
-					{
-						mSoundHandler.StopSound(mGhostSounds[i].GetSource());
-						((Candy*)mCandyList[i])->GetEffect()->AddEntity(mGhostList[i]);
-					}
-
-					mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
-				}
-			}
-			
-			
-			if(addPowerPacman)
 				mEffects.push_back(((Candy*)mCandyList[i])->GetEffect());
+			}
 			delete (Candy*)mCandyList[i];
 
 			mCandyList.erase(mCandyList.begin()+i); // remove candy
 			break;
 		}
 	}
+}
+bool GameCore::PowerCandyCheck(int i)
+{
+	bool addPowerPacman = true;
+	if(mCandyList[i]->GetSize() >= 0.3)
+	{
+		for (int i = 0; i < mEffects.size(); i++)
+		{
+			if (typeid(*mEffects[i]).hash_code() == typeid(PowerPacman).hash_code())
+			{
+				mEffects[i]->AddTime(500);
+				addPowerPacman = false;
+			}
+		}
+		if (addPowerPacman)
+		{
+			mSoundHandler.StopSound(mMusicSound.GetSource());
+			for(int i = 0; i < mGhostList.size(); i++)
+			{
+				mSoundHandler.StopSound(mGhostSounds[i].GetSource());
+				((Candy*)mCandyList[i])->GetEffect()->AddEntity(mGhostList[i]);
+			}
+
+			mSoundHandler.PlaySound(mPowerPacmanSound.GetSource());
+		}
+	}
+	return addPowerPacman;
 }
 void GameCore::GhostCollisionPacman(){
 	for(int i = 0; i < mGhostList.size(); i++)
