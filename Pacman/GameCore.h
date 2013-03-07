@@ -31,7 +31,7 @@ private:
 	vector<SoundSource> mGhostSounds;
 
 	SoundHandler mSoundHandler;
-	SoundSource mMusicSound, mPowerPacmanSound, mEatSound, mDeathSound;
+	SoundSource mMusicSound, mPowerPacmanSound, mEatSound, mDeathSound, mEatGhostSound;
 	
 	Level mLevel;
 	Pacman mPacman;

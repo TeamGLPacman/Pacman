@@ -23,7 +23,7 @@ int GameCore::GameLoop(){
 
 		if(GetAsyncKeyState(VK_ESCAPE) != 0)
 			return 0;
-		wait(0.01f);
+		wait(0.01f); 
 	}
 	return 0;
 }
@@ -95,6 +95,8 @@ void GameCore::Initialize( int argc, char** argv ){
 	mSoundList.push_back(mEatSound);
 	mDeathSound = SoundSource("../Audio/pacman_death.wav", mPacman.GetPositionPointer(), 0.9, 1.0, false);
 	mSoundList.push_back(mDeathSound);
+	mEatGhostSound = SoundSource("../Audio/pacman_eatghost.wav", mPacman.GetPositionPointer(), 0.9, 1.0, false);
+	mSoundList.push_back(mEatGhostSound);
 
 	for(int i = 0; i < mGhostList.size(); i++)
 	{
@@ -256,19 +258,19 @@ void GameCore::GhostCollisionPacman(){
 	{
 		if (mGhostList[i]->Collision(&mPacman, 0.5))
 		{
-			// ändra!
-			mDeathSound.SetPosition(mPacman.GetPositionPointer());
-			mSoundHandler.PlaySound(mDeathSound.GetSource());
-			// ändra
 			mEffects.push_back(mGhostList[i]->GetEffect());
 			mEffects[mEffects.size()-1]->AddPacman(&mPacman);
 			if (typeid(*mEffects[mEffects.size()-1]).hash_code() != typeid(KillGhost).hash_code())
 			{
+				mDeathSound.SetPosition(mPacman.GetPositionPointer());
+				mSoundHandler.PlaySound(mDeathSound.GetSource());
 				for(int j = 0; j < mGhostList.size(); j++)
 					mEffects[mEffects.size()-1]->AddEntity(mGhostList[j]);
 			}
 			else
 			{
+				mEatGhostSound.SetPosition(mPacman.GetPositionPointer());
+				mSoundHandler.PlaySound(mEatGhostSound.GetSource());
 				mEffects[mEffects.size()-1]->AddEntity(mGhostList[i]);
 			}
 
