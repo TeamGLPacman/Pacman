@@ -24,14 +24,7 @@ uint TextureLoader::LoadTexture(const char* file)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 	gluBuild2DMipmaps(GL_TEXTURE_2D, channels, width, height, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
-
-	/*
-	// Set the Tex1 sampler uniform to refer to texture unit 0
-	GLuint loc = glGetUniformLocation(shaderProgHandle, "Tex1");
-	if( loc >= 0 )
-		glUniform1i(loc, 0);
-	else
-		fprintf(stderr, "Uniform variable Tex1 not found!\n");
-		*/
+	
+	delete imgData;
 	return textureHandle;
 }

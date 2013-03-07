@@ -319,4 +319,16 @@ GameCore::~GameCore()
 {
 	for(int i = 0; i < mCandyList.size(); i++)
 		delete (Candy*)mCandyList[i];
+
+	mMusicSound.DeleteData();
+	mPowerPacmanSound.DeleteData();
+	mEatSound.DeleteData();
+	mDeathSound.DeleteData();
+
+	//Not working yet, but not sure if needed
+	/*for(int i = 0; i < mGhostList.size(); i++)
+		delete mGhostList[i];
+
+	for(int i = 0; i < mEffects.size(); i++)
+		delete mEffects[i];*/
 }
