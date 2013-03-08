@@ -8,7 +8,7 @@ PowerPacman::PowerPacman(Pacman* pacman, vector<Ghost*>* ghosts) : Effect (500)
 }
 PowerPacman::~PowerPacman(void)
 {
-	delete mAffectedGhosts;
+	//delete mAffectedGhosts;
 	delete mPacman;
 }
 int PowerPacman::Run()
@@ -17,24 +17,24 @@ int PowerPacman::Run()
 	if (TimeLeft == GetMaxTime()-1)
 	{
 		Behaviour *newBehaviour;
-		for (int i = 0; i < mAffectedGhosts->size(); i++)
+		for (uint i = 0; i < mAffectedGhosts->size(); i++)
 		{
-			newBehaviour = new Scared(mPacman->GetPositionPointer(), new KillGhost((*mAffectedGhosts)[i]));
-			(*mAffectedGhosts)[i]->ModifySpeed(-0.02);
+			newBehaviour = new Scared(mPacman->GetPositionPointer(), new KillGhost((*mAffectedGhosts)[i]), (*mAffectedGhosts)[i]->GetDirection());
+			(*mAffectedGhosts)[i]->ModifySpeed(-0.02f);
 			((Ghost*)((*mAffectedGhosts)[i]))->SetBehaviour(newBehaviour);
 			((Ghost*)((*mAffectedGhosts)[i]))->SetColour(vec3(0.3f,0.3f,0.3f));
 		}
-		mPacman->ModifySpeed(0.02);
+		//mPacman->ModifySpeed(0.02f);
 		return 0;
 	}
 	else if (TimeLeft == 0)
 	{
-		for (int i = 0; i < mAffectedGhosts->size(); i++)
+		for (uint i = 0; i < mAffectedGhosts->size(); i++)
 		{
 			(*mAffectedGhosts)[i]->ModifySpeed(0);
 			((Ghost*)((*mAffectedGhosts)[i]))->SetDefaultBehaviour();
 		}
-		mPacman->ModifySpeed(0);
+		//mPacman->ModifySpeed(0);
 		return 5; //5 points
 	}
 	else if (TimeLeft > 0)
@@ -42,8 +42,8 @@ int PowerPacman::Run()
 		int count = TimeLeft%8;
 		vec3 colour(0.3f,0.3f,0.3f);
 		vec3 colour2(1,1,1);
-		if (count == 0 || count == 4)
-		for (int i = 0; i < mAffectedGhosts->size(); i++)
+		if (count == 0)
+		for (uint i = 0; i < mAffectedGhosts->size(); i++)
 		{
 			if ((*mAffectedGhosts)[i]->GetColor() == colour)
 			{
@@ -57,10 +57,6 @@ int PowerPacman::Run()
 	}
 	return 0;
 }
-//void PowerPacman::AddGhost(Ghost *ghost)
-//{
-	
-//}
 void PowerPacman::AddEntity(Entity *entit)
 {
 	

@@ -85,17 +85,17 @@ void Pacman::InputHandler()
 {
 	if(mInputTimer > 1)
 	{
-		if(GetAsyncKeyState('L') != 0)
+		if(GetAsyncKeyState('L') != 0 || GetAsyncKeyState(VK_RIGHT) != 0)
 		{
 			mNextDirection =  glm::cross(mDirection, vec3(0,1,0));
 			mInputTimer = 0;
 		}
-		else if(GetAsyncKeyState('J') != 0)
+		else if(GetAsyncKeyState('J') != 0 || GetAsyncKeyState(VK_LEFT) != 0)
 		{
 			mNextDirection = -glm::cross(mDirection, vec3(0,1,0));
 			mInputTimer = 0;
 		}
-		else if(GetAsyncKeyState('K') != 0)
+		else if(GetAsyncKeyState('K') != 0 || GetAsyncKeyState(VK_DOWN) != 0)
 		{
 			mNextDirection =  -mDirection;
 			mInputTimer = 0;

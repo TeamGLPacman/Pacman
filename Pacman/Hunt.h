@@ -8,7 +8,6 @@ class Hunt : public Behaviour
 {
 private:
 	vec3 *mPacmanPos;
-	vec3 mLastDir;
 	bool enterCross;
 public:
 

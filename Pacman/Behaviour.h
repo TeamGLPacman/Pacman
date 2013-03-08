@@ -10,6 +10,8 @@ class Behaviour
 private:
 	Effect *mEffect;
 protected:
+	vec3 mLastDir;
+
 	void SetEffect(Effect* effect)
 		{ mEffect = effect; }
 public:
@@ -17,6 +19,12 @@ public:
 
 	Effect* GetEffect() 
 		{ return mEffect; }
+
+	vec3 GetLastDir()
+	{ return mLastDir; }
+
+	void SetLastDir(vec3 lastDir)
+	{ mLastDir = lastDir; }
 
 	Behaviour(){}
 	~Behaviour() {

@@ -4,7 +4,7 @@ Hunt::Hunt(vec3* pacmanPos, Effect *effect)
 {
 	mPacmanPos = pacmanPos;
 	SetEffect(effect);
-	mLastDir = vec3 (0,0,-1);
+	SetLastDir(vec3 (0,0,-1));
 	enterCross = true;
 }
 
@@ -22,7 +22,6 @@ Hunt::~Hunt()
 
 vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 {
-	
 	if (*worldPos == *target)
 	{ 
 		if ((mLastDir.x == 1 && sur[0] == 1 && sur[2] == 1 && sur[1] != 1)

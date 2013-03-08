@@ -10,10 +10,9 @@ class Scared : public Behaviour
 {
 private:
 	vec3 *mPacmanPos;
-	vec3 mLastDir;
 	bool enterCross;
 public:
-	Scared(vec3* pacmanPos, Effect* effect);
+	Scared(vec3* pacmanPos, Effect* effect, vec3 lastDir);
 	Scared(void);
 
 	vec3 Update(int sur[4], vec3 *worldPos, float speed, vec3 *target);

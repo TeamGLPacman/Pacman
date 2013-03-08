@@ -30,7 +30,10 @@ vec2 Ghost::GetGridPos(){
 void Ghost::SetDefaultBehaviour()
 { 
 	SetColour(mDefualtColour);
+
+	vec3 direction = mBehaviour->GetLastDir();
 	mBehaviour = mDefualtBehaviour; 
+	mBehaviour->SetLastDir(direction);
 }
 Ghost::~Ghost()
 {
@@ -39,7 +42,7 @@ Ghost::~Ghost()
 }
 int Ghost::Update(int sur[4])
 {
-	vec3 a= mBehaviour->Update(sur, GetPositionPointer(), GetSpeed(), &mTargetPoint);
+	vec3 a = mBehaviour->Update(sur, GetPositionPointer(), GetSpeed(), &mTargetPoint);
 	SetDirection(a);
 	SetWorldPos(vec3(GetWorldPos() + mDirection * (GetSpeed())));
 	return 0;
