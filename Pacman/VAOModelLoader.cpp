@@ -14,7 +14,7 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 {
 	GLuint VAOHandle;
 	float* positionData = new float[vertexList.size()*3];
-	float* texCoordData = new float[vertexList.size()*2];
+	float* texCoordData = new float[vertexList.size() << 1];
 	float* normalData = new float[vertexList.size()*3];
 	int count = 0;
 
@@ -24,8 +24,8 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 		positionData[3*count+1] = vertexList[i].mPosition.y;
 		positionData[3*count+2] = vertexList[i].mPosition.z;
 
-		texCoordData[2*count] = vertexList[i].mTexCoord.x;
-		texCoordData[2*count+1] = vertexList[i].mTexCoord.y;
+		texCoordData[(count << 1)] = vertexList[i].mTexCoord.x;
+		texCoordData[(count << 1)+1] = vertexList[i].mTexCoord.y;
 
 		normalData[3*count] = vertexList[i].mNormal.x;
 		normalData[3*count+1] = vertexList[i].mNormal.y;
@@ -46,12 +46,12 @@ uint VAOModelLoader::CreateModel(vector<VertexPoint> vertexList)
 
 	// Put data in currently bound buffer
 	glBufferData(GL_ARRAY_BUFFER, numberOfPoints * sizeof(float), positionData, GL_STATIC_DRAW);
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[1]);
 	glBufferData(GL_ARRAY_BUFFER, numberOfPoints * sizeof(float), normalData, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBOHandles[2]);
-	glBufferData(GL_ARRAY_BUFFER, count*2 * sizeof(float), texCoordData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, (count << 1) * sizeof(float), texCoordData, GL_STATIC_DRAW);
 
 	// create 1 VAO
 	glGenVertexArrays(1, &VAOHandle);

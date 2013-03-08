@@ -27,8 +27,12 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 	float lengthz(distancefrompacman.z); // "y"
 	int i(0);
 	int w(6);
-	float lx(lengthx*lengthx);
-	float lz(lengthz*lengthz);
+	int castedx = *(int*) &lengthx;
+	int castedz = *(int*) &lengthz;
+	castedx &= 0x7FFFFFFF; // tar bort den högsta "bit":en dvs. den som säger om det är + eller -
+	castedz &= 0x7FFFFFFF; // tar bort den högsta "bit":en dvs. den som säger om det är + eller -
+	float lx(*(float*)&castedx);
+	float lz(*(float*)&castedz);
 	if (lx > lz)
 	{
 		w = 8;

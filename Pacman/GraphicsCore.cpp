@@ -295,7 +295,7 @@ int GraphicsCore::UpdateCameraSmooth(vec3 eye, vec3 target, float speed)
 	else
 	{
 		vec3 d = glm::normalize(eye - mEye);
-		d *= speed*((dist/3) *2);
+		d *= speed*((dist/3)*2);
 		mEye += d;
 	}
 	dist = glm::length(mTarget - target);
@@ -305,7 +305,7 @@ int GraphicsCore::UpdateCameraSmooth(vec3 eye, vec3 target, float speed)
 	else
 	{
 		vec3 d = glm::normalize(target - mTarget);
-		d *= speed*((dist/3) *2);
+		d *= speed*((dist/3)*2);
 		mTarget += d;
 	}
 	return 0;
