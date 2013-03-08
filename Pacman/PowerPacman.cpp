@@ -13,11 +13,11 @@ PowerPacman::~PowerPacman(void)
 }
 int PowerPacman::Run()
 {
-	int TimeLeft = Tick();
+	int TimeLeft(Tick());
 	if (TimeLeft == GetMaxTime()-1)
 	{
 		Behaviour *newBehaviour;
-		for (uint i = 0; i < mAffectedGhosts->size(); i++)
+		for (uint i(0); i < mAffectedGhosts->size(); i++)
 		{
 			newBehaviour = new Scared(mPacman->GetPositionPointer(), new KillGhost((*mAffectedGhosts)[i]), (*mAffectedGhosts)[i]->GetDirection());
 			(*mAffectedGhosts)[i]->ModifySpeed(-0.02f);
@@ -29,7 +29,7 @@ int PowerPacman::Run()
 	}
 	else if (TimeLeft == 0)
 	{
-		for (uint i = 0; i < mAffectedGhosts->size(); i++)
+		for (uint i(0); i < mAffectedGhosts->size(); i++)
 		{
 			(*mAffectedGhosts)[i]->ModifySpeed(0);
 			((Ghost*)((*mAffectedGhosts)[i]))->SetDefaultBehaviour();
@@ -39,11 +39,11 @@ int PowerPacman::Run()
 	}
 	else if (TimeLeft > 0)
 	{
-		int count = TimeLeft%8;
+		int count(TimeLeft%8);
 		vec3 colour(0.3f,0.3f,0.3f);
 		vec3 colour2(1,1,1);
 		if (count == 0)
-		for (uint i = 0; i < mAffectedGhosts->size(); i++)
+		for (uint i(0); i < mAffectedGhosts->size(); i++)
 		{
 			if ((*mAffectedGhosts)[i]->GetColor() == colour)
 			{

@@ -22,7 +22,7 @@ bool GraphicsCore::fullsceen(){
 
 GraphicsCore::GraphicsCore(void)
 {
-	fov = 40.0f;
+	fov = 80.0f;
 	//int w, h;
 	if(fullsceen())
 	{

@@ -27,9 +27,25 @@ vec3 Scared::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 	float lengthx = distancefrompacman.x; //  x
 	float lengthz = distancefrompacman.z; // "y"
 	int i = 0;
+	int w;
+	float lx(lengthx*lengthx);
+	float lz(lengthz*lengthz);
+	if (lx > lz)
+	{
+		w = 8;
+	}
+	else if (lengthx*lengthx < lengthz*lengthz)
+	{
+		w= 5;
+	}
+	else
+	{
+		w = 6;
+	}
+
 	if(lengthx < 0)
 	{
-		while(i < 6)
+		while(i < w)
 		{
 			vLeft.push_back(i);
 			i++;
@@ -39,7 +55,7 @@ vec3 Scared::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 	}
 	else if (lengthx > 0)
 	{
-		while(i < 6)
+		while(i < w)
 		{
 			vRight.push_back(i);
 			i++;

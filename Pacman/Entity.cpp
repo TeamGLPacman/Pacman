@@ -5,11 +5,8 @@ Entity::Entity(void)
 {
 }
 Entity::Entity( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size ) : 
-	Object3D( modelID, textureID, shaderID, colour, worldPos, size )
+	Object3D( modelID, textureID, shaderID, colour, worldPos, size ), mSpeed(speed), mModSpeed(0), mDirection(direction)
 {
-	mSpeed = speed;
-	mModSpeed = 0;
-	mDirection = direction;
 }
 
 Entity::~Entity(void)
@@ -39,7 +36,7 @@ void Entity::UpdateTargetPoint(bool canMove[4])
 }
 bool Entity::Collision(Object3D* obj, float collDist)
 {
-	float dist = glm::length(GetWorldPos() - obj->GetWorldPos());
+	float dist(glm::length(GetWorldPos() - obj->GetWorldPos()));
 
 	if(dist <= collDist)
 		return true;

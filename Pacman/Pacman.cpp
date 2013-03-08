@@ -9,14 +9,12 @@ Pacman::~Pacman()
 }
 
 Pacman::Pacman( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size ) : 
-	Entity( speed, direction, modelID, textureID, shaderID, colour, worldPos, size )
+	Entity( speed, direction, modelID, textureID, shaderID, colour, worldPos, size ), mLives(3), mInputTimer(0)
 {
-	mLives = 3;
 	SetWorldPos(worldPos);
 	SetSpawnPosition(worldPos);
 	mNextDirection = direction;
 	mTargetPoint = worldPos + direction;
-	mInputTimer = 0;
 }
 
 
@@ -29,9 +27,8 @@ int Pacman::TakeDamaga()
 //Converts a vector to one of four int values (1=up, 2=right, 3=down, 4= left)
 int Pacman::GetVecInt(vec3 theVec3)
 {
-	vec3 vec = glm::normalize(theVec3);
+	vec3 vec(glm::normalize(theVec3));
 	int i;
-
 	if( vec == vec3(0,0,-1) )
 		i = 0;
 	else if( vec == vec3(1,0,0) )
@@ -46,7 +43,7 @@ int Pacman::GetVecInt(vec3 theVec3)
 
 int Pacman::Update(int surroundingGrid[4])
 {
-	float dist = glm::length(GetWorldPos() - mTargetPoint);
+	float dist(glm::length(GetWorldPos() - mTargetPoint));
 
 	if(dist <= GetSpeed())
 	{

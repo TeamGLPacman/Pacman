@@ -1,13 +1,10 @@
 #include "Light.h"
 
 
-Light::Light(vec3 pos, float range, vec3 diff, vec3 spec, uint shaderID)
+Light::Light(vec3 pos, float range, vec3 diff, vec3 spec, uint shaderID) 
+	: mWorldPosition(pos), mRange(range), mDiffuse(diff), mSpecular(spec), mShaderID(shaderID)
 {
-	mWorldPosition = pos;
-	mRange = range;
-	mDiffuse = diff;
-	mSpecular = spec;
-	mShaderID = shaderID;
+
 }
 
 Light::Light()

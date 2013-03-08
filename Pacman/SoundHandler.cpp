@@ -9,15 +9,12 @@ SoundHandler::~SoundHandler()
 {
 	alcDestroyContext(context);                                                 //Destroy the OpenAL Context
     alcCloseDevice(device);                                                     //Close the OpenAL Device
-
 }
 
 int SoundHandler::Init()
 {
 	 //Now OpenAL needs to be initialized 
-    const ALCchar *default_device;
-
-	default_device = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+    const ALCchar *default_device(alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER));
 
     device = alcOpenDevice(default_device);                                               //Open the device
 
@@ -41,7 +38,7 @@ void SoundHandler::UpdateSounds(vector<SoundSource> sounds, vec3 pacmanPos, vec3
     alListenerfv(AL_VELOCITY,    ListenerVel);                                  //Set velocity of the listener
     alListenerfv(AL_ORIENTATION, ListenerOri);                                  //Set orientation of the listener
     
-	for(int i = 0; i < sounds.size(); i++)
+	for(int i(0); i < sounds.size(); i++)
 	{
 		ALfloat SourcePos[] = { sounds[i].GetPosition().x, sounds[i].GetPosition().y, sounds[i].GetPosition().z };        //Position of the source sound
 		//Source

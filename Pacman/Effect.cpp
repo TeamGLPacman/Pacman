@@ -1,16 +1,12 @@
 #include "Effect.h"
 
 
-Effect::Effect(void)
+Effect::Effect(void) : mTimeLeft(1), mMaxTime(1)
 {
-	mTimeLeft = 1;
-	mMaxTime = mTimeLeft;
 }
 
-Effect::Effect(int timeLeft)
+Effect::Effect(int timeLeft) : mTimeLeft(timeLeft), mMaxTime(timeLeft)
 {
-	mTimeLeft = timeLeft;
-	mMaxTime = mTimeLeft;
 }
 void Effect::Reset()
 {

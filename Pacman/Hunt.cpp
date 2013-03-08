@@ -1,11 +1,9 @@
 #include "Hunt.h"
 
-Hunt::Hunt(vec3* pacmanPos, Effect *effect)
+Hunt::Hunt(vec3* pacmanPos, Effect *effect) : mPacmanPos(pacmanPos), enterCross(true)
 {
-	mPacmanPos = pacmanPos;
 	SetEffect(effect);
 	SetLastDir(vec3 (0,0,-1));
-	enterCross = true;
 }
 
 
@@ -23,14 +21,30 @@ Hunt::~Hunt()
 vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 {
 	
-	vec3 distancefrompacman = *mPacmanPos - *worldPos;
+	vec3 distancefrompacman(*mPacmanPos - *worldPos);
 	vector <int> vLeft, vRight, vUp, vDown;
-	float lengthx = distancefrompacman.x; //  x
-	float lengthz = distancefrompacman.z; // "y"
-	int i = 0;
+	float lengthx(distancefrompacman.x); //  x
+	float lengthz(distancefrompacman.z); // "y"
+	int i(0);
+	int w(6);
+	float lx(lengthx*lengthx);
+	float lz(lengthz*lengthz);
+	if (lx > lz)
+	{
+		w = 8;
+	}
+	else if (lengthx*lengthx < lengthz*lengthz)
+	{
+		w= 5;
+	}
+	else
+	{
+		w = 6;
+	}
+
 	if(lengthx < 0)
 	{
-		while(i < 6)
+		while(i < w)
 		{
 			vLeft.push_back(i);
 			i++;
@@ -40,7 +54,7 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 	}
 	else if (lengthx > 0)
 	{
-		while(i < 6)
+		while(i < w)
 		{
 			vRight.push_back(i);
 			i++;
@@ -109,7 +123,7 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 				i = rand()%14;
 				if (sur[0] != 1)
 				{
-					for (int j = 0; j < vUp.size(); j++)
+					for (int j(0); j < vUp.size(); j++)
 					{
 						if(i == vUp[j])
 						{
@@ -121,7 +135,7 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 				}
 				if (sur[2] != 1)
 				{
-					for (int j = 0; j < vDown.size(); j++)
+					for (int j(0); j < vDown.size(); j++)
 					{
 						if(i == vDown[j])
 						{
@@ -145,7 +159,7 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 				}
 				if (sur[1] != 1)
 				{
-					for (int j = 0; j < vRight.size(); j++)
+					for (int j(0); j < vRight.size(); j++)
 					{
 						if(i == vRight[j])
 						{
@@ -162,7 +176,7 @@ vec3 Hunt::Update(int sur[4], vec3 *worldPos, float speed, vec3 *target)
 	else
 	{
 		
-		float dist = glm::length(*worldPos - *target);
+		float dist(glm::length(*worldPos - *target));
 		if (dist < speed)
 		{
 			*worldPos = *target;

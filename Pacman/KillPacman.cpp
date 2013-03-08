@@ -10,13 +10,13 @@ KillPacman::~KillPacman()
 int KillPacman::Run()
 {
 
-	int timeLeft = Tick();
+	int timeLeft(Tick());
 
 	if (timeLeft == GetMaxTime()-1)
 	{
 		mPacman->ReSpawn();
 		mPacman->TakeDamaga();
-		for (int i = 0; i < mEnties.size(); i++)
+		for (int i =0; i < mEnties.size(); i++)
 		{
 			mEnties[i]->ReSpawn();
 		}

@@ -1,8 +1,8 @@
 #include "Points.h"
 
-Points::Points(int points)
+Points::Points(int points) : mPoints(points)
 {
-	mPoints = points;
+	
 }
 
 Points::~Points()

@@ -1,17 +1,15 @@
 #include "Ghost.h"
 
 Ghost::Ghost( float speed, vec3 direction, uint modelID, uint textureID, uint shaderID, vec3 colour, vec3 worldPos, float size , Behaviour *behaviour) : 
-	Entity( speed, direction, modelID, textureID, shaderID, colour, worldPos, size )
+	Entity( speed, direction, modelID, textureID, shaderID, colour, worldPos, size ),mBehaviour(behaviour),mDefualtBehaviour(behaviour)
 {
 	SetSpawnPosition(worldPos);
-	mBehaviour = behaviour;
-	mDefualtBehaviour = behaviour;
 	mTargetPoint = worldPos;
 	mDirection = vec3(0,0,-1);
 	mDefualtColour = GetColor();
 }
 vec2 Ghost::GetGridPos(){
-	vec3 pos = GetWorldPos();
+	vec3 pos(GetWorldPos());
 	vec2 returnv;
 	if (floor(pos.x) == floor(pos.x+0.2))
 		returnv.x = floor(pos.x);
@@ -30,8 +28,7 @@ vec2 Ghost::GetGridPos(){
 void Ghost::SetDefaultBehaviour()
 { 
 	SetColour(mDefualtColour);
-
-	vec3 direction = mBehaviour->GetLastDir();
+	vec3 direction(mBehaviour->GetLastDir());
 	mBehaviour = mDefualtBehaviour; 
 	mBehaviour->SetLastDir(direction);
 }
@@ -42,7 +39,7 @@ Ghost::~Ghost()
 }
 int Ghost::Update(int sur[4])
 {
-	vec3 a = mBehaviour->Update(sur, GetPositionPointer(), GetSpeed(), &mTargetPoint);
+	vec3 a(mBehaviour->Update(sur, GetPositionPointer(), GetSpeed(), &mTargetPoint));
 	SetDirection(a);
 	SetWorldPos(vec3(GetWorldPos() + mDirection * (GetSpeed())));
 	return 0;

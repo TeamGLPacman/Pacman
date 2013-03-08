@@ -10,7 +10,7 @@ bool Level::LoadMap( const char* path )
 
 	int width, height, channels;
 
-	unsigned char* map = SOIL_load_image( path, &width, &height, &channels, 1 );
+	unsigned char* map(SOIL_load_image( path, &width, &height, &channels, 1 ));
 
 	mWidth = width;
 	mHeight = height;
@@ -24,8 +24,8 @@ bool Level::LoadMap( const char* path )
 	{
 		for( int x = 0; x < width; x++ )
 		{
-			int id = 0;
-			int value = map[x + (y * width)];
+			int id(0);
+			int value(map[x + (y * width)]);
 			
 			if( value <= 10 )
 				id = 1; //Box (Wall)
@@ -51,7 +51,7 @@ bool Level::LoadMap( const char* path )
 
 Level::~Level()
 {
-	for( int i = 0; i < mWidth; i++ ) 
+	for( int i(0); i < mWidth; i++ ) 
 	{
 		delete mMapValues[i];
 	}
@@ -64,8 +64,8 @@ int* Level::GetSurroundingGrid( vec2 pos )
 {
 	int sGrid[4]; // Up, Right, Down, Left (Clockwise)
 
-	int xPos = pos.x;
-	int yPos = pos.y;
+	int xPos(pos.x);
+	int yPos(pos.y);
 
 	if(xPos > 0 && xPos < mWidth && yPos - 1 > 0 && yPos - 1 < mHeight) //Up
 		sGrid[0] = mMapValues[xPos][yPos - 1];
@@ -150,11 +150,11 @@ bool Level::BuildLevel()
 {
 	if(mWidth != 0)
 	{
-		for( int y = 0; y < mHeight; y++ )
+		for( int y(0); y < mHeight; y++ )
 		{
-			for( int x = 0; x < mWidth; x++ )
+			for( int x(0); x < mWidth; x++ )
 			{
-				int value = mMapValues[x][y];
+				int value( mMapValues[x][y] );
 
 				if( value == 0 )
 					mCandyPosList.push_back(vec3(x, 0.5, y));

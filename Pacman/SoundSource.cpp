@@ -2,6 +2,7 @@
 
 
 SoundSource::SoundSource(const char* file, vec3 *pos, float volume, float pitch, bool loop)
+
 {
 	LoadFile(file);
 	mPosition = pos;

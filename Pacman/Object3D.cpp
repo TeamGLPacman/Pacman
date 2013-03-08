@@ -2,13 +2,8 @@
 
 
 Object3D::Object3D( uint modelID, uint textureID,  uint shaderID, vec3 colour, vec3 worldPos, float size )
+	: mModelID(modelID), mTextureID(textureID), mShaderID(shaderID),mWorldPos(worldPos),mSize(size),mColour(colour)
 {
-	mModelID = modelID;
-	mTextureID = textureID;
-	mShaderID = shaderID;
-	mWorldPos = worldPos;
-	mSize = size;
-	mColour = colour;
 }
 
 Object3D::Object3D()
