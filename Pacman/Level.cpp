@@ -243,11 +243,11 @@ void Level::AddWallVertices(vec3 pos)
 
 void Level::AddGroundVertices(vec3 pos)
 {
-	mGroundVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
-	mGroundVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(-0,1,0), vec2(0.0002,0.333134)));
-	mGroundVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
+	mGroundVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(-0,1,0), vec2(1,1)));
+	mGroundVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,-0.5), vec3(-0,1,0), vec2(0,1)));
+	mGroundVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,1,0), vec2(0,0)));
 
-	mGroundVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,0.5), vec3(-0,1,0), vec2(0.333133,0.0002)));
-	mGroundVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(-0,1,0), vec2(0.333134,0.333133)));
-	mGroundVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,1,0), vec2(0.0002,0.0002)));
+	mGroundVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,0.5), vec3(-0,1,0), vec2(1,0)));
+	mGroundVertices.push_back(VertexPoint(pos + vec3(0.5,-0.5,-0.5), vec3(-0,1,0), vec2(1,1)));
+	mGroundVertices.push_back(VertexPoint(pos + vec3(-0.5,-0.5,0.5), vec3(-0,1,0), vec2(0,0)));
 }
