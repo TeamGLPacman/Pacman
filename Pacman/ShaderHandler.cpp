@@ -167,4 +167,6 @@ int ShaderHandler::UpdateUniform(const char* variable, uint shaderProgHandle, ve
 	if( location >= 0 )
 		{ glUniform3fv(location, 1, &value[0]); }
 	else return 1;
+
+	return 0;
 }
