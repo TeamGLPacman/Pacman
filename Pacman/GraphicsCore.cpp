@@ -178,7 +178,7 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	glutReshapeFunc(resizeCallback); // register callback for reshape
 
 	// set colour to clear screen buffer to
-	glClearColor(0.1, 0.1, 0.1, 1.0f);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 	// enable some useful GL behaviours
 	glEnable(GL_DEPTH_TEST); // enable depth-testing
@@ -192,6 +192,8 @@ uint GraphicsCore::Initialize(int argc, char** argv)
 	if (GLEW_OK != err) {
 		printf("ERROR starting GLEW: %s\n", glewGetErrorString(err));
 	}
+
+	return 1;
 }
 
 uint GraphicsCore::LoadShaderFiles(const char* vertexShaderPath, const char* fragmentShaderPath)
@@ -259,7 +261,7 @@ void GraphicsCore::RenderObjects(vector<Object3D*> objects)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		for (int i = 0; i < objects.size(); i++)
+		for (uint i = 0; i < objects.size(); i++)
 		{
 			UpdateBillboardObjectValues(*objects[i]);
 			glDrawArrays(GL_POINTS, 0, 1);
@@ -270,7 +272,7 @@ void GraphicsCore::RenderObjects(vector<Object3D*> objects)
 	else
 	{
 		UpdateLightValues(*objects[0]);
-		for (int i = 0; i < objects.size(); i++)
+		for (uint i = 0; i < objects.size(); i++)
 		{
 			UpdateObjectValues(*objects[i]);
 			glDrawArrays(GL_TRIANGLES, 0, mVAOModel.GetVertexCount(objects[i]->GetModelID()));
@@ -336,5 +338,5 @@ void GraphicsCore::TempCamUpdate()
 	mCam.SetYaw(0.0);
 	mEye = mCam.GetCamPos();
 	mTarget = vec3(mCam.GetCamPos().x, mCam.GetCamPos().y, mCam.GetCamPos().z-1);
-	mCam.Control(0.1, 2.5, true);
+	mCam.Control(0.1f, 2.5f, true);
 }
